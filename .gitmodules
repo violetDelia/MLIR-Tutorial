@@ -1,0 +1,4 @@
+# git submodule update --init --recursive --progress
+[submodule "third_party/llvm-project"]
+	path = third_party/llvm-project
+	url = https://mirrors.tuna.tsinghua.edu.cn/git/llvm-project.git
