@@ -1,3 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-
+set(CMAKE_C_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/install")
+add_compile_options(-fPIC)
+add_subdirectory(third_party)
 add_subdirectory(3-define_dialect)
