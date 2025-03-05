@@ -11,13 +11,11 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
-#include "Dialect/NorthStar/NorthStarDialect.h"
-#include "mlir/IR/DialectRegistry.h"
+
+#ifndef DIALECT_NORTH_STAR_H
+#define DIALECT_NORTH_STAR_H
+#include "mlir/IR/Dialect.h"
 #include "mlir/IR/MLIRContext.h"
-void CH2() {
-  mlir::DialectRegistry registry;
-  mlir::MLIRContext context(registry);
-  auto d = context.getOrLoadDialect<mlir::north_star::NorthStarDialect>();
-  d->sayHello();
-}
-int main() { CH2(); }
+#include "Dialect/NorthStar/NorthStarDialect.h.inc"
+
+#endif // DIALECT_NORTH_STAR_H
