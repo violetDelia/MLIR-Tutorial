@@ -11,19 +11,15 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
-#include "Dialect/NorthStar/NorthStarDialect.h"
-#include "mlir/IR/DialectRegistry.h"
+
+#ifndef DIALECT_NORTH_STAR_TYPES_H
+#define DIALECT_NORTH_STAR_TYPES_H
+#include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/IR/MLIRContext.h"
+#define FIX
+#define GET_TYPEDEF_CLASSES
+#include "Dialect/NorthStar/NorthStarTypes.h.inc"
+#undef FIX
 
-void CH2() {
-  // 初始化方言注册器
-  mlir::DialectRegistry registry;
-  // 初始化上下文环境
-  mlir::MLIRContext context(registry);
-  // 加载/注册方言
-  auto dialect = context.getOrLoadDialect<mlir::north_star::NorthStarDialect>();
-  // 调用方言中的方法
-  dialect->sayHello();
-}
 
-int main() { CH2(); }
+#endif  // DIALECT_NORTH_STAR_TYPES_H

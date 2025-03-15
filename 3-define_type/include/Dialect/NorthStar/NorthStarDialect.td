@@ -38,6 +38,7 @@ def NorthStarDialect : Dialect{
   // 额外的声明.
   let extraClassDeclaration = [{
     static void sayHello();
+    void registerType();
   }];
 
   // 规范化的声明. [14]
@@ -62,7 +63,7 @@ def NorthStarDialect : Dialect{
   let useDefaultAttributePrinterParser = 0;
 
   // 使用MLIR默认的类型解析输出.
-  let useDefaultTypePrinterParser = 0;
+  let useDefaultTypePrinterParser = 1;
 
   // 是否有规范化patten[14].
   let hasCanonicalizer = 0;

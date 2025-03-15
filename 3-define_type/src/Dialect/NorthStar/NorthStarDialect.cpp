@@ -22,6 +22,7 @@ namespace mlir::north_star {
 // 实现方言的初始化方法
 void NorthStarDialect::initialize() {
   llvm::outs() << "initializing " << getDialectNamespace() << "\n";
+  registerType();
 }
 
 // 实现方言的析构函数
