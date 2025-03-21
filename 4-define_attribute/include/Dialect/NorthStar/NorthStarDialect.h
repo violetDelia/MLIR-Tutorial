@@ -12,13 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-#ifndef DIALECT_NORTH_STAR_TYPES_H
-#define DIALECT_NORTH_STAR_TYPES_H
+#ifndef DIALECT_NORTH_STAR_H
+#define DIALECT_NORTH_STAR_H
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/IR/MLIRContext.h"
-#define FIX
-#define GET_TYPEDEF_CLASSES
-#include "Dialect/NorthStar/NorthStarTypes.h.inc"
-#undef FIX
+#include "Dialect/NorthStar/NorthStarDialect.h.inc"
 
-#endif  // DIALECT_NORTH_STAR_TYPES_H
+#endif  // DIALECT_NORTH_STAR_H
