@@ -16,7 +16,7 @@
 #define DIALECT_NORTH_STAR
 include "mlir/IR/DialectBase.td"
 
-def NorthStarDialect : Dialect{
+def NorthStar_Dialect : Dialect{
   // 方言的名字
   let name = "north_star";
 

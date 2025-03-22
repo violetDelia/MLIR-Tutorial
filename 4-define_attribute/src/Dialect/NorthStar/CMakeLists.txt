@@ -1,7 +1,7 @@
 add_mlir_dialect_library(MLIRNorthStarDialect${ch_num}
     NorthStarDialect.cpp
     NorthStarTypes.cpp
-
+    NorthStarAttrs.cpp
     ADDITIONAL_HEADER_DIRS
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/Dialect/NorthStar
 

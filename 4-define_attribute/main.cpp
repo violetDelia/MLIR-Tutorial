@@ -13,6 +13,7 @@
 //    limitations under the License.
 #include <cstddef>
 
+#include "Dialect/NorthStar/NorthStarAttrs.h"
 #include "Dialect/NorthStar/NorthStarDialect.h"
 #include "Dialect/NorthStar/NorthStarTypes.h"
 #include "llvm/ADT/APFloat.h"
@@ -214,5 +215,16 @@ void CH4() {
   mlir::MLIRContext context(registry);
   // 加载/注册方言
   auto dialect = context.getOrLoadDialect<mlir::north_star::NorthStarDialect>();
+  // Layout Eunms
+  auto nchw = mlir::north_star::Layout::NCHW;
+  llvm::outs() << "NCHW: " << mlir::north_star::stringifyEnum(nchw) << "\n";
+  // LayoutAttr
+  auto nchw_attr = mlir::north_star::LayoutAttr::get(&context, nchw);
+  llvm::outs() << "NCHW LayoutAttribute :\t";
+  nchw_attr.dump();
+  // DataParallelismAttr
+  auto dp_attr = mlir::north_star::DataParallelismAttr::get(&context, 2);
+  llvm::outs() << "DataParallelism Attribute :\t";
+  dp_attr.dump();
 }
 int main() { CH4(); }

@@ -22,7 +22,7 @@ include "mlir/IR/BuiltinTypeInterfaces.td"
 
 class NorthStar_Type<string name, string typeMnemonic, list<Trait> traits = [],
                    string baseCppClass = "::mlir::Type">
-    : TypeDef<NorthStarDialect, name, traits, baseCppClass> {
+    : TypeDef<NorthStar_Dialect, name, traits, baseCppClass> {
   let mnemonic = typeMnemonic;
   let typeName =  dialect.name # "." # typeMnemonic;
 }

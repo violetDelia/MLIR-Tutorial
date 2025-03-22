@@ -16,7 +16,7 @@
 #define DIALECT_NORTH_STAR
 include "mlir/IR/DialectBase.td"
 
-def NorthStarDialect : Dialect{
+def NorthStar_Dialect : Dialect{
   // 方言的名字
   let name = "north_star";
 
@@ -39,6 +39,7 @@ def NorthStarDialect : Dialect{
   let extraClassDeclaration = [{
     static void sayHello();
     void registerType();
+    void registerAttrs();
   }];
 
   // 规范化的声明. [14]
@@ -60,7 +61,7 @@ def NorthStarDialect : Dialect{
   let hasOperationInterfaceFallback = 0;
 
   // 使用MLIR默认的属性解析输出.
-  let useDefaultAttributePrinterParser = 0;
+  let useDefaultAttributePrinterParser = 1;
 
   // 使用MLIR默认的类型解析输出.
   let useDefaultTypePrinterParser = 1;
