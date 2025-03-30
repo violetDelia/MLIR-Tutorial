@@ -2,3 +2,4 @@
 [submodule "third_party/llvm-project"]
 	path = third_party/llvm-project
 	url = https://mirrors.tuna.tsinghua.edu.cn/git/llvm-project.git
+	branch = llvmorg-19.1.7
