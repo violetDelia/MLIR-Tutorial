@@ -4,3 +4,4 @@ build
 .clangd
 DeepSeek-V3
 DeepGEMM
+.clang-format
