@@ -23,9 +23,11 @@
 #include "mlir/IR/Value.h"
 #define GET_OP_CLASSES
 #include "Dialect/NorthStar/NorthStarOps.cpp.inc"
+
 namespace mlir::north_star {
+
 void NorthStarDialect::registerOps() {
-  llvm::outs() << "register " << getDialectNamespace() << "  Ops\n";
+  llvm::outs() << "register " << getDialectNamespace() << "  Op\n";
   addOperations<
 #define GET_OP_LIST
 #include "Dialect/NorthStar/NorthStarOps.cpp.inc"
@@ -33,20 +35,20 @@ void NorthStarDialect::registerOps() {
 }
 
 ::llvm::LogicalResult GetTensorOp::verify() {
-  int64_t device_id = getDeviceId();
-  if (isa<BlockArgument>(getBuffer())) {
-    auto buffer_type = llvm::cast_or_null<BufferType>(getBuffer().getType());
+  auto device_id = getDeviceId();
+  auto buffer = getBuffer();
+  if (isa<BlockArgument>(buffer)) {
+    auto buffer_type = cast<BufferType>(buffer.getType());
     auto device_ids = buffer_type.getDevices();
-    for (auto device : device_ids) {
-      if (device_id == device) return llvm::success();
+    for (auto id : device_ids) {
+      if (id == device_id) return llvm::success();
     }
     return llvm::failure();
   }
-
-  auto buffer_op = llvm::cast_or_null<BufferOp>(getBuffer().getDefiningOp());
+  auto buffer_op = llvm::cast_or_null<BufferOp>(buffer.getDefiningOp());
   if (!buffer_op) return llvm::failure();
   for (auto tensor : buffer_op.getTensors()) {
-    auto tensor_type = llvm::cast_or_null<NSTensorType>(tensor.getType());
+    auto tensor_type = cast_or_null<NSTensorType>(tensor.getType());
     if (!tensor_type) return llvm::failure();
     if (device_id == tensor_type.getDeviceId()) {
       if (tensor_type != getType()) return llvm::failure();
@@ -54,15 +56,14 @@ void NorthStarDialect::registerOps() {
     }
   }
   return llvm::failure();
-}
+};
 
 ::llvm::LogicalResult BufferOp::verify() {
-  auto inputs = getTensors();
+  auto tensors = getTensors();
   auto devices = cast<BufferType>(getType()).getDevices();
-  if (inputs.empty()) return llvm::failure();
-  for (auto [index, device_id, input] : llvm::enumerate(devices, inputs)) {
-    auto tensor_type = llvm::cast_or_null<NSTensorType>(input.getType());
-    if (!tensor_type) return llvm::failure();
+  if (tensors.size() == 0) return llvm::failure();
+  for (auto [index, device_id, tensor] : llvm::enumerate(devices, tensors)) {
+    auto tensor_type = cast_or_null<NSTensorType>(tensor.getType());
     if (device_id != tensor_type.getDeviceId()) return llvm::failure();
   }
   return llvm::success();
@@ -70,9 +71,9 @@ void NorthStarDialect::registerOps() {
 
 ::llvm::LogicalResult SoftmaxOp::verify() {
   auto axis = getAxis();
-  auto tensor_type = llvm::cast_or_null<NSTensorType>(getType());
-  if (!tensor_type) return llvm::failure();
-  if (axis < 0 || axis >= tensor_type.getShape().size()) return llvm::failure();
+  if (axis < 0) return llvm::failure();
+  auto input_type = cast<NSTensorType>(getInput().getType());
+  if (axis >= input_type.getShape().size()) return llvm::failure();
   return llvm::success();
 }
 

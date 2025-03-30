@@ -21,6 +21,7 @@
 #include "llvm/ADT/APFloat.h"
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Casting.h"
 #include "llvm/Support/raw_ostream.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/GPU/IR/GPUDialect.h"
@@ -32,6 +33,7 @@
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/DialectRegistry.h"
 #include "mlir/IR/MLIRContext.h"
+#include "mlir/IR/OperationSupport.h"
 #include "mlir/IR/ValueRange.h"
 #include "mlir/Support/LLVM.h"
 
@@ -242,15 +244,13 @@ void CH5() {
   mlir::MLIRContext context(registry);
   // 加载/注册方言
   context.getOrLoadDialect<mlir::north_star::NorthStarDialect>();
-  context.getOrLoadDialect<mlir::func::FuncDialect>();
-  // builder
+
   mlir::OpBuilder builder(&context);
   auto loc = builder.getUnknownLoc();
-  ::mlir::OperationState a(loc, "111");
+
   // ModuleOp
   auto module = builder.create<mlir::ModuleOp>(loc, "NorthStar");
   builder.setInsertionPointToStart(module.getBody());
-  // FunctionOp
   // ConstOp
   auto f32 = mlir::Float32Type::get(&context);
   auto shape = mlir::SmallVector<int64_t>({2, 2});
