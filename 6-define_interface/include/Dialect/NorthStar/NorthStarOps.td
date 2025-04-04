@@ -7,7 +7,7 @@
 //        http://www.apache.org/licenses/LICENSE-2.0
 
 //    Unless required by applicable law or agreed to in writing, software
-//    distribute under the License is distribute on an "AS IS" BASIS,
+//    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
@@ -15,7 +15,9 @@
 #define DIALECT_NORTH_STAR_OPS_TD
 
 include "Dialect/NorthStar/NorthStarAttrs.td"
-include "Interfaces/DistributeParallelismInterfaces.td"
+
+
+
 class NorthStar_Op<string mnemonic, list<Trait> traits = []>
     : Op<NorthStar_Dialect, mnemonic, traits> {
   let summary = cppNamespace#opName#"op";
@@ -24,7 +26,7 @@ class NorthStar_Op<string mnemonic, list<Trait> traits = []>
 }
 
 class NorthStar_UnaryOp<string mnemonic,Type OperandType, Type resultType = OperandType,list<Trait> traits = [], dag attributes = (ins)>:
-    NorthStar_Op<mnemonic,[DeclareOpInterfaceMethods<DistributeParallelOp>] # traits>{
+    NorthStar_Op<mnemonic, [DeclareOpInterfaceMethods<DistributeParallelOp>] # traits>{
     let arguments = !con((ins
         OperandType:$input),
         attributes
@@ -50,7 +52,8 @@ class NorthStar_ElewiseUnaryOp<string mnemonic,Type OperandType, Type resultType
     NorthStar_UnaryOp<mnemonic, OperandType, resultType, [DeclareOpInterfaceMethods<SupportedDataParallelismOp>] # traits, attributes>;
 
 class NorthStar_ElewiseBinaryOp<string mnemonic,Type OperandType, Type resultType = OperandType,list<Trait> traits = [], dag attributes = (ins)>:
-    NorthStar_BinaryOp<mnemonic, OperandType, resultType, [DeclareOpInterfaceMethods<SupportedDataParallelismOp>] # traits, attributes>;
+    NorthStar_BinaryOp<mnemonic, OperandType, resultType, [DeclareOpInterfaceMethods<SupportedDataParallelismOp>] # traits,attributes>;
+
 
 def NorthStar_ConstOp : NorthStar_Op<"const",[]>{
     let arguments = (ins
@@ -59,7 +62,7 @@ def NorthStar_ConstOp : NorthStar_Op<"const",[]>{
         AnyNSTensor:$result);
 }
 
-def NorthStar_SoftmaxOp : NorthStar_UnaryOp<"softmax",AnyNSTensor, AnyNSTensor, [DeclareOpInterfaceMethods<SupportedDataParallelismOp,["applyDataParallelism"]>], (ins I64Attr:$axis)>{
+def NorthStar_SoftmaxOp : NorthStar_UnaryOp<"softmax",AnyNSTensor, AnyNSTensor, [DeclareOpInterfaceMethods<SupportedDataParallelismOp,["applyDataParallelism","supportedDataParallelism"]>], (ins I64Attr:$axis)>{
     let hasVerifier = 1;
     let builders = [
         OpBuilder<(ins "::mlir::Value":$input, "int64_t":$axis) , 
@@ -68,6 +71,7 @@ def NorthStar_SoftmaxOp : NorthStar_UnaryOp<"softmax",AnyNSTensor, AnyNSTensor, 
                 $_state.getOrAddProperties<Properties>().axis = $_builder.getIntegerAttr(odsBuilder.getIntegerType(64,true), axis);
                 $_state.addTypes(input.getType());
             }]>
+
     ];
 }
 
@@ -96,6 +100,17 @@ def NorthStar_AllToAllOp : NorthStar_Op<"all_to_all",[]>{
     );
 }
 
+
+def NorthStar_BufferCastOp : NorthStar_Op<"buffer_cast",[]>{
+    let description = "对数据切分的标记";
+    let arguments = (ins
+        Variadic<NSTensorOrBuffer>:$inputs,
+        DistributeParallelAttr:$distribute_attr
+    );
+    let results = (outs
+        Variadic<NSTensorOrBuffer>:$outputs);
+    let hasVerifier = 1;
+}
 
 def NorthStar_BufferOp : NorthStar_Op<"buffer",[]>{
     let description = "将 多个device_id 的tensor 组合成 一个 buffer";

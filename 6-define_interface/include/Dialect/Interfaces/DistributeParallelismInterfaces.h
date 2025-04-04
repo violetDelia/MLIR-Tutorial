@@ -18,7 +18,7 @@
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/IR/MLIRContext.h"
 #define FIX
-#include "Interfaces/DistributeParallelismAttrInterfaces.h.inc"
-#include "Interfaces/DistributeParallelismOpInterfaces.h.inc"
+#include "Dialect/Interfaces/DistributeParallelismAttrInterfaces.h.inc"
+#include "Dialect/Interfaces/DistributeParallelismOpInterfaces.h.inc"
 #undef FIX
 #endif  // INTERFACES_DISTRIBUTED_PARALLELISM_INTERFACES_H

@@ -8,7 +8,6 @@ add_mlir_dialect_library(MLIRNorthStarDialect${ch_num}
 
     DEPENDS
     NorthStarDialectIncGen${ch_num}
-    MLIRDistributeParallelismInterfacesIncGen${ch_num}
 
     LINK_LIBS PUBLIC
     MLIRIR

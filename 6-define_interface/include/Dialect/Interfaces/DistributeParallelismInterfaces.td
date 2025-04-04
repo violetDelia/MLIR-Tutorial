@@ -26,7 +26,17 @@ def DistributeParallelAttr: AttrInterface<"DistributeParallelAttr">{
 def DataParallelAttr: AttrInterface<"DataParallelAttr",[DistributeParallelAttr]>{
   let description = "Properties related to distribute parallelism";
   let cppNamespace = "::mlir";
-  let methods = [];
+  let methods = [
+    InterfaceMethod<[{
+      DP 数量.
+    }],
+    "int64_t", "getDPNums">,
+
+    InterfaceMethod<[{
+      设备编号.
+    }],
+    "::llvm::ArrayRef<int64_t>", "getDevices">,
+  ];
   let extraClassDeclaration = "";
   let extraSharedClassDeclaration = "";
 }
@@ -42,7 +52,6 @@ def SupportedDataParallelismOp: OpInterface<"SupportedDataParallelismOp">{
       /*args=*/        (ins "::mlir::DistributeParallelAttr":$attr),
       /*methodBody=*/  "",
       /*defaultImpl=*/ [{
-      llvm::outs() << "in default func\n";
       return llvm::failure();
       }]
       >,

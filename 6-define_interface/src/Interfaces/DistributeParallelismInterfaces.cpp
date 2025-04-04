@@ -11,10 +11,21 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
-#include "Interfaces/DistributeParallelismInterfaces.h"
+#include "Dialect/Interfaces/DistributeParallelismInterfaces.h"
 
+#include <cstdint>
+
+#include "Dialect/Interfaces/DistributeParallelismAttrInterfaces.cpp.inc"
+#include "Dialect/Interfaces/DistributeParallelismOpInterfaces.cpp.inc"
 #include "Dialect/NorthStar/NorthStarTypes.h"
+#include "llvm/ADT/STLExtras.h"
+#include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/raw_ostream.h"
 #include "mlir/IR/Operation.h"
-#include "Interfaces/DistributeParallelismAttrInterfaces.cpp.inc"
-#include "Interfaces/DistributeParallelismOpInterfaces.cpp.inc"
+void test() {
+  int DP_nums;
+  llvm::SmallVector<int64_t> device_ids;
+  for (auto i : llvm::index_range(0, DP_nums)) {
+    device_ids.push_back(i);
+  }
+}

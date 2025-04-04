@@ -15,8 +15,6 @@
 #ifndef DIALECT_NORTH_STAR_TYPES_H
 #define DIALECT_NORTH_STAR_TYPES_H
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
-#include "mlir/IR/BuiltinTypeInterfaces.h"
-#include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/MLIRContext.h"
 #define FIX
 #define GET_TYPEDEF_CLASSES

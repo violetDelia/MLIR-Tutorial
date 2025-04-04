@@ -17,7 +17,7 @@
 #include "Dialect/NorthStar/NorthStarEunms.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/IR/MLIRContext.h"
-#include "Interfaces/DistributeParallelismInterfaces.h"
+#include "Dialect/Interfaces/DistributeParallelismInterfaces.h"
 #define GET_ATTRDEF_CLASSES
 #include "Dialect/NorthStar/NorthStarAttrs.h.inc"
 

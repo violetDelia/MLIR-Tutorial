@@ -16,8 +16,7 @@
 #ifndef DIALECT_NORTH_STAR_OPS_H
 #define DIALECT_NORTH_STAR_OPS_H
 #define FIX
-#include "Dialect/NorthStar/NorthStarTypes.h"
-#include "Interfaces/DistributeParallelismInterfaces.h"
+#include "Dialect/NorthStar/NorthStarAttrs.h"
 #define GET_OP_CLASSES
 #include "Dialect/NorthStar/NorthStarOps.h.inc"
 #undef FIX
