@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-#ifndef DIALECT_NORTH_STAR_ATTRS_H
-#define DIALECT_NORTH_STAR_ATTRS_H
+#ifndef INTERFACES_DISTRIBUTED_PARALLELISM_INTERFACES_H
+#define INTERFACES_DISTRIBUTED_PARALLELISM_INTERFACES_H
 #include "Dialect/NorthStar/NorthStarEunms.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/IR/MLIRContext.h"
-#include "Interfaces/DistributeParallelismInterfaces.h"
-#define GET_ATTRDEF_CLASSES
-#include "Dialect/NorthStar/NorthStarAttrs.h.inc"
-
-#endif  // DIALECT_NORTH_STAR_ATTRS_H
+#define FIX
+#include "Interfaces/DistributeParallelismAttrInterfaces.h.inc"
+#include "Interfaces/DistributeParallelismOpInterfaces.h.inc"
+#undef FIX
+#endif  // INTERFACES_DISTRIBUTED_PARALLELISM_INTERFACES_H

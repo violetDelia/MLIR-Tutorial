@@ -1,4 +1,4 @@
-//    Copyright 2025 时光丶人爱
+//    Copyright 2024 时光丶人爱
 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -11,14 +11,15 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
+#include "Utils/File.h"
 
-#ifndef INTERFACES_DISTRIBUTED_PARALLELISM_INTERFACES_H
-#define INTERFACES_DISTRIBUTED_PARALLELISM_INTERFACES_H
-#include "Dialect/NorthStar/NorthStarEunms.h"
-#include "mlir/Dialect/Tensor/IR/Tensor.h"
-#include "mlir/IR/MLIRContext.h"
-#define FIX
-#include "Dialect/Interfaces/DistributeParallelismAttrInterfaces.h.inc"
-#include "Dialect/Interfaces/DistributeParallelismOpInterfaces.h.inc"
-#undef FIX
-#endif  // INTERFACES_DISTRIBUTED_PARALLELISM_INTERFACES_H
+#include <filesystem>
+
+#include "llvm/Support/Error.h"
+#include "llvm/Support/MemoryBuffer.h"
+#include "llvm/Support/SourceMgr.h"
+#include "mlir/IR/AsmState.h"
+#include "mlir/IR/PatternMatch.h"
+#include "mlir/Parser/Parser.h"
+
+namespace utils::file {}  // namespace utils::file

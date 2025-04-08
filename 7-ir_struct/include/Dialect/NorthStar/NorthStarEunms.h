@@ -1,4 +1,4 @@
-//    Copyright 2025 时光丶人爱
+//    Copyright 2024 时光丶人爱
 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -11,14 +11,20 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
+//
 
-#ifndef DIALECT_NORTH_STAR_ATTRS_H
-#define DIALECT_NORTH_STAR_ATTRS_H
-#include "Dialect/NorthStar/NorthStarEunms.h"
-#include "mlir/Dialect/Tensor/IR/Tensor.h"
-#include "mlir/IR/MLIRContext.h"
-#include "Interfaces/DistributeParallelismInterfaces.h"
-#define GET_ATTRDEF_CLASSES
-#include "Dialect/NorthStar/NorthStarAttrs.h.inc"
+#ifndef DIALECT_NORTH_STAR_EUNMS_H
+#define DIALECT_NORTH_STAR_EUNMS_H
 
-#endif  // DIALECT_NORTH_STAR_ATTRS_H
+#include <cstdint>
+#include <optional>
+
+#include "llvm/ADT/StringRef.h"
+#include "llvm/ADT/StringSwitch.h"
+#include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/LLVM.h"
+
+#define FIX
+#include "Dialect/NorthStar/NorthStarEunms.h.inc"
+#undef FIX
+#endif  // DIALECT_NORTH_STAR_EUNMS_H

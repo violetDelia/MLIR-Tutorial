@@ -6,4 +6,5 @@ DeepSeek-V3
 DeepGEMM
 .clang-format
 cuda-python.py
+.log.txt
 
