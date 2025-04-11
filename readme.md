@@ -16,7 +16,7 @@
 
 1. 拉包：`git clone https://github.com/violetDelia/MLIR-Tutorial.git`
 2. 拉取第三方库：`git submodule update --init --recursive`
-3. build：cd `./MLIR-Tutorial && cmake build`
+3. build：cd `./MLIR-Tutorial && cmake . build`
 4. 编译：`cd build && ninja CH-2 [编译/测试命令]`
 
 | CH                     | 目录                         | 编译命令   | 测试命令 | 视频链接 |
