@@ -17,7 +17,7 @@
 
 #include "Interfaces/DistributeParallelismAttrInterfaces.cpp.inc"
 #include "Interfaces/DistributeParallelismOpInterfaces.cpp.inc"
-#include "Dialect/NorthStar/NorthStarTypes.h"
+#include "Dialect/NorthStar/IR/NorthStarTypes.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/raw_ostream.h"

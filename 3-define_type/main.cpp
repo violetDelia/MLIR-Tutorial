@@ -13,8 +13,8 @@
 //    limitations under the License.
 #include <cstddef>
 
-#include "Dialect/NorthStar/NorthStarDialect.h"
-#include "Dialect/NorthStar/NorthStarTypes.h"
+#include "Dialect/NorthStar/IR/NorthStarDialect.h"
+#include "Dialect/NorthStar/IR/NorthStarTypes.h"
 #include "llvm/Support/raw_ostream.h"
 #include "mlir/Dialect/GPU/IR/GPUDialect.h"
 #include "mlir/IR/BuiltinAttributes.h"

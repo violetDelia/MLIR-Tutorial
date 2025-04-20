@@ -1,9 +1,6 @@
 add_mlir_library(MLIRDistributeParallelismInterfaces${ch_num}
     DistributeParallelismInterfaces.cpp
 
-    ADDITIONAL_HEADER_DIRS
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/Interfaces
-
     DEPENDS
     MLIRDistributeParallelismInterfacesIncGen${ch_num}
 

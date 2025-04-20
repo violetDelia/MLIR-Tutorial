@@ -15,10 +15,10 @@
 #include <cstdint>
 
 #include "Interfaces/DistributeParallelismInterfaces.h"
-#include "Dialect/NorthStar/NorthStarAttrs.h"
-#include "Dialect/NorthStar/NorthStarDialect.h"
-#include "Dialect/NorthStar/NorthStarOps.h"
-#include "Dialect/NorthStar/NorthStarTypes.h"
+#include "Dialect/NorthStar/IR/NorthStarAttrs.h"
+#include "Dialect/NorthStar/IR/NorthStarDialect.h"
+#include "Dialect/NorthStar/IR/NorthStarOps.h"
+#include "Dialect/NorthStar/IR/NorthStarTypes.h"
 #include "llvm/ADT/APFloat.h"
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/SmallVector.h"

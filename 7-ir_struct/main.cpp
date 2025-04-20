@@ -17,10 +17,10 @@
 #include <cstdint>
 #include <filesystem>
 
-#include "Dialect/NorthStar/NorthStarAttrs.h"
-#include "Dialect/NorthStar/NorthStarDialect.h"
-#include "Dialect/NorthStar/NorthStarOps.h"
-#include "Dialect/NorthStar/NorthStarTypes.h"
+#include "Dialect/NorthStar/IR/NorthStarAttrs.h"
+#include "Dialect/NorthStar/IR/NorthStarDialect.h"
+#include "Dialect/NorthStar/IR/NorthStarOps.h"
+#include "Dialect/NorthStar/IR/NorthStarTypes.h"
 #include "Interfaces/DistributeParallelismInterfaces.h"
 #include "Utils/File.h"
 #include "llvm/ADT/APFloat.h"
