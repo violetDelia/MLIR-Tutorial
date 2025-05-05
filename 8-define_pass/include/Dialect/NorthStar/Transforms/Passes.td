@@ -27,8 +27,8 @@ def MarkDistributeParallelParametersPass : Pass<"mark-distribute-parallel-parame
     "::mlir::tensor::TensorDialect"
   ];
   let options = [
-    Option<"DPNums", "", "std::int64_t", /*default=*/"1", "">,
-    Option<"TPNums", "", "std::int64_t", /*default=*/"1", "">
+    Option<"DPNums", "DP", "std::int64_t", /*default=*/"1", "DPNums des">,
+    Option<"TPNums", "TP", "std::int64_t", /*default=*/"1", "TPNums des">
   ];
   let statistics = [
     Statistic<"EPNums", "ep-nums", "Number of EP">
