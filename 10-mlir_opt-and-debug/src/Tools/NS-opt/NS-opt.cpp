@@ -30,21 +30,15 @@
 #include "mlir/Target/LLVMIR/Dialect/All.h"
 #include "mlir/Tools/mlir-opt/MlirOptMain.h"
 #include "mlir-c/Debug.h"
-// 1. 实现opt 工具
-// 2. 利用opt 运行pass
-// '/home/lfr/MLIR_Tutorial/build/10-mlir_opt-and-debug/src/Tools/NS-opt/NS-opt10' '/home/lfr/MLIR_Tutorial/10-mlir_opt-and-debug/test/softmax.mlir'--apply-distribute-transform --mark-distribute-parallel-parameters="DP=5 TP=1"
-// 3. 将IR dump 下来 [ir after and tree]  && pm option=
-//'/home/lfr/MLIR_Tutorial/build/10-mlir_opt-and-debug/src/Tools/NS-opt/NS-opt10' '/home/lfr/MLIR_Tutorial/10-mlir_opt-and-debug/test/softmax.mlir' --mlir-print-ir-after-all --mark-distribute-parallel-parameters="DP=5 TP=1" --apply-distribute-transform --device-region-fusion
-// 4. debug 选项  debug\debug-only
-// '/home/lfr/MLIR_Tutorial/build/10-mlir_opt-and-debug/src/Tools/NS-opt/NS-opt10' '/home/lfr/MLIR_Tutorial/10-mlir_opt-and-debug/test/softmax.mlir' --mark-distribute-parallel-parameters="DP=5 TP=1" --apply-distribute-transform  --device-region-fusion --debug 
+
 int main(int argc, char **argv) {
   mlir::registerAllPasses();
   mlir::DialectRegistry registry;
   registerAllDialects(registry);
   registry.insert<mlir::north_star::NorthStarDialect>();
-  // registerAllExtensions(registry);
+  registerAllExtensions(registry);
   mlir::north_star::registerNorthStarOptPasses();
-  //mlirEnableGlobalDebug(true);
+  // mlirEnableGlobalDebug(true);
   return mlir::asMainReturnCode(
       mlir::MlirOptMain(argc, argv, "NS modular optimizer driver\n", registry));
 }

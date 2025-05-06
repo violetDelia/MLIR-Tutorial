@@ -27,7 +27,8 @@ config.lit_tools_dir = "@LLVM_LIT_TOOLS_DIR@"
 config.python_executable = "@Python3_EXECUTABLE@"
 config.mlir_lib_dir = "@MLIR_LIB_DIR@" or "@LLVM_LIBRARY_DIR@"
 config.mlir_binary_dir = "@MLIR_BINARY_DIR@" or "@LLVM_BINARY_DIR@"
-config.mlir_llcompiler_tools_dir = "@LLCOMPILER_BUILD_RUNTIME_DIR@"
+config.mlir_tutorial_tool_dir = "@TUTORIA_TOOL_DIR@"
+config.mlir_tutorial_ns_opt = "@TUTORIA_NS_OPT@"
 
 import lit.llvm
 lit.llvm.initialize(lit_config, config)

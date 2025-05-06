@@ -20,7 +20,7 @@ def add_runtime(name):
     return ToolSubst(f"%{name}", find_runtime(name))
 
 # name: The name of this test suite.
-config.name = 'MLIR_TEST'
+config.name = 'DEMO_TEST'
 
 # suffixes: A list of file extensions to treat as test files.
 config.suffixes = ['.mlir',".py"]
@@ -35,7 +35,6 @@ config.substitutions.append(('%PATH%', config.environment['PATH']))
 llvm_config.with_system_environment(['HOME', 'INCLUDE', 'LIB', 'TMP', 'TEMP'])
 llvm_config.use_default_substitutions()
 # Tweak the PATH to include the tools dir.
-#llvm_config.with_environment("PATH", config.mlir_tools_dir, append_path=True)
 llvm_config.with_environment("PATH", config.llvm_tools_dir, append_path=True)
 
 config.excludes = [
@@ -46,12 +45,11 @@ config.excludes = [
 
 tool_dirs = [
     config.mlir_binary_dir,
-    config.mlir_llcompiler_tools_dir,
+    config.mlir_tutorial_tool_dir
 ]
 tools = [
-    'llc-opt',
-    'llc-translate',
-    ToolSubst("%PYTHON", config.python_executable, unresolved="ignore"),
+    'NS-opt11',
+    ToolSubst("ns-opt", config.mlir_tutorial_ns_opt, unresolved="ignore"),
     add_runtime("mlir_runner_utils"),
     add_runtime("mlir_c_runner_utils"),
 ]
