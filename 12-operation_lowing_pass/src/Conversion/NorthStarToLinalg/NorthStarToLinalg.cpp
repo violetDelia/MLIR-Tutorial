@@ -45,7 +45,6 @@ struct SoftmaxOpToLinalgPattern final
   }
   void rewrite(north_star::SoftmaxOp op, OpAdaptor adaptor,
                ConversionPatternRewriter &rewriter) const final {
-    llvm::outs()<<"=======\n";
     auto loc = op->getLoc();
     auto convert = getTypeConverter();
     llvm::SmallVector<Value> out_dy_sizes;

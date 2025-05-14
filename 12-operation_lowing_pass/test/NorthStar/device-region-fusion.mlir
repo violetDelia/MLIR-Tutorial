@@ -1,6 +1,6 @@
 // RUN: ns-opt %s  --device-region-fusion   --split-input-file | FileCheck %s
 
-// CHECK-LABEL: NorthStar1
+// CHECK-LABEL: NorthStar
 // CHECK: func.func @main
 // CHECK-COUNT-3: north_star.device_region 
 module @NorthStar {
