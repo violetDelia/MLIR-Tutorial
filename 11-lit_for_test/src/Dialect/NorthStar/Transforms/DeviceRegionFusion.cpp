@@ -1,4 +1,4 @@
-//    Copyright 2024 时光丶人爱
+//    Copyright 2025 时光丶人爱
 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -25,7 +25,9 @@
 #include "llvm/ADT/SetVector.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Debug.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/FormatVariadic.h"
 #include "llvm/Support/LogicalResult.h"
 #include "llvm/Support/ScopedPrinter.h"
 #include "llvm/Support/raw_ostream.h"
@@ -35,6 +37,9 @@
 #include "mlir/IR/Operation.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+
+#define DEBUG_TYPE "device-region-fusion"
+
 namespace mlir::north_star {
 #define GEN_PASS_DEF_DEVICEREGIONFUSIONPASS
 #include "Dialect/NorthStar/Transforms/Passes.h.inc"
@@ -173,7 +178,6 @@ struct BufferCastOpDeviceRegionFusion
 
   virtual LogicalResult matchAndRewrite(::mlir::north_star::BufferCastOp op,
                                         PatternRewriter& rewriter) const {
-    llvm::outs() << "match:" << getDebugName() << "\n";
     auto loc = op->getLoc();
     llvm::SmallVector<llvm::SetVector<Operation*>> op_list;
     for (auto res : op->getResults()) {
@@ -205,7 +209,6 @@ struct BufferCastOpFold
   using OpRewritePattern::OpRewritePattern;
 
   virtual LogicalResult match(::mlir::north_star::BufferCastOp op) const {
-    llvm::outs() << "match:" << getDebugName() << "\n";
     Operation* above_cast = nullptr;
     for (auto [index, operand] : llvm::enumerate(op->getOperands())) {
       if (isa<BlockArgument>(operand)) return llvm::failure();
@@ -229,7 +232,6 @@ struct BufferCastOpFold
     }
     rewriter.eraseOp(op);
     rewriter.eraseOp(above_cast);
-    llvm::outs() << "match:" << getDebugName() << "\n";
   }
 };
 }  // namespace
@@ -257,9 +259,10 @@ struct DeviceRegionFusionPass
 };
 
 void DeviceRegionFusionPass::runOnOperation() {
-  llvm::outs() << "run in: " << getPassName() << "\n";
+  LLVM_DEBUG(llvm::dbgs() << llvm::formatv("run in {0}\n", getPassName()));
   auto module = getOperation();
-  llvm::outs() << "root op: " << module->getName() << "\n";
+  LLVM_DEBUG(
+      llvm::dbgs() << llvm::formatv("root op: {0}\n", module->getName()));
 
   RewritePatternSet buffer_cast_patterns(&getContext());
   ::mlir::north_star::populateBufferCastOpCanonicalizationPatterns(
@@ -281,6 +284,7 @@ void DeviceRegionFusionPass::runOnOperation() {
           getOperation(), FrozenRewritePatternSet(std::move(patterns)), config,
           &changed)))
     signalPassFailure();
-  llvm::outs() << "region has changed: " << changed << "\n";
-  llvm::outs() << "run out: " << getPassName() << "\n\n";
+  LLVM_DEBUG(
+      llvm::dbgs() << llvm::formatv("region has changed: {0}\n", changed));
+  LLVM_DEBUG(llvm::dbgs() << llvm::formatv("run out: {0}\n", getPassName()));
 }

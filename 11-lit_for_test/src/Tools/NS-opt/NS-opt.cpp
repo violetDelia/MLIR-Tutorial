@@ -29,12 +29,6 @@
 #include "mlir/Target/LLVMIR/Dialect/All.h"
 #include "mlir/Tools/mlir-opt/MlirOptMain.h"
 
-// 1. 实现opt 工具
-// 2. 利用opt 运行pass
-// '/home/lfr/MLIR_Tutorial/build/10-mlir_opt-and-debug/src/Tools/NS-opt/NS-opt10' '/home/lfr/MLIR_Tutorial/10-mlir_opt-and-debug/test/softmax.mlir'--apply-distribute-transform
-// 3. 将IR dump 下来 [ir after and tree]  && pm options
-//'/home/lfr/MLIR_Tutorial/build/10-mlir_opt-and-debug/src/Tools/NS-opt/NS-opt10' '/home/lfr/MLIR_Tutorial/10-mlir_opt-and-debug/test/softmax.mlir' --mlir-print-ir-after-all --apply-distribute-transform
-// 4. debug 选项
 int main(int argc, char **argv) {
   // mlir::registerAllPasses();
   mlir::DialectRegistry registry;

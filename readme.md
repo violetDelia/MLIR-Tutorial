@@ -19,24 +19,24 @@
 3. build：cd `./MLIR-Tutorial && cmake . -G Ninja -B build`
 4. 编译：`cd build && ninja CH-2 [编译/测试命令]`
 
-| CH                     | 目录                         | 编译命令                      | 测试命令 |  |
-| ---------------------- | ---------------------------- | ----------------------------- | -------- | - |
-| 方言定义               | 2-define_dialect             | ninja CH-2                    | NA       |  |
-| Type定义               | 3-define_type                | ninja CH-3                    | NA       |  |
-| Attribute定义          | 4-define_attribute           | ninja CH-4                    | NA       |  |
-| Operation定义          | 5-define_operation           | ninja CH-5                    | NA       |  |
-| 接口定义               | 6-define_interface           | ninja CH-6                    |          |  |
-| IR 结构                | 7-ir_struct                  | ninja CH-7                    |          |  |
-| 定义Pass               | 8-define_pass                | ninja CH-8                    |          |  |
-| 定义IR变换             | 9-rewrite_pattern            | ninja CH-9                    |          |  |
-| debug以及mlir-opt工具  | 10-mlir_opt-and-debug        | ninja CH-10 && ninja NS-opt10 |          |  |
-| Lit 测试套件           | 11-lit_for_test              |                               |          |  |
-| IR下降变换             | 12-operation_lowing_pass     |                               |          |  |
-| Pass 管理              | 13-pass_manager              |                               |          |  |
-| 规范化与常量折叠接口   | 14-fold_and_canonicalization |                               |          |  |
-| 下降到LLVM IR          | 15-lowing_to_llvm            |                               |          |  |
-| mlir-runner 工具执行IR | 16-mlir-runner               |                               |          |  |
-| IR端到端执行           | 17-execution                 |                               |          |  |
+| CH                     | 目录                         | 编译命令                       | 测试命令          |  |
+| ---------------------- | ---------------------------- | ------------------------------ | ----------------- | - |
+| 方言定义               | 2-define_dialect             | ninja CH-2                     | NA                |  |
+| Type定义               | 3-define_type                | ninja CH-3                     | NA                |  |
+| Attribute定义          | 4-define_attribute           | ninja CH-4                     | NA                |  |
+| Operation定义          | 5-define_operation           | ninja CH-5                     | NA                |  |
+| 接口定义               | 6-define_interface           | ninja CH-6                     | NA                |  |
+| IR 结构                | 7-ir_struct                  | ninja CH-7                     | NA                |  |
+| 定义Pass               | 8-define_pass                | ninja CH-8                     | NA                |  |
+| 定义IR变换             | 9-rewrite_pattern            | ninja CH-9                     | NA                |  |
+| debug以及mlir-opt工具  | 10-mlir_opt-and-debug        | ninja CH-10 && ninja NS-opt10  | NA                |  |
+| Lit 测试套件           | 11-lit_for_test              | ninja CH-11 && ninja NS-opt11 | ninja check-ch-11 |  |
+| IR下降变换             | 12-operation_lowing_pass     |                                |                   |  |
+| Pass 管理              | 13-pass_manager              |                                |                   |  |
+| 规范化与常量折叠接口   | 14-fold_and_canonicalization |                                |                   |  |
+| 下降到LLVM IR          | 15-lowing_to_llvm            |                                |                   |  |
+| mlir-runner 工具执行IR | 16-mlir-runner               |                                |                   |  |
+| IR端到端执行           | 17-execution                 |                                |                   |  |
 
 ## 备注：
 
