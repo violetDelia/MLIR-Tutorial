@@ -31,8 +31,8 @@
 | 定义IR变换             | 9-rewrite_pattern            | ninja CH-9                     | NA                |  |
 | debug以及mlir-opt工具  | 10-mlir_opt-and-debug        | ninja CH-10 && ninja NS-opt10  | NA                |  |
 | Lit 测试套件           | 11-lit_for_test              | ninja CH-11 && ninja NS-opt11 | ninja check-ch-11 |  |
-| IR下降变换             | 12-operation_lowing_pass     |                                |                   |  |
-| Pass 管理              | 13-pass_manager              |                                |                   |  |
+| IR下降变换             | 12-operation_lowing_pass     | ninja CH-12 && ninja NS-opt12 | ninja check-ch-12 |  |
+| Pass 管理              | 13-pass_manager              | ninja CH-13 && ninja NS-opt13  | ninja check-ch-13 |  |
 | 规范化与常量折叠接口   | 14-fold_and_canonicalization |                                |                   |  |
 | 下降到LLVM IR          | 15-lowing_to_llvm            |                                |                   |  |
 | mlir-runner 工具执行IR | 16-mlir-runner               |                                |                   |  |
