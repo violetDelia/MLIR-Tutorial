@@ -1,0 +1,2 @@
+add_subdirectory(NorthStarToLinalg)
+add_subdirectory(NorthStarToFunc)
