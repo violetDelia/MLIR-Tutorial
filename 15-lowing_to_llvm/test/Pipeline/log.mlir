@@ -20,8 +20,6 @@ ImplicitTypeIDRegistry::lookupOrInsert(mlir::detail::AffineDimExprStorage)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::detail::AffineMapStorage)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::detail::IntegerSetStorage)
 Load new dialect in Context builtin
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::CastOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::DestructurableTypeInterface)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::OpTrait::ZeroOperands<mlir::TypeID::get() [with Trait = mlir::OpTrait::ZeroOperands]::Empty>)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::OpTrait::OneRegion<mlir::TypeID::get() [with Trait = mlir::OpTrait::OneRegion]::Empty>)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::OpTrait::ZeroResults<mlir::TypeID::get() [with Trait = mlir::OpTrait::ZeroResults]::Empty>)
@@ -48,25 +46,22 @@ ImplicitTypeIDRegistry::lookupOrInsert(mlir::RegionBranchTerminatorOpInterface)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::DialectInlinerInterface)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::ConvertToLLVMPatternInterface)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::bufferization::BufferizableOpInterface)
-Load new dialect in Context cf
-Load new dialect in Context arith
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::arith::ArithFastMathInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::VectorUnrollOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::InferTypeOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::InferIntRangeInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::arith::ArithIntegerOverflowFlagsInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::arith::ArithRoundingModeInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::bufferization::BufferDeallocationOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::ValueBoundsOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::bufferization::BufferViewFlowOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::BranchOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::mesh::ShardingInterface)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::OpTrait::AutomaticAllocationScope<mlir::TypeID::get() [with Trait = mlir::OpTrait::AutomaticAllocationScope]::Empty>)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::CallableOpInterface::Trait<mlir::TypeID::get() [with Trait = mlir::CallableOpInterface::Trait]::Empty>)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::FunctionOpInterface::Trait<mlir::TypeID::get() [with Trait = mlir::FunctionOpInterface::Trait]::Empty>)
 Load new dialect in Context north_star
 Load new dialect in Context tensor
 Load new dialect in Context affine
+Load new dialect in Context arith
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::arith::ArithFastMathInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::VectorUnrollOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::InferTypeOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::InferIntRangeInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::arith::ArithIntegerOverflowFlagsInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::CastOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::arith::ArithRoundingModeInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::bufferization::BufferDeallocationOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::ValueBoundsOpInterface)
 Load new dialect in Context ub
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::ub::PoisonAttrInterface)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::affine::AffineMapAccessInterface)
@@ -86,35 +81,6 @@ ImplicitTypeIDRegistry::lookupOrInsert(mlir::SubsetOpInterface)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::SubsetInsertionOpInterface)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::SubsetExtractionOpInterface)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::TilingInterface)
-Load new dialect in Context linalg
-Load new dialect in Context math
-Load new dialect in Context memref
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::CopyOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::PromotableMemOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::DestructurableAccessorOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::PromotableAllocationOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::DestructurableAllocationOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::ViewLikeOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::bufferization::AllocationOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::RuntimeVerifiableOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::linalg::AggregatedOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::linalg::LinalgOp)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::linalg::ContractionOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::linalg::ConvolutionOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::linalg::FillOpInterface)
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::PartialReductionOpInterface)
-Load new dialect in Context scf
-ImplicitTypeIDRegistry::lookupOrInsert(mlir::ParallelCombiningOpInterface)
-Ignoring repeated interface registration
-Ignoring repeated interface registration
-Ignoring repeated interface registration
-Load new dialect in Context index
-Ignoring repeated interface registration
-Ignoring repeated interface registration
-Ignoring repeated interface registration
-Ignoring repeated interface registration
-Ignoring repeated interface registration
-Ignoring repeated interface registration
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::DistributeParallelAttr)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::DataParallelAttr)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::DistributeParallelOp)
@@ -137,6 +103,25 @@ ImplicitTypeIDRegistry::lookupOrInsert(mlir::OpTrait::OneOperand<mlir::TypeID::g
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::DistributeParallelOp::Trait<mlir::TypeID::get() [with Trait = mlir::DistributeParallelOp::Trait]::Empty>)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::SupportedDataParallelismOp::Trait<mlir::TypeID::get() [with Trait = mlir::SupportedDataParallelismOp::Trait]::Empty>)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::detail::OpToOpPassAdaptor)
+Load new dialect in Context linalg
+Load new dialect in Context math
+Load new dialect in Context memref
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::CopyOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::PromotableMemOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::DestructurableAccessorOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::PromotableAllocationOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::DestructurableAllocationOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::ViewLikeOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::bufferization::AllocationOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::RuntimeVerifiableOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::DestructurableTypeInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::linalg::AggregatedOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::linalg::LinalgOp)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::linalg::ContractionOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::linalg::ConvolutionOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::linalg::FillOpInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::mesh::ShardingInterface)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::PartialReductionOpInterface)
 run in MarkDistributeParallelParametersPass
 root op: builtin.module
 DPNums: 2
@@ -178,12 +163,12 @@ ImplicitTypeIDRegistry::lookupOrInsert(mlir::DialectFoldInterface)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::OpTrait::ConstantLike<mlir::TypeID::get() [with Trait = mlir::OpTrait::ConstantLike]::Empty>)
 
 //===-------------------------------------------===//
-Processing operation : 'func.func'(0x5e2dc3b59220) {
+Processing operation : 'func.func'(0x6204461b2bd0) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer_cast'(0x5e2dc3b6bac0) {
+Processing operation : 'north_star.buffer_cast'(0x6204461f0cf0) {
   %0:2 = "north_star.buffer_cast"(%arg0) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<2x128xf32,0>) -> (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>)
 
 
@@ -195,21 +180,21 @@ Trying to match "mlir::north_star::{anonymous}::BufferCastOpFold"
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b5bfb0) {
+Processing operation : 'north_star.softmax'(0x6204461df7f0) {
   %1 = "north_star.softmax"(%0#0) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b6b4f0) {
+Processing operation : 'north_star.softmax'(0x6204461f0720) {
   %2 = "north_star.softmax"(%0#1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer_cast'(0x5e2dc3b6bb60) {
+Processing operation : 'north_star.buffer_cast'(0x6204461f0d90) {
   %3 = "north_star.buffer_cast"(%1, %2) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<2x128xf32,0>
 
 
@@ -221,16 +206,16 @@ Trying to match "mlir::north_star::{anonymous}::BufferCastOpFold"
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer_cast'(0x5e2dc3b6c4e0) {
+Processing operation : 'north_star.buffer_cast'(0x6204461f1710) {
   %4:2 = "north_star.buffer_cast"(%3) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<2x128xf32,0>) -> (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>)
 
 
   * Pattern mlir::north_star::{anonymous}::BufferCastOpFold : 'north_star.buffer_cast -> ()' {
 Trying to match "mlir::north_star::{anonymous}::BufferCastOpFold"
-    ** Modified: 'north_star.softmax'(0x5e2dc3b58270)
-    ** Modified: 'north_star.softmax'(0x5e2dc3b6c440)
-    ** Erase   : 'north_star.buffer_cast'(0x5e2dc3b6c4e0)
-    ** Erase   : 'north_star.buffer_cast'(0x5e2dc3b6bb60)
+    ** Modified: 'north_star.softmax'(0x6204461b1fb0)
+    ** Modified: 'north_star.softmax'(0x6204461f1670)
+    ** Erase   : 'north_star.buffer_cast'(0x6204461f1710)
+    ** Erase   : 'north_star.buffer_cast'(0x6204461f0d90)
 "mlir::north_star::{anonymous}::BufferCastOpFold" result 1
   } -> success : pattern applied successfully
 // *** IR Dump After Pattern Application ***
@@ -249,40 +234,40 @@ func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_ten
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b6b4f0) {
+Processing operation : 'north_star.softmax'(0x6204461f0720) {
   %2 = "north_star.softmax"(%0#1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b5bfb0) {
+Processing operation : 'north_star.softmax'(0x6204461df7f0) {
   %1 = "north_star.softmax"(%0#0) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'func.func'(0x5e2dc3b59220) {
+Processing operation : 'func.func'(0x6204461b2bd0) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b58270) {
+Processing operation : 'north_star.softmax'(0x6204461b1fb0) {
   %3 = "north_star.softmax"(%1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b6c440) {
+Processing operation : 'north_star.softmax'(0x6204461f1670) {
   %4 = "north_star.softmax"(%2) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer_cast'(0x5e2dc3b6c580) {
+Processing operation : 'north_star.buffer_cast'(0x6204461f17b0) {
   %5 = "north_star.buffer_cast"(%3, %4) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<2x128xf32,0>
 
 
@@ -294,20 +279,21 @@ Trying to match "mlir::north_star::{anonymous}::BufferCastOpFold"
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'func.return'(0x5e2dc3b58d90) {
+Processing operation : 'func.return'(0x6204461b2b50) {
   "func.return"(%5) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::BranchOpInterface)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::OpTrait::HasRecursiveMemoryEffects<mlir::TypeID::get() [with Trait = mlir::OpTrait::HasRecursiveMemoryEffects]::Empty>)
 
 //===-------------------------------------------===//
-Processing operation : 'func.func'(0x5e2dc3b59220) {
+Processing operation : 'func.func'(0x6204461b2bd0) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer_cast'(0x5e2dc3b6bac0) {
+Processing operation : 'north_star.buffer_cast'(0x6204461f0cf0) {
   %0:2 = "north_star.buffer_cast"(%arg0) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<2x128xf32,0>) -> (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>)
 
 
@@ -319,35 +305,35 @@ Trying to match "mlir::north_star::{anonymous}::BufferCastOpFold"
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b5bfb0) {
+Processing operation : 'north_star.softmax'(0x6204461df7f0) {
   %1 = "north_star.softmax"(%0#0) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b6b4f0) {
+Processing operation : 'north_star.softmax'(0x6204461f0720) {
   %2 = "north_star.softmax"(%0#1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b58270) {
+Processing operation : 'north_star.softmax'(0x6204461b1fb0) {
   %3 = "north_star.softmax"(%1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b6c440) {
+Processing operation : 'north_star.softmax'(0x6204461f1670) {
   %4 = "north_star.softmax"(%2) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer_cast'(0x5e2dc3b6c580) {
+Processing operation : 'north_star.buffer_cast'(0x6204461f17b0) {
   %5 = "north_star.buffer_cast"(%3, %4) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<2x128xf32,0>
 
 
@@ -359,7 +345,7 @@ Trying to match "mlir::north_star::{anonymous}::BufferCastOpFold"
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'func.return'(0x5e2dc3b58d90) {
+Processing operation : 'func.return'(0x6204461b2b50) {
   "func.return"(%5) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
 
 } -> failure : pattern failed to match
@@ -382,14 +368,14 @@ run in DeviceRegionFusionPass
 root op: func.func
 
 //===-------------------------------------------===//
-Processing operation : 'func.return'(0x5e2dc3b58d90) {
+Processing operation : 'func.return'(0x6204461b2b50) {
   "func.return"(%5) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer_cast'(0x5e2dc3b6c580) {
+Processing operation : 'north_star.buffer_cast'(0x6204461f17b0) {
   %5 = "north_star.buffer_cast"(%3, %4) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<2x128xf32,0>
 
 
@@ -401,61 +387,61 @@ Trying to match "{anonymous}::BufferCastOpDeviceRegionFusion"
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b6c440) {
+Processing operation : 'north_star.softmax'(0x6204461f1670) {
   %4 = "north_star.softmax"(%2) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b58270) {
+Processing operation : 'north_star.softmax'(0x6204461b1fb0) {
   %3 = "north_star.softmax"(%1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b6b4f0) {
+Processing operation : 'north_star.softmax'(0x6204461f0720) {
   %2 = "north_star.softmax"(%0#1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b5bfb0) {
+Processing operation : 'north_star.softmax'(0x6204461df7f0) {
   %1 = "north_star.softmax"(%0#0) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer_cast'(0x5e2dc3b6bac0) {
+Processing operation : 'north_star.buffer_cast'(0x6204461f0cf0) {
   %0:2 = "north_star.buffer_cast"(%arg0) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<2x128xf32,0>) -> (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>)
 
 
   * Pattern {anonymous}::BufferCastOpDeviceRegionFusion : 'north_star.buffer_cast -> ()' {
 Trying to match "{anonymous}::BufferCastOpDeviceRegionFusion"
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::north_star::detail::DeviceKernelOpGenericAdaptorBase::Properties)
-    ** Insert  : 'north_star.device_kernel'(0x5e2dc3b6c4d0)
-    ** Insert  : 'north_star.return'(0x5e2dc3af9b70)
-    ** Modified: 'north_star.buffer_cast'(0x5e2dc3b6c580)
-    ** Insert  : 'north_star.device_kernel'(0x5e2dc3b739b0)
-    ** Insert  : 'north_star.return'(0x5e2dc3afa0f0)
-    ** Modified: 'north_star.buffer_cast'(0x5e2dc3b6c580)
+    ** Insert  : 'north_star.device_kernel'(0x6204461f1700)
+    ** Insert  : 'north_star.return'(0x6204461f8aa0)
+    ** Modified: 'north_star.buffer_cast'(0x6204461f17b0)
+    ** Insert  : 'north_star.device_kernel'(0x6204461f8bb0)
+    ** Insert  : 'north_star.return'(0x6204461f8dc0)
+    ** Modified: 'north_star.buffer_cast'(0x6204461f17b0)
 "{anonymous}::BufferCastOpDeviceRegionFusion" result 1
   } -> success : pattern applied successfully
 // *** IR Dump After Pattern Application ***
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::FusionRegionOpInterfaces::Trait<mlir::TypeID::get() [with Trait = mlir::FusionRegionOpInterfaces::Trait]::Empty>)
 func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
   %0:2 = "north_star.buffer_cast"(%arg0) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<2x128xf32,0>) -> (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>)
-  %1 = "north_star.device_kernel"(%0#0) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+  %1 = "north_star.device_kernel"(%0#0) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
   ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,0>):
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::OpTrait::HasParent<mlir::north_star::DeviceKernelOp>::Impl<mlir::TypeID::get() [with Trait = mlir::OpTrait::HasParent<mlir::north_star::DeviceKernelOp>::Impl]::Empty>)
     %8 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
     %9 = "north_star.softmax"(%8) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
     north_star.return %9 : !north_star.ns_tensor<1x128xf32,0>
   }) : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-  %2 = "north_star.device_kernel"(%0#1) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+  %2 = "north_star.device_kernel"(%0#1) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
   ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,1>):
     %8 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
     %9 = "north_star.softmax"(%8) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
@@ -474,19 +460,19 @@ ImplicitTypeIDRegistry::lookupOrInsert(mlir::OpTrait::HasParent<mlir::north_star
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.return'(0x5e2dc3afa0f0) {
+Processing operation : 'north_star.return'(0x6204461f8dc0) {
   "north_star.return"(%9) : (!north_star.ns_tensor<1x128xf32,1>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.device_kernel'(0x5e2dc3b739b0) {
+Processing operation : 'north_star.device_kernel'(0x6204461f8bb0) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer_cast'(0x5e2dc3b6c580) {
+Processing operation : 'north_star.buffer_cast'(0x6204461f17b0) {
   %7 = "north_star.buffer_cast"(%1, %2) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<2x128xf32,0>
 
 
@@ -498,30 +484,30 @@ Trying to match "{anonymous}::BufferCastOpDeviceRegionFusion"
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.return'(0x5e2dc3af9b70) {
+Processing operation : 'north_star.return'(0x6204461f8aa0) {
   "north_star.return"(%11) : (!north_star.ns_tensor<1x128xf32,0>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.device_kernel'(0x5e2dc3b6c4d0) {
+Processing operation : 'north_star.device_kernel'(0x6204461f1700) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
-** Erase   : 'north_star.softmax'(0x5e2dc3b6c440)
-** Erase   : 'north_star.softmax'(0x5e2dc3b58270)
-** Erase   : 'north_star.softmax'(0x5e2dc3b6b4f0)
-** Erase   : 'north_star.softmax'(0x5e2dc3b5bfb0)
+** Erase   : 'north_star.softmax'(0x6204461f1670)
+** Erase   : 'north_star.softmax'(0x6204461b1fb0)
+** Erase   : 'north_star.softmax'(0x6204461f0720)
+** Erase   : 'north_star.softmax'(0x6204461df7f0)
 
 //===-------------------------------------------===//
-Processing operation : 'func.return'(0x5e2dc3b58d90) {
+Processing operation : 'func.return'(0x6204461b2b50) {
   "func.return"(%3) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer_cast'(0x5e2dc3b6c580) {
+Processing operation : 'north_star.buffer_cast'(0x6204461f17b0) {
   %3 = "north_star.buffer_cast"(%1, %2) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<2x128xf32,0>
 
 
@@ -533,59 +519,59 @@ Trying to match "{anonymous}::BufferCastOpDeviceRegionFusion"
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.return'(0x5e2dc3afa0f0) {
+Processing operation : 'north_star.return'(0x6204461f8dc0) {
   "north_star.return"(%5) : (!north_star.ns_tensor<1x128xf32,1>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b73b40) {
+Processing operation : 'north_star.softmax'(0x6204461f8d40) {
   %5 = "north_star.softmax"(%4) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.device_kernel'(0x5e2dc3b739b0) {
+Processing operation : 'north_star.device_kernel'(0x6204461f8bb0) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b73ab0) {
+Processing operation : 'north_star.softmax'(0x6204461f8cb0) {
   %4 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.return'(0x5e2dc3af9b70) {
+Processing operation : 'north_star.return'(0x6204461f8aa0) {
   "north_star.return"(%7) : (!north_star.ns_tensor<1x128xf32,0>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b738d0) {
+Processing operation : 'north_star.softmax'(0x6204461f89e0) {
   %7 = "north_star.softmax"(%6) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.device_kernel'(0x5e2dc3b6c4d0) {
+Processing operation : 'north_star.device_kernel'(0x6204461f1700) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b58770) {
+Processing operation : 'north_star.softmax'(0x6204461b2510) {
   %6 = "north_star.softmax"(%arg2) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer_cast'(0x5e2dc3b6bac0) {
+Processing operation : 'north_star.buffer_cast'(0x6204461f0cf0) {
   %0:2 = "north_star.buffer_cast"(%arg0) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<2x128xf32,0>) -> (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>)
 
 
@@ -600,13 +586,13 @@ run out: DeviceRegionFusionPass
 // -----// IR Dump After DeviceRegionFusionPass (device-region-fusion) //----- //
 func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
   %0:2 = "north_star.buffer_cast"(%arg0) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<2x128xf32,0>) -> (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>)
-  %1 = "north_star.device_kernel"(%0#0) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+  %1 = "north_star.device_kernel"(%0#0) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
   ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,0>):
     %4 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
     %5 = "north_star.softmax"(%4) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
     north_star.return %5 : !north_star.ns_tensor<1x128xf32,0>
   }) : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-  %2 = "north_star.device_kernel"(%0#1) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+  %2 = "north_star.device_kernel"(%0#1) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
   ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,1>):
     %4 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
     %5 = "north_star.softmax"(%4) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
@@ -619,50 +605,50 @@ func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_ten
 run in EliminateBufferCastPass
 
 //===-------------------------------------------===//
-Processing operation : 'func.return'(0x5e2dc3b58d90) {
+Processing operation : 'func.return'(0x6204461b2b50) {
   "func.return"(%3) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer_cast'(0x5e2dc3b6c580) {
+Processing operation : 'north_star.buffer_cast'(0x6204461f17b0) {
   %3 = "north_star.buffer_cast"(%1, %2) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<2x128xf32,0>
 
 
   * Pattern {anonymous}::BufferCastOpToCommunicationPattern : 'north_star.buffer_cast -> ()' {
 Trying to match "{anonymous}::BufferCastOpToCommunicationPattern"
-    ** Insert  : 'north_star.buffer'(0x5e2dc3b74990)
+    ** Insert  : 'north_star.buffer'(0x6204461e4d20)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::OpTrait::OneTypedResult<mlir::RankedTensorType>::Impl<mlir::TypeID::get() [with Trait = mlir::OpTrait::OneTypedResult<mlir::RankedTensorType>::Impl]::Empty>)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::ReifyRankedShapedTypeOpInterface::Trait<mlir::TypeID::get() [with Trait = mlir::ReifyRankedShapedTypeOpInterface::Trait]::Empty>)
-    ** Insert  : 'tensor.empty'(0x5e2dc3b73bd0)
+    ** Insert  : 'tensor.empty'(0x6204461f8e50)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::north_star::detail::TensorToNSTensorOpGenericAdaptorBase::Properties)
-    ** Insert  : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b5bfb0)
-    ** Insert  : 'north_star.buffer'(0x5e2dc3b6b4f0)
-    ** Insert  : 'north_star.gather'(0x5e2dc3b61a60)
+    ** Insert  : 'north_star.tensor_to_ns_tensor'(0x6204461df7f0)
+    ** Insert  : 'north_star.buffer'(0x6204461f0720)
+    ** Insert  : 'north_star.gather'(0x6204461e4ec0)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::north_star::detail::GetTensorOpGenericAdaptorBase::Properties)
-    ** Insert  : 'north_star.get_tensor'(0x5e2dc3b58270)
-    ** Replace : 'north_star.buffer_cast'(0x5e2dc3b6c580)
-    ** Modified: 'func.return'(0x5e2dc3b58d90)
+    ** Insert  : 'north_star.get_tensor'(0x6204461b1fb0)
+    ** Replace : 'north_star.buffer_cast'(0x6204461f17b0)
+    ** Modified: 'func.return'(0x6204461b2b50)
 "{anonymous}::BufferCastOpToCommunicationPattern" result 1
   } -> success : pattern applied successfully
 // *** IR Dump After Pattern Application ***
 func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
   %0:2 = "north_star.buffer_cast"(%arg0) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<2x128xf32,0>) -> (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>)
-  %1 = "north_star.device_kernel"(%0#0) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+  %1 = "north_star.device_kernel"(%0#0) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
   ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,0>):
     %9 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
     %10 = "north_star.softmax"(%9) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
     north_star.return %10 : !north_star.ns_tensor<1x128xf32,0>
   }) : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-  %2 = "north_star.device_kernel"(%0#1) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+  %2 = "north_star.device_kernel"(%0#1) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
   ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,1>):
     %9 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
     %10 = "north_star.softmax"(%9) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
     north_star.return %10 : !north_star.ns_tensor<1x128xf32,1>
   }) : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
   %3 = "north_star.buffer"(%1, %2) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-  %4 = tensor.empty() : tensor<2x128xf32>
+  %4 = tensor.empty() {device_id = 0 : i64} : tensor<2x128xf32>
   %5 = "north_star.tensor_to_ns_tensor"(%4) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
   %6 = "north_star.buffer"(%5) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
   "north_star.gather"(%3, %6) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
@@ -676,21 +662,21 @@ func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_ten
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'func.return'(0x5e2dc3b58d90) {
+Processing operation : 'func.return'(0x6204461b2b50) {
   "func.return"(%7) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.get_tensor'(0x5e2dc3b58270) {
+Processing operation : 'north_star.get_tensor'(0x6204461b1fb0) {
   %7 = "north_star.get_tensor"(%6) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.gather'(0x5e2dc3b61a60) {
+Processing operation : 'north_star.gather'(0x6204461e4ec0) {
   "north_star.gather"(%3, %6) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
 
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::OpTrait::NOperands<2>::Impl<mlir::TypeID::get() [with Trait = mlir::OpTrait::NOperands<2>::Impl]::Empty>)
@@ -698,137 +684,137 @@ ImplicitTypeIDRegistry::lookupOrInsert(mlir::OpTrait::NOperands<2>::Impl<mlir::T
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer'(0x5e2dc3b6b4f0) {
+Processing operation : 'north_star.buffer'(0x6204461f0720) {
   %6 = "north_star.buffer"(%5) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b5bfb0) {
+Processing operation : 'north_star.tensor_to_ns_tensor'(0x6204461df7f0) {
   %5 = "north_star.tensor_to_ns_tensor"(%4) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'tensor.empty'(0x5e2dc3b73bd0) {
-  %4 = "tensor.empty"() : () -> tensor<2x128xf32>
+Processing operation : 'tensor.empty'(0x6204461f8e50) {
+  %4 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<2x128xf32>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer'(0x5e2dc3b74990) {
+Processing operation : 'north_star.buffer'(0x6204461e4d20) {
   %3 = "north_star.buffer"(%1, %2) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.return'(0x5e2dc3afa0f0) {
+Processing operation : 'north_star.return'(0x6204461f8dc0) {
   "north_star.return"(%10) : (!north_star.ns_tensor<1x128xf32,1>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b73b40) {
+Processing operation : 'north_star.softmax'(0x6204461f8d40) {
   %10 = "north_star.softmax"(%9) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.device_kernel'(0x5e2dc3b739b0) {
+Processing operation : 'north_star.device_kernel'(0x6204461f8bb0) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b73ab0) {
+Processing operation : 'north_star.softmax'(0x6204461f8cb0) {
   %9 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.return'(0x5e2dc3af9b70) {
+Processing operation : 'north_star.return'(0x6204461f8aa0) {
   "north_star.return"(%12) : (!north_star.ns_tensor<1x128xf32,0>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b738d0) {
+Processing operation : 'north_star.softmax'(0x6204461f89e0) {
   %12 = "north_star.softmax"(%11) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.device_kernel'(0x5e2dc3b6c4d0) {
+Processing operation : 'north_star.device_kernel'(0x6204461f1700) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b58770) {
+Processing operation : 'north_star.softmax'(0x6204461b2510) {
   %11 = "north_star.softmax"(%arg2) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'func.func'(0x5e2dc3b59220) {
+Processing operation : 'func.func'(0x6204461b2bd0) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer_cast'(0x5e2dc3b6bac0) {
+Processing operation : 'north_star.buffer_cast'(0x6204461f0cf0) {
   %0:2 = "north_star.buffer_cast"(%arg0) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<2x128xf32,0>) -> (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>)
 
 
   * Pattern {anonymous}::BufferCastOpToCommunicationPattern : 'north_star.buffer_cast -> ()' {
 Trying to match "{anonymous}::BufferCastOpToCommunicationPattern"
-    ** Insert  : 'north_star.buffer'(0x5e2dc3b6c440)
-    ** Insert  : 'tensor.empty'(0x5e2dc3b61b30)
-    ** Insert  : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b73c40)
-    ** Insert  : 'tensor.empty'(0x5e2dc3b71300)
-    ** Insert  : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b71370)
-    ** Insert  : 'north_star.buffer'(0x5e2dc3b71400)
-    ** Insert  : 'north_star.scatter'(0x5e2dc3b714a0)
-    ** Insert  : 'north_star.get_tensor'(0x5e2dc3b71550)
-    ** Insert  : 'north_star.get_tensor'(0x5e2dc3b715e0)
-    ** Replace : 'north_star.buffer_cast'(0x5e2dc3b6bac0)
-    ** Modified: 'north_star.device_kernel'(0x5e2dc3b6c4d0)
-    ** Modified: 'north_star.device_kernel'(0x5e2dc3b739b0)
+    ** Insert  : 'north_star.buffer'(0x6204461f1670)
+    ** Insert  : 'tensor.empty'(0x6204461e4f90)
+    ** Insert  : 'north_star.tensor_to_ns_tensor'(0x6204461f8ec0)
+    ** Insert  : 'tensor.empty'(0x6204461f97c0)
+    ** Insert  : 'north_star.tensor_to_ns_tensor'(0x6204461f9830)
+    ** Insert  : 'north_star.buffer'(0x6204461f98c0)
+    ** Insert  : 'north_star.scatter'(0x6204461f9960)
+    ** Insert  : 'north_star.get_tensor'(0x6204461f9a10)
+    ** Insert  : 'north_star.get_tensor'(0x6204461f9aa0)
+    ** Replace : 'north_star.buffer_cast'(0x6204461f0cf0)
+    ** Modified: 'north_star.device_kernel'(0x6204461f1700)
+    ** Modified: 'north_star.device_kernel'(0x6204461f8bb0)
 "{anonymous}::BufferCastOpToCommunicationPattern" result 1
   } -> success : pattern applied successfully
 // *** IR Dump After Pattern Application ***
 func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
   %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-  %1 = tensor.empty() : tensor<1x128xf32>
+  %1 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
   %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-  %3 = tensor.empty() : tensor<1x128xf32>
+  %3 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
   %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
   %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
   "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
   %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
   %7 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
   %8:2 = "north_star.buffer_cast"(%arg0) <{distribute_attr = #north_star.DP<DP = 2 : 0, 1>}> : (!north_star.ns_tensor<2x128xf32,0>) -> (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>)
-  %9 = "north_star.device_kernel"(%6) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+  %9 = "north_star.device_kernel"(%6) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
   ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,0>):
     %17 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
     %18 = "north_star.softmax"(%17) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
     north_star.return %18 : !north_star.ns_tensor<1x128xf32,0>
   }) : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-  %10 = "north_star.device_kernel"(%7) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+  %10 = "north_star.device_kernel"(%7) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
   ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,1>):
     %17 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
     %18 = "north_star.softmax"(%17) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
     north_star.return %18 : !north_star.ns_tensor<1x128xf32,1>
   }) : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
   %11 = "north_star.buffer"(%9, %10) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-  %12 = tensor.empty() : tensor<2x128xf32>
+  %12 = tensor.empty() {device_id = 0 : i64} : tensor<2x128xf32>
   %13 = "north_star.tensor_to_ns_tensor"(%12) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
   %14 = "north_star.buffer"(%13) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
   "north_star.gather"(%11, %14) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
@@ -842,249 +828,249 @@ func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_ten
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.device_kernel'(0x5e2dc3b739b0) {
+Processing operation : 'north_star.device_kernel'(0x6204461f8bb0) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.device_kernel'(0x5e2dc3b6c4d0) {
+Processing operation : 'north_star.device_kernel'(0x6204461f1700) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.get_tensor'(0x5e2dc3b715e0) {
+Processing operation : 'north_star.get_tensor'(0x6204461f9aa0) {
   %7 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.get_tensor'(0x5e2dc3b71550) {
+Processing operation : 'north_star.get_tensor'(0x6204461f9a10) {
   %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.scatter'(0x5e2dc3b714a0) {
+Processing operation : 'north_star.scatter'(0x6204461f9960) {
   "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer'(0x5e2dc3b71400) {
+Processing operation : 'north_star.buffer'(0x6204461f98c0) {
   %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b71370) {
+Processing operation : 'north_star.tensor_to_ns_tensor'(0x6204461f9830) {
   %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'tensor.empty'(0x5e2dc3b71300) {
-  %3 = "tensor.empty"() : () -> tensor<1x128xf32>
+Processing operation : 'tensor.empty'(0x6204461f97c0) {
+  %3 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b73c40) {
+Processing operation : 'north_star.tensor_to_ns_tensor'(0x6204461f8ec0) {
   %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'tensor.empty'(0x5e2dc3b61b30) {
-  %1 = "tensor.empty"() : () -> tensor<1x128xf32>
+Processing operation : 'tensor.empty'(0x6204461e4f90) {
+  %1 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'func.func'(0x5e2dc3b59220) {
+Processing operation : 'func.func'(0x6204461b2bd0) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer'(0x5e2dc3b6c440) {
+Processing operation : 'north_star.buffer'(0x6204461f1670) {
   %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
-** Erase   : 'north_star.buffer_cast'(0x5e2dc3b6c580)
-** Erase   : 'north_star.buffer_cast'(0x5e2dc3b6bac0)
+** Erase   : 'north_star.buffer_cast'(0x6204461f17b0)
+** Erase   : 'north_star.buffer_cast'(0x6204461f0cf0)
 
 //===-------------------------------------------===//
-Processing operation : 'func.return'(0x5e2dc3b58d90) {
+Processing operation : 'func.return'(0x6204461b2b50) {
   "func.return"(%14) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.get_tensor'(0x5e2dc3b58270) {
+Processing operation : 'north_star.get_tensor'(0x6204461b1fb0) {
   %14 = "north_star.get_tensor"(%13) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.gather'(0x5e2dc3b61a60) {
+Processing operation : 'north_star.gather'(0x6204461e4ec0) {
   "north_star.gather"(%10, %13) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer'(0x5e2dc3b6b4f0) {
+Processing operation : 'north_star.buffer'(0x6204461f0720) {
   %13 = "north_star.buffer"(%12) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b5bfb0) {
+Processing operation : 'north_star.tensor_to_ns_tensor'(0x6204461df7f0) {
   %12 = "north_star.tensor_to_ns_tensor"(%11) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'tensor.empty'(0x5e2dc3b73bd0) {
-  %11 = "tensor.empty"() : () -> tensor<2x128xf32>
+Processing operation : 'tensor.empty'(0x6204461f8e50) {
+  %11 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<2x128xf32>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer'(0x5e2dc3b74990) {
+Processing operation : 'north_star.buffer'(0x6204461e4d20) {
   %10 = "north_star.buffer"(%8, %9) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.return'(0x5e2dc3afa0f0) {
+Processing operation : 'north_star.return'(0x6204461f8dc0) {
   "north_star.return"(%16) : (!north_star.ns_tensor<1x128xf32,1>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b73b40) {
+Processing operation : 'north_star.softmax'(0x6204461f8d40) {
   %16 = "north_star.softmax"(%15) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.device_kernel'(0x5e2dc3b739b0) {
+Processing operation : 'north_star.device_kernel'(0x6204461f8bb0) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b73ab0) {
+Processing operation : 'north_star.softmax'(0x6204461f8cb0) {
   %15 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.return'(0x5e2dc3af9b70) {
+Processing operation : 'north_star.return'(0x6204461f8aa0) {
   "north_star.return"(%18) : (!north_star.ns_tensor<1x128xf32,0>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b738d0) {
+Processing operation : 'north_star.softmax'(0x6204461f89e0) {
   %18 = "north_star.softmax"(%17) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.device_kernel'(0x5e2dc3b6c4d0) {
+Processing operation : 'north_star.device_kernel'(0x6204461f1700) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.softmax'(0x5e2dc3b58770) {
+Processing operation : 'north_star.softmax'(0x6204461b2510) {
   %17 = "north_star.softmax"(%arg2) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.get_tensor'(0x5e2dc3b715e0) {
+Processing operation : 'north_star.get_tensor'(0x6204461f9aa0) {
   %7 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.get_tensor'(0x5e2dc3b71550) {
+Processing operation : 'north_star.get_tensor'(0x6204461f9a10) {
   %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.scatter'(0x5e2dc3b714a0) {
+Processing operation : 'north_star.scatter'(0x6204461f9960) {
   "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer'(0x5e2dc3b71400) {
+Processing operation : 'north_star.buffer'(0x6204461f98c0) {
   %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b71370) {
+Processing operation : 'north_star.tensor_to_ns_tensor'(0x6204461f9830) {
   %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'tensor.empty'(0x5e2dc3b71300) {
-  %3 = "tensor.empty"() : () -> tensor<1x128xf32>
+Processing operation : 'tensor.empty'(0x6204461f97c0) {
+  %3 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b73c40) {
+Processing operation : 'north_star.tensor_to_ns_tensor'(0x6204461f8ec0) {
   %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'tensor.empty'(0x5e2dc3b61b30) {
-  %1 = "tensor.empty"() : () -> tensor<1x128xf32>
+Processing operation : 'tensor.empty'(0x6204461e4f90) {
+  %1 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
 
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'func.func'(0x5e2dc3b59220) {
+Processing operation : 'func.func'(0x6204461b2bd0) {
 } -> failure : pattern failed to match
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Processing operation : 'north_star.buffer'(0x5e2dc3b6c440) {
+Processing operation : 'north_star.buffer'(0x6204461f1670) {
   %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
 
 } -> failure : pattern failed to match
@@ -1094,28 +1080,28 @@ run out: EliminateBufferCastPass
 module @NorthStar {
   func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
     %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-    %1 = tensor.empty() : tensor<1x128xf32>
+    %1 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
     %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-    %3 = tensor.empty() : tensor<1x128xf32>
+    %3 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
     %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
     %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
     "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
     %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
     %7 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
-    %8 = "north_star.device_kernel"(%6) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+    %8 = "north_star.device_kernel"(%6) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
     ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,0>):
       %15 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
       %16 = "north_star.softmax"(%15) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
       north_star.return %16 : !north_star.ns_tensor<1x128xf32,0>
     }) : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-    %9 = "north_star.device_kernel"(%7) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+    %9 = "north_star.device_kernel"(%7) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
     ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,1>):
       %15 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
       %16 = "north_star.softmax"(%15) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
       north_star.return %16 : !north_star.ns_tensor<1x128xf32,1>
     }) : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
     %10 = "north_star.buffer"(%8, %9) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-    %11 = tensor.empty() : tensor<2x128xf32>
+    %11 = tensor.empty() {device_id = 0 : i64} : tensor<2x128xf32>
     %12 = "north_star.tensor_to_ns_tensor"(%11) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
     %13 = "north_star.buffer"(%12) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
     "north_star.gather"(%10, %13) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
@@ -1128,67 +1114,63 @@ module @NorthStar {
 run in ConvertNorthStarToLinalgPass
 
 //===-------------------------------------------===//
-Legalizing operation : 'builtin.module'(0x5e2dc3b14150) {
+Legalizing operation : 'builtin.module'(0x6204461aef60) {
   * Fold {
   } -> FAILURE : unable to fold
 } -> FAILURE : no matched legalization pattern
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'func.func'(0x5e2dc3b59220) {
+Legalizing operation : 'func.func'(0x6204461b2bd0) {
   * Fold {
   } -> FAILURE : unable to fold
 } -> FAILURE : no matched legalization pattern
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.buffer'(0x5e2dc3b6c440) {
+Legalizing operation : 'north_star.buffer'(0x6204461f1670) {
   %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'tensor.empty'(0x5e2dc3b61b30) {
-  %1 = "tensor.empty"() : () -> tensor<1x128xf32>
+Legalizing operation : 'tensor.empty'(0x6204461e4f90) {
+  %1 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b73c40) {
+Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x6204461f8ec0) {
   %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
 
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
+} -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'tensor.empty'(0x5e2dc3b71300) {
-  %3 = "tensor.empty"() : () -> tensor<1x128xf32>
+Legalizing operation : 'tensor.empty'(0x6204461f97c0) {
+  %3 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b71370) {
+Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x6204461f9830) {
   %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
 
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
+} -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.buffer'(0x5e2dc3b71400) {
+Legalizing operation : 'north_star.buffer'(0x6204461f98c0) {
   %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.scatter'(0x5e2dc3b714a0) {
+Legalizing operation : 'north_star.scatter'(0x6204461f9960) {
   "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
 
   * Fold {
@@ -1197,7 +1179,7 @@ Legalizing operation : 'north_star.scatter'(0x5e2dc3b714a0) {
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.get_tensor'(0x5e2dc3b71550) {
+Legalizing operation : 'north_star.get_tensor'(0x6204461f9a10) {
   %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
 
   * Fold {
@@ -1206,7 +1188,7 @@ Legalizing operation : 'north_star.get_tensor'(0x5e2dc3b71550) {
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.get_tensor'(0x5e2dc3b715e0) {
+Legalizing operation : 'north_star.get_tensor'(0x6204461f9aa0) {
   %7 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
 
   * Fold {
@@ -1215,63 +1197,61 @@ Legalizing operation : 'north_star.get_tensor'(0x5e2dc3b715e0) {
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.device_kernel'(0x5e2dc3b6c4d0) {
+Legalizing operation : 'north_star.device_kernel'(0x6204461f1700) {
   * Fold {
   } -> FAILURE : unable to fold
 
   * Pattern : 'north_star.device_kernel -> ()' {
 Trying to match "{anonymous}::DeviceKernelOpConvertPattern"
-    ** Insert  : 'north_star.device_kernel'(0x5e2dc3b6bab0)
-    ** Insert Block into : 'north_star.device_kernel'(0x5e2dc3b6bab0)
-    ** Insert  : 'north_star.softmax'(0x5e2dc3b74790)
-    ** Insert  : 'north_star.softmax'(0x5e2dc3b74800)
-    ** Insert  : 'north_star.return'(0x5e2dc3b74860)
-    ** Insert  : 'builtin.unrealized_conversion_cast'(0x5e2dc3b76400)
-    ** Insert  : 'builtin.unrealized_conversion_cast'(0x5e2dc3b76530)
-    ** Insert  : 'builtin.unrealized_conversion_cast'(0x5e2dc3b765f0)
-    ** Replace : 'north_star.device_kernel'(0x5e2dc3b6c4d0)
+    ** Insert  : 'north_star.device_kernel'(0x6204461f0ce0)
+    ** Insert Block into : 'north_star.device_kernel'(0x6204461f0ce0)
+    ** Insert  : 'north_star.softmax'(0x6204461f6760)
+    ** Insert  : 'north_star.softmax'(0x6204461f71f0)
+    ** Insert  : 'north_star.return'(0x6204461f6200)
+<block argument> of type '!north_star.ns_tensor<1x128xf32,0>' at index: 0
+    ** Insert  : 'north_star.tensor_to_ns_tensor'(0x6204461fb780)
+    ** Replace : 'north_star.device_kernel'(0x6204461f1700)
 "{anonymous}::DeviceKernelOpConvertPattern" result 1
 
     //===-------------------------------------------===//
-    Legalizing operation : 'north_star.softmax'(0x5e2dc3b74790) {
-      %23 = "north_star.softmax"(%22) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+    Legalizing operation : 'north_star.softmax'(0x6204461f6760) {
+      %22 = "north_star.softmax"(%21) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
       * Fold {
       } -> FAILURE : unable to fold
 
       * Pattern : 'north_star.softmax -> ()' {
 Trying to match "{anonymous}::SoftmaxOpToLinalgPattern"
-        ** Insert  : 'tensor.empty'(0x5e2dc3b79610)
+        ** Insert  : 'tensor.empty'(0x6204461fe7c0)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::linalg::detail::SoftmaxOpGenericAdaptorBase::Properties)
-        ** Insert  : 'linalg.softmax'(0x5e2dc3b79680)
-        ** Replace : 'north_star.softmax'(0x5e2dc3b74790)
+        ** Insert  : 'linalg.softmax'(0x6204461fe830)
+        ** Replace : 'north_star.softmax'(0x6204461f6760)
 "{anonymous}::SoftmaxOpToLinalgPattern" result 1
 
         //===-------------------------------------------===//
-        Legalizing operation : 'tensor.empty'(0x5e2dc3b79610) {
-          %24 = "tensor.empty"() : () -> tensor<1x128xf32>
+        Legalizing operation : 'tensor.empty'(0x6204461fe7c0) {
+          %23 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
 
         } -> SUCCESS : operation marked legal by the target
         //===-------------------------------------------===//
 
         //===-------------------------------------------===//
-        Legalizing operation : 'linalg.softmax'(0x5e2dc3b79680) {
-          %25 = "linalg.softmax"(%23, %24) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+        Legalizing operation : 'linalg.softmax'(0x6204461fe830) {
+          %24 = "linalg.softmax"(%22, %23) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
 
         } -> SUCCESS : operation marked legal by the target
         //===-------------------------------------------===//
       } -> SUCCESS : pattern applied successfully
 // *** IR Dump After Pattern Application ***
-%0 = "north_star.device_kernel"(<<UNKNOWN SSA VALUE>>) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+%0 = "north_star.device_kernel"(<<UNKNOWN SSA VALUE>>) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
 ^bb0(%arg0: tensor<1x128xf32>):
-  %0 = builtin.unrealized_conversion_cast %arg0 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,0>
+  %0 = "north_star.tensor_to_ns_tensor"(%arg0) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
   %1 = builtin.unrealized_conversion_cast %0 : !north_star.ns_tensor<1x128xf32,0> to tensor<1x128xf32>
-  %2 = tensor.empty() : tensor<1x128xf32>
+  %2 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
   %3 = linalg.softmax dimension(1) ins(%1 : tensor<1x128xf32>) outs(%2 : tensor<1x128xf32>) -> tensor<1x128xf32>
   %4 = "north_star.softmax"(%0) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
   %5 = "north_star.softmax"(%4) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-  %6 = builtin.unrealized_conversion_cast %5 : !north_star.ns_tensor<1x128xf32,0> to tensor<1x128xf32>
-  north_star.return %6 : tensor<1x128xf32>
+  north_star.return %5 : !north_star.ns_tensor<1x128xf32,0>
 }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
 
 
@@ -1279,65 +1259,57 @@ ImplicitTypeIDRegistry::lookupOrInsert(mlir::linalg::detail::SoftmaxOpGenericAda
     //===-------------------------------------------===//
 
     //===-------------------------------------------===//
-    Legalizing operation : 'north_star.buffer'(0x5e2dc3b74990) {
-      %13 = "north_star.buffer"(%10, %12) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-
+    Legalizing operation : 'north_star.device_kernel'(0x6204461f0ce0) {
     } -> SUCCESS : operation marked legal by the target
     //===-------------------------------------------===//
 
     //===-------------------------------------------===//
-    Legalizing operation : 'north_star.device_kernel'(0x5e2dc3b6bab0) {
-    } -> SUCCESS : operation marked legal by the target
-    //===-------------------------------------------===//
-
-    //===-------------------------------------------===//
-    Legalizing operation : 'north_star.softmax'(0x5e2dc3b74790) {
-      %26 = "north_star.softmax"(%22) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+    Legalizing operation : 'north_star.softmax'(0x6204461f6760) {
+      %25 = "north_star.softmax"(%21) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
     } -> SUCCESS : operation marked 'ignored' during conversion
     //===-------------------------------------------===//
 
     //===-------------------------------------------===//
-    Legalizing operation : 'north_star.softmax'(0x5e2dc3b74800) {
-      %27 = "north_star.softmax"(%26) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+    Legalizing operation : 'north_star.softmax'(0x6204461f71f0) {
+      %26 = "north_star.softmax"(%25) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
       * Fold {
       } -> FAILURE : unable to fold
 
       * Pattern : 'north_star.softmax -> ()' {
 Trying to match "{anonymous}::SoftmaxOpToLinalgPattern"
-        ** Insert  : 'tensor.empty'(0x5e2dc3b764c0)
-        ** Insert  : 'linalg.softmax'(0x5e2dc3b79860)
-        ** Replace : 'north_star.softmax'(0x5e2dc3b74800)
+        ** Insert  : 'tensor.empty'(0x6204461fe9b0)
+        ** Insert  : 'linalg.softmax'(0x6204461fea20)
+        ** Replace : 'north_star.softmax'(0x6204461f71f0)
 "{anonymous}::SoftmaxOpToLinalgPattern" result 1
 
         //===-------------------------------------------===//
-        Legalizing operation : 'tensor.empty'(0x5e2dc3b764c0) {
-          %27 = "tensor.empty"() : () -> tensor<1x128xf32>
+        Legalizing operation : 'tensor.empty'(0x6204461fe9b0) {
+          %26 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
 
         } -> SUCCESS : operation marked legal by the target
         //===-------------------------------------------===//
 
         //===-------------------------------------------===//
-        Legalizing operation : 'linalg.softmax'(0x5e2dc3b79860) {
-          %28 = "linalg.softmax"(%25, %27) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+        Legalizing operation : 'linalg.softmax'(0x6204461fea20) {
+          %27 = "linalg.softmax"(%24, %26) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
 
         } -> SUCCESS : operation marked legal by the target
         //===-------------------------------------------===//
       } -> SUCCESS : pattern applied successfully
 // *** IR Dump After Pattern Application ***
-%0 = "north_star.device_kernel"(<<UNKNOWN SSA VALUE>>) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+%0 = "north_star.device_kernel"(<<UNKNOWN SSA VALUE>>) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
 ^bb0(%arg0: tensor<1x128xf32>):
-  %0 = builtin.unrealized_conversion_cast %arg0 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,0>
+  %0 = "north_star.tensor_to_ns_tensor"(%arg0) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
   %1 = builtin.unrealized_conversion_cast %0 : !north_star.ns_tensor<1x128xf32,0> to tensor<1x128xf32>
-  %2 = tensor.empty() : tensor<1x128xf32>
+  %2 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
   %3 = linalg.softmax dimension(1) ins(%1 : tensor<1x128xf32>) outs(%2 : tensor<1x128xf32>) -> tensor<1x128xf32>
   %4 = "north_star.softmax"(%0) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-  %5 = tensor.empty() : tensor<1x128xf32>
+  %5 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
   %6 = linalg.softmax dimension(1) ins(%3 : tensor<1x128xf32>) outs(%5 : tensor<1x128xf32>) -> tensor<1x128xf32>
   %7 = "north_star.softmax"(%4) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-  %8 = builtin.unrealized_conversion_cast %7 : !north_star.ns_tensor<1x128xf32,0> to tensor<1x128xf32>
-  north_star.return %8 : tensor<1x128xf32>
+  north_star.return %7 : !north_star.ns_tensor<1x128xf32,0>
 }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
 
 
@@ -1345,162 +1317,182 @@ Trying to match "{anonymous}::SoftmaxOpToLinalgPattern"
     //===-------------------------------------------===//
 
     //===-------------------------------------------===//
-    Legalizing operation : 'north_star.return'(0x5e2dc3b74860) {
-      "north_star.return"(%30) : (tensor<1x128xf32>) -> ()
+    Legalizing operation : 'north_star.return'(0x6204461f6200) {
+      "north_star.return"(%28) : (!north_star.ns_tensor<1x128xf32,0>) -> ()
 
-    } -> SUCCESS : operation marked legal by the target
+      * Fold {
+      } -> FAILURE : unable to fold
+
+      * Pattern : 'north_star.return -> ()' {
+Trying to match "{anonymous}::ReturnOpConvertPattern"
+        ** Insert  : 'north_star.return'(0x6204461f73a0)
+        ** Replace : 'north_star.return'(0x6204461f6200)
+"{anonymous}::ReturnOpConvertPattern" result 1
+
+        //===-------------------------------------------===//
+        Legalizing operation : 'north_star.return'(0x6204461f73a0) {
+          "north_star.return"(%27) : (tensor<1x128xf32>) -> ()
+
+        } -> SUCCESS : operation marked legal by the target
+        //===-------------------------------------------===//
+      } -> SUCCESS : pattern applied successfully
+// *** IR Dump After Pattern Application ***
+'north_star.return' op must be the last operation in the parent block
+mlir-asm-printer: 'north_star.device_kernel' failed to verify and will be printed in generic form
+%0 = "north_star.device_kernel"(<<UNKNOWN SSA VALUE>>) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
+^bb0(%arg0: tensor<1x128xf32>):
+  %1 = "north_star.tensor_to_ns_tensor"(%arg0) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+  %2 = "builtin.unrealized_conversion_cast"(%1) : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+  %3 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
+  %4 = "linalg.softmax"(%2, %3) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+  %5 = "north_star.softmax"(%1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+  %6 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
+  %7 = "linalg.softmax"(%4, %6) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+  %8 = "north_star.softmax"(%5) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+  "north_star.return"(%7) : (tensor<1x128xf32>) -> ()
+  "north_star.return"(%8) : (!north_star.ns_tensor<1x128xf32,0>) -> ()
+}) : (tensor<1x128xf32>) -> tensor<1x128xf32>
+
+
+    } -> SUCCESS
     //===-------------------------------------------===//
 
     //===-------------------------------------------===//
-    Legalizing operation : 'builtin.unrealized_conversion_cast'(0x5e2dc3b76400) {
-      %22 = "builtin.unrealized_conversion_cast"(%arg3) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-
-    } -> SUCCESS : operation marked legal by the target
-    //===-------------------------------------------===//
-
-    //===-------------------------------------------===//
-    Legalizing operation : 'builtin.unrealized_conversion_cast'(0x5e2dc3b76530) {
-      %30 = "builtin.unrealized_conversion_cast"(%29) : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
-
-    } -> SUCCESS : operation marked legal by the target
-    //===-------------------------------------------===//
-
-    //===-------------------------------------------===//
-    Legalizing operation : 'builtin.unrealized_conversion_cast'(0x5e2dc3b765f0) {
-      %10 = "builtin.unrealized_conversion_cast"(%9) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x6204461fb780) {
+      %21 = "north_star.tensor_to_ns_tensor"(%arg3) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
 
     } -> SUCCESS : operation marked legal by the target
     //===-------------------------------------------===//
   } -> SUCCESS : pattern applied successfully
 // *** IR Dump After Pattern Application ***
-func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
+'north_star.return' op must be the last operation in the parent block
+mlir-asm-printer: 'func.func' failed to verify and will be printed in generic form
+"func.func"() <{function_type = (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0>, sym_name = "main"}> ({
+^bb0(%arg0: !north_star.ns_tensor<2x128xf32,0>):
   %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-  %1 = tensor.empty() : tensor<1x128xf32>
+  %1 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
   %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-  %3 = tensor.empty() : tensor<1x128xf32>
+  %3 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
   %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
   %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
   "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
   %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
-  %7 = builtin.unrealized_conversion_cast %6 : !north_star.ns_tensor<1x128xf32,0> to tensor<1x128xf32>
+  %7 = "builtin.unrealized_conversion_cast"(%6) : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
   %8 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
-  %9 = "north_star.device_kernel"(%7) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
-  ^bb0(%arg1: tensor<1x128xf32>):
-    %18 = builtin.unrealized_conversion_cast %arg1 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,0>
-    %19 = builtin.unrealized_conversion_cast %18 : !north_star.ns_tensor<1x128xf32,0> to tensor<1x128xf32>
-    %20 = tensor.empty() : tensor<1x128xf32>
-    %21 = linalg.softmax dimension(1) ins(%19 : tensor<1x128xf32>) outs(%20 : tensor<1x128xf32>) -> tensor<1x128xf32>
-    %22 = "north_star.softmax"(%18) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-    %23 = tensor.empty() : tensor<1x128xf32>
-    %24 = linalg.softmax dimension(1) ins(%21 : tensor<1x128xf32>) outs(%23 : tensor<1x128xf32>) -> tensor<1x128xf32>
-    %25 = "north_star.softmax"(%22) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-    %26 = builtin.unrealized_conversion_cast %25 : !north_star.ns_tensor<1x128xf32,0> to tensor<1x128xf32>
-    north_star.return %26 : tensor<1x128xf32>
+  %9 = "north_star.device_kernel"(%7) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
+  ^bb0(%arg3: tensor<1x128xf32>):
+    %21 = "north_star.tensor_to_ns_tensor"(%arg3) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    %22 = "builtin.unrealized_conversion_cast"(%21) : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+    %23 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
+    %24 = "linalg.softmax"(%22, %23) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+    %25 = "north_star.softmax"(%21) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+    %26 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
+    %27 = "linalg.softmax"(%24, %26) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+    %28 = "north_star.softmax"(%25) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+    "north_star.return"(%27) : (tensor<1x128xf32>) -> ()
+    "north_star.return"(%28) : (!north_star.ns_tensor<1x128xf32,0>) -> ()
   }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-  %10 = builtin.unrealized_conversion_cast %9 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,0>
-  %11 = "north_star.device_kernel"(%6) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
-  ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,0>):
-    %18 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-    %19 = "north_star.softmax"(%18) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-    north_star.return %19 : !north_star.ns_tensor<1x128xf32,0>
+  %10 = "north_star.device_kernel"(%6) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
+  ^bb0(%arg2: !north_star.ns_tensor<1x128xf32,0>):
+    %19 = "north_star.softmax"(%arg2) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+    %20 = "north_star.softmax"(%19) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+    "north_star.return"(%20) : (!north_star.ns_tensor<1x128xf32,0>) -> ()
   }) : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-  %12 = "north_star.device_kernel"(%8) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+  %11 = "north_star.device_kernel"(%8) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
   ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,1>):
-    %18 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
-    %19 = "north_star.softmax"(%18) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
-    north_star.return %19 : !north_star.ns_tensor<1x128xf32,1>
+    %17 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
+    %18 = "north_star.softmax"(%17) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
+    "north_star.return"(%18) : (!north_star.ns_tensor<1x128xf32,1>) -> ()
   }) : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
-  %13 = "north_star.buffer"(%10, %12) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-  %14 = tensor.empty() : tensor<2x128xf32>
-  %15 = "north_star.tensor_to_ns_tensor"(%14) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
-  %16 = "north_star.buffer"(%15) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-  "north_star.gather"(%13, %16) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
-  %17 = "north_star.get_tensor"(%16) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
-  return %17 : !north_star.ns_tensor<2x128xf32,0>
-}
+  %12 = "north_star.buffer"(%10, %11) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
+  %13 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<2x128xf32>
+  %14 = "north_star.tensor_to_ns_tensor"(%13) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
+  %15 = "north_star.buffer"(%14) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
+  "north_star.gather"(%12, %15) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
+  %16 = "north_star.get_tensor"(%15) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
+  "func.return"(%16) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
+}) {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} : () -> ()
 
 
 } -> SUCCESS
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.softmax'(0x5e2dc3b58770) {
-  %20 = "north_star.softmax"(%arg2) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+Legalizing operation : 'north_star.softmax'(0x6204461b2510) {
+  %19 = "north_star.softmax"(%arg2) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> SUCCESS : operation marked 'ignored' during conversion
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.softmax'(0x5e2dc3b738d0) {
-  %21 = "north_star.softmax"(%20) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+Legalizing operation : 'north_star.softmax'(0x6204461f89e0) {
+  %20 = "north_star.softmax"(%19) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> SUCCESS : operation marked 'ignored' during conversion
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.return'(0x5e2dc3af9b70) {
-  "north_star.return"(%21) : (!north_star.ns_tensor<1x128xf32,0>) -> ()
+Legalizing operation : 'north_star.return'(0x6204461f8aa0) {
+  "north_star.return"(%20) : (!north_star.ns_tensor<1x128xf32,0>) -> ()
 
 } -> SUCCESS : operation marked 'ignored' during conversion
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.device_kernel'(0x5e2dc3b739b0) {
+Legalizing operation : 'north_star.device_kernel'(0x6204461f8bb0) {
   * Fold {
   } -> FAILURE : unable to fold
 
   * Pattern : 'north_star.device_kernel -> ()' {
 Trying to match "{anonymous}::DeviceKernelOpConvertPattern"
-    ** Insert  : 'north_star.device_kernel'(0x5e2dc3b79420)
-    ** Insert Block into : 'north_star.device_kernel'(0x5e2dc3b79420)
-    ** Insert  : 'north_star.softmax'(0x5e2dc3b767c0)
-    ** Insert  : 'north_star.softmax'(0x5e2dc3b76830)
-    ** Insert  : 'north_star.return'(0x5e2dc3b76890)
-    ** Insert  : 'builtin.unrealized_conversion_cast'(0x5e2dc3b76d10)
-    ** Insert  : 'builtin.unrealized_conversion_cast'(0x5e2dc3b76e90)
-    ** Insert  : 'builtin.unrealized_conversion_cast'(0x5e2dc3b3abf0)
-    ** Replace : 'north_star.device_kernel'(0x5e2dc3b739b0)
+    ** Insert  : 'north_star.device_kernel'(0x6204461fcd20)
+    ** Insert Block into : 'north_star.device_kernel'(0x6204461fcd20)
+    ** Insert  : 'north_star.softmax'(0x6204461fb810)
+    ** Insert  : 'north_star.softmax'(0x6204461fce00)
+    ** Insert  : 'north_star.return'(0x6204461fcb10)
+<block argument> of type '!north_star.ns_tensor<1x128xf32,1>' at index: 0
+    ** Insert  : 'north_star.tensor_to_ns_tensor'(0x6204461fd110)
+    ** Replace : 'north_star.device_kernel'(0x6204461f8bb0)
 "{anonymous}::DeviceKernelOpConvertPattern" result 1
 
     //===-------------------------------------------===//
-    Legalizing operation : 'north_star.softmax'(0x5e2dc3b767c0) {
-      %24 = "north_star.softmax"(%23) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
+    Legalizing operation : 'north_star.softmax'(0x6204461fb810) {
+      %22 = "north_star.softmax"(%21) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
       * Fold {
       } -> FAILURE : unable to fold
 
       * Pattern : 'north_star.softmax -> ()' {
 Trying to match "{anonymous}::SoftmaxOpToLinalgPattern"
-        ** Insert  : 'tensor.empty'(0x5e2dc3b78fc0)
-        ** Insert  : 'linalg.softmax'(0x5e2dc3b79030)
-        ** Replace : 'north_star.softmax'(0x5e2dc3b767c0)
+        ** Insert  : 'tensor.empty'(0x6204461c6ea0)
+        ** Insert  : 'linalg.softmax'(0x6204461fe320)
+        ** Replace : 'north_star.softmax'(0x6204461fb810)
 "{anonymous}::SoftmaxOpToLinalgPattern" result 1
 
         //===-------------------------------------------===//
-        Legalizing operation : 'tensor.empty'(0x5e2dc3b78fc0) {
-          %25 = "tensor.empty"() : () -> tensor<1x128xf32>
+        Legalizing operation : 'tensor.empty'(0x6204461c6ea0) {
+          %23 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
 
         } -> SUCCESS : operation marked legal by the target
         //===-------------------------------------------===//
 
         //===-------------------------------------------===//
-        Legalizing operation : 'linalg.softmax'(0x5e2dc3b79030) {
-          %26 = "linalg.softmax"(%24, %25) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+        Legalizing operation : 'linalg.softmax'(0x6204461fe320) {
+          %24 = "linalg.softmax"(%22, %23) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
 
         } -> SUCCESS : operation marked legal by the target
         //===-------------------------------------------===//
       } -> SUCCESS : pattern applied successfully
 // *** IR Dump After Pattern Application ***
-%0 = "north_star.device_kernel"(<<UNKNOWN SSA VALUE>>) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+%0 = "north_star.device_kernel"(<<UNKNOWN SSA VALUE>>) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
 ^bb0(%arg0: tensor<1x128xf32>):
-  %0 = builtin.unrealized_conversion_cast %arg0 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,1>
+  %0 = "north_star.tensor_to_ns_tensor"(%arg0) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
   %1 = builtin.unrealized_conversion_cast %0 : !north_star.ns_tensor<1x128xf32,1> to tensor<1x128xf32>
-  %2 = tensor.empty() : tensor<1x128xf32>
+  %2 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
   %3 = linalg.softmax dimension(1) ins(%1 : tensor<1x128xf32>) outs(%2 : tensor<1x128xf32>) -> tensor<1x128xf32>
   %4 = "north_star.softmax"(%0) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
   %5 = "north_star.softmax"(%4) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
-  %6 = builtin.unrealized_conversion_cast %5 : !north_star.ns_tensor<1x128xf32,1> to tensor<1x128xf32>
-  north_star.return %6 : tensor<1x128xf32>
+  north_star.return %5 : !north_star.ns_tensor<1x128xf32,1>
 }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
 
 
@@ -1508,65 +1500,57 @@ Trying to match "{anonymous}::SoftmaxOpToLinalgPattern"
     //===-------------------------------------------===//
 
     //===-------------------------------------------===//
-    Legalizing operation : 'north_star.buffer'(0x5e2dc3b74990) {
-      %16 = "north_star.buffer"(%11, %14) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-
+    Legalizing operation : 'north_star.device_kernel'(0x6204461fcd20) {
     } -> SUCCESS : operation marked legal by the target
     //===-------------------------------------------===//
 
     //===-------------------------------------------===//
-    Legalizing operation : 'north_star.device_kernel'(0x5e2dc3b79420) {
-    } -> SUCCESS : operation marked legal by the target
-    //===-------------------------------------------===//
-
-    //===-------------------------------------------===//
-    Legalizing operation : 'north_star.softmax'(0x5e2dc3b767c0) {
-      %27 = "north_star.softmax"(%23) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
+    Legalizing operation : 'north_star.softmax'(0x6204461fb810) {
+      %25 = "north_star.softmax"(%21) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
     } -> SUCCESS : operation marked 'ignored' during conversion
     //===-------------------------------------------===//
 
     //===-------------------------------------------===//
-    Legalizing operation : 'north_star.softmax'(0x5e2dc3b76830) {
-      %28 = "north_star.softmax"(%27) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
+    Legalizing operation : 'north_star.softmax'(0x6204461fce00) {
+      %26 = "north_star.softmax"(%25) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
       * Fold {
       } -> FAILURE : unable to fold
 
       * Pattern : 'north_star.softmax -> ()' {
 Trying to match "{anonymous}::SoftmaxOpToLinalgPattern"
-        ** Insert  : 'tensor.empty'(0x5e2dc3b79170)
-        ** Insert  : 'linalg.softmax'(0x5e2dc3b791e0)
-        ** Replace : 'north_star.softmax'(0x5e2dc3b76830)
+        ** Insert  : 'tensor.empty'(0x6204461fe430)
+        ** Insert  : 'linalg.softmax'(0x6204461fe4a0)
+        ** Replace : 'north_star.softmax'(0x6204461fce00)
 "{anonymous}::SoftmaxOpToLinalgPattern" result 1
 
         //===-------------------------------------------===//
-        Legalizing operation : 'tensor.empty'(0x5e2dc3b79170) {
-          %28 = "tensor.empty"() : () -> tensor<1x128xf32>
+        Legalizing operation : 'tensor.empty'(0x6204461fe430) {
+          %26 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
 
         } -> SUCCESS : operation marked legal by the target
         //===-------------------------------------------===//
 
         //===-------------------------------------------===//
-        Legalizing operation : 'linalg.softmax'(0x5e2dc3b791e0) {
-          %29 = "linalg.softmax"(%26, %28) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+        Legalizing operation : 'linalg.softmax'(0x6204461fe4a0) {
+          %27 = "linalg.softmax"(%24, %26) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
 
         } -> SUCCESS : operation marked legal by the target
         //===-------------------------------------------===//
       } -> SUCCESS : pattern applied successfully
 // *** IR Dump After Pattern Application ***
-%0 = "north_star.device_kernel"(<<UNKNOWN SSA VALUE>>) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+%0 = "north_star.device_kernel"(<<UNKNOWN SSA VALUE>>) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
 ^bb0(%arg0: tensor<1x128xf32>):
-  %0 = builtin.unrealized_conversion_cast %arg0 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,1>
+  %0 = "north_star.tensor_to_ns_tensor"(%arg0) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
   %1 = builtin.unrealized_conversion_cast %0 : !north_star.ns_tensor<1x128xf32,1> to tensor<1x128xf32>
-  %2 = tensor.empty() : tensor<1x128xf32>
+  %2 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
   %3 = linalg.softmax dimension(1) ins(%1 : tensor<1x128xf32>) outs(%2 : tensor<1x128xf32>) -> tensor<1x128xf32>
   %4 = "north_star.softmax"(%0) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
-  %5 = tensor.empty() : tensor<1x128xf32>
+  %5 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
   %6 = linalg.softmax dimension(1) ins(%3 : tensor<1x128xf32>) outs(%5 : tensor<1x128xf32>) -> tensor<1x128xf32>
   %7 = "north_star.softmax"(%4) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
-  %8 = builtin.unrealized_conversion_cast %7 : !north_star.ns_tensor<1x128xf32,1> to tensor<1x128xf32>
-  north_star.return %8 : tensor<1x128xf32>
+  north_star.return %7 : !north_star.ns_tensor<1x128xf32,1>
 }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
 
 
@@ -1574,153 +1558,173 @@ Trying to match "{anonymous}::SoftmaxOpToLinalgPattern"
     //===-------------------------------------------===//
 
     //===-------------------------------------------===//
-    Legalizing operation : 'north_star.return'(0x5e2dc3b76890) {
-      "north_star.return"(%31) : (tensor<1x128xf32>) -> ()
+    Legalizing operation : 'north_star.return'(0x6204461fcb10) {
+      "north_star.return"(%28) : (!north_star.ns_tensor<1x128xf32,1>) -> ()
 
-    } -> SUCCESS : operation marked legal by the target
+      * Fold {
+      } -> FAILURE : unable to fold
+
+      * Pattern : 'north_star.return -> ()' {
+Trying to match "{anonymous}::ReturnOpConvertPattern"
+        ** Insert  : 'north_star.return'(0x6204461fe610)
+        ** Replace : 'north_star.return'(0x6204461fcb10)
+"{anonymous}::ReturnOpConvertPattern" result 1
+
+        //===-------------------------------------------===//
+        Legalizing operation : 'north_star.return'(0x6204461fe610) {
+          "north_star.return"(%27) : (tensor<1x128xf32>) -> ()
+
+        } -> SUCCESS : operation marked legal by the target
+        //===-------------------------------------------===//
+      } -> SUCCESS : pattern applied successfully
+// *** IR Dump After Pattern Application ***
+'north_star.return' op must be the last operation in the parent block
+mlir-asm-printer: 'north_star.device_kernel' failed to verify and will be printed in generic form
+%0 = "north_star.device_kernel"(<<UNKNOWN SSA VALUE>>) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
+^bb0(%arg0: tensor<1x128xf32>):
+  %1 = "north_star.tensor_to_ns_tensor"(%arg0) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+  %2 = "builtin.unrealized_conversion_cast"(%1) : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+  %3 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
+  %4 = "linalg.softmax"(%2, %3) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+  %5 = "north_star.softmax"(%1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
+  %6 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
+  %7 = "linalg.softmax"(%4, %6) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+  %8 = "north_star.softmax"(%5) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
+  "north_star.return"(%7) : (tensor<1x128xf32>) -> ()
+  "north_star.return"(%8) : (!north_star.ns_tensor<1x128xf32,1>) -> ()
+}) : (tensor<1x128xf32>) -> tensor<1x128xf32>
+
+
+    } -> SUCCESS
     //===-------------------------------------------===//
 
     //===-------------------------------------------===//
-    Legalizing operation : 'builtin.unrealized_conversion_cast'(0x5e2dc3b76d10) {
-      %23 = "builtin.unrealized_conversion_cast"(%arg2) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
-
-    } -> SUCCESS : operation marked legal by the target
-    //===-------------------------------------------===//
-
-    //===-------------------------------------------===//
-    Legalizing operation : 'builtin.unrealized_conversion_cast'(0x5e2dc3b76e90) {
-      %31 = "builtin.unrealized_conversion_cast"(%30) : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
-
-    } -> SUCCESS : operation marked legal by the target
-    //===-------------------------------------------===//
-
-    //===-------------------------------------------===//
-    Legalizing operation : 'builtin.unrealized_conversion_cast'(0x5e2dc3b3abf0) {
-      %14 = "builtin.unrealized_conversion_cast"(%13) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+    Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x6204461fd110) {
+      %21 = "north_star.tensor_to_ns_tensor"(%arg2) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
 
     } -> SUCCESS : operation marked legal by the target
     //===-------------------------------------------===//
   } -> SUCCESS : pattern applied successfully
 // *** IR Dump After Pattern Application ***
-func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
+'north_star.return' op must be the last operation in the parent block
+'north_star.return' op must be the last operation in the parent block
+mlir-asm-printer: 'func.func' failed to verify and will be printed in generic form
+"func.func"() <{function_type = (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0>, sym_name = "main"}> ({
+^bb0(%arg0: !north_star.ns_tensor<2x128xf32,0>):
   %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-  %1 = tensor.empty() : tensor<1x128xf32>
+  %1 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
   %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-  %3 = tensor.empty() : tensor<1x128xf32>
+  %3 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
   %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
   %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
   "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
   %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
-  %7 = builtin.unrealized_conversion_cast %6 : !north_star.ns_tensor<1x128xf32,0> to tensor<1x128xf32>
+  %7 = "builtin.unrealized_conversion_cast"(%6) : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
   %8 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
-  %9 = builtin.unrealized_conversion_cast %8 : !north_star.ns_tensor<1x128xf32,1> to tensor<1x128xf32>
-  %10 = "north_star.device_kernel"(%7) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
-  ^bb0(%arg1: tensor<1x128xf32>):
-    %21 = builtin.unrealized_conversion_cast %arg1 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,0>
-    %22 = builtin.unrealized_conversion_cast %21 : !north_star.ns_tensor<1x128xf32,0> to tensor<1x128xf32>
-    %23 = tensor.empty() : tensor<1x128xf32>
-    %24 = linalg.softmax dimension(1) ins(%22 : tensor<1x128xf32>) outs(%23 : tensor<1x128xf32>) -> tensor<1x128xf32>
-    %25 = "north_star.softmax"(%21) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-    %26 = tensor.empty() : tensor<1x128xf32>
-    %27 = linalg.softmax dimension(1) ins(%24 : tensor<1x128xf32>) outs(%26 : tensor<1x128xf32>) -> tensor<1x128xf32>
-    %28 = "north_star.softmax"(%25) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-    %29 = builtin.unrealized_conversion_cast %28 : !north_star.ns_tensor<1x128xf32,0> to tensor<1x128xf32>
-    north_star.return %29 : tensor<1x128xf32>
+  %9 = "builtin.unrealized_conversion_cast"(%8) : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+  %10 = "north_star.device_kernel"(%7) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
+  ^bb0(%arg4: tensor<1x128xf32>):
+    %31 = "north_star.tensor_to_ns_tensor"(%arg4) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    %32 = "builtin.unrealized_conversion_cast"(%31) : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+    %33 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
+    %34 = "linalg.softmax"(%32, %33) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+    %35 = "north_star.softmax"(%31) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+    %36 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
+    %37 = "linalg.softmax"(%34, %36) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+    %38 = "north_star.softmax"(%35) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+    "north_star.return"(%37) : (tensor<1x128xf32>) -> ()
+    "north_star.return"(%38) : (!north_star.ns_tensor<1x128xf32,0>) -> ()
   }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-  %11 = builtin.unrealized_conversion_cast %10 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,0>
-  %12 = "north_star.device_kernel"(%6) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
-  ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,0>):
-    %21 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-    %22 = "north_star.softmax"(%21) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-    north_star.return %22 : !north_star.ns_tensor<1x128xf32,0>
+  %11 = "north_star.device_kernel"(%6) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
+  ^bb0(%arg3: !north_star.ns_tensor<1x128xf32,0>):
+    %29 = "north_star.softmax"(%arg3) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+    %30 = "north_star.softmax"(%29) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
+    "north_star.return"(%30) : (!north_star.ns_tensor<1x128xf32,0>) -> ()
   }) : (!north_star.ns_tensor<1x128xf32,0>) -> !north_star.ns_tensor<1x128xf32,0>
-  %13 = "north_star.device_kernel"(%9) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
-  ^bb0(%arg1: tensor<1x128xf32>):
-    %21 = builtin.unrealized_conversion_cast %arg1 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,1>
-    %22 = builtin.unrealized_conversion_cast %21 : !north_star.ns_tensor<1x128xf32,1> to tensor<1x128xf32>
-    %23 = tensor.empty() : tensor<1x128xf32>
-    %24 = linalg.softmax dimension(1) ins(%22 : tensor<1x128xf32>) outs(%23 : tensor<1x128xf32>) -> tensor<1x128xf32>
+  %12 = "north_star.device_kernel"(%9) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
+  ^bb0(%arg2: tensor<1x128xf32>):
+    %21 = "north_star.tensor_to_ns_tensor"(%arg2) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+    %22 = "builtin.unrealized_conversion_cast"(%21) : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+    %23 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
+    %24 = "linalg.softmax"(%22, %23) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
     %25 = "north_star.softmax"(%21) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
-    %26 = tensor.empty() : tensor<1x128xf32>
-    %27 = linalg.softmax dimension(1) ins(%24 : tensor<1x128xf32>) outs(%26 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    %26 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
+    %27 = "linalg.softmax"(%24, %26) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
     %28 = "north_star.softmax"(%25) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
-    %29 = builtin.unrealized_conversion_cast %28 : !north_star.ns_tensor<1x128xf32,1> to tensor<1x128xf32>
-    north_star.return %29 : tensor<1x128xf32>
+    "north_star.return"(%27) : (tensor<1x128xf32>) -> ()
+    "north_star.return"(%28) : (!north_star.ns_tensor<1x128xf32,1>) -> ()
   }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-  %14 = builtin.unrealized_conversion_cast %13 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,1>
-  %15 = "north_star.device_kernel"(%8) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+  %13 = "north_star.device_kernel"(%8) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
   ^bb0(%arg1: !north_star.ns_tensor<1x128xf32,1>):
-    %21 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
-    %22 = "north_star.softmax"(%21) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
-    north_star.return %22 : !north_star.ns_tensor<1x128xf32,1>
+    %19 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
+    %20 = "north_star.softmax"(%19) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
+    "north_star.return"(%20) : (!north_star.ns_tensor<1x128xf32,1>) -> ()
   }) : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
-  %16 = "north_star.buffer"(%11, %14) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-  %17 = tensor.empty() : tensor<2x128xf32>
-  %18 = "north_star.tensor_to_ns_tensor"(%17) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
-  %19 = "north_star.buffer"(%18) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-  "north_star.gather"(%16, %19) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
-  %20 = "north_star.get_tensor"(%19) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
-  return %20 : !north_star.ns_tensor<2x128xf32,0>
-}
+  %14 = "north_star.buffer"(%11, %13) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
+  %15 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<2x128xf32>
+  %16 = "north_star.tensor_to_ns_tensor"(%15) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
+  %17 = "north_star.buffer"(%16) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
+  "north_star.gather"(%14, %17) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
+  %18 = "north_star.get_tensor"(%17) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
+  "func.return"(%18) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
+}) {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} : () -> ()
 
 
 } -> SUCCESS
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.softmax'(0x5e2dc3b73ab0) {
-  %21 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
+Legalizing operation : 'north_star.softmax'(0x6204461f8cb0) {
+  %19 = "north_star.softmax"(%arg1) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> SUCCESS : operation marked 'ignored' during conversion
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.softmax'(0x5e2dc3b73b40) {
-  %22 = "north_star.softmax"(%21) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
+Legalizing operation : 'north_star.softmax'(0x6204461f8d40) {
+  %20 = "north_star.softmax"(%19) <{axis = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> SUCCESS : operation marked 'ignored' during conversion
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.return'(0x5e2dc3afa0f0) {
-  "north_star.return"(%22) : (!north_star.ns_tensor<1x128xf32,1>) -> ()
+Legalizing operation : 'north_star.return'(0x6204461f8dc0) {
+  "north_star.return"(%20) : (!north_star.ns_tensor<1x128xf32,1>) -> ()
 
 } -> SUCCESS : operation marked 'ignored' during conversion
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.buffer'(0x5e2dc3b74990) {
-  %16 = "north_star.buffer"(%11, %14) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
+Legalizing operation : 'north_star.buffer'(0x6204461e4d20) {
+  %14 = "north_star.buffer"(%11, %13) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'tensor.empty'(0x5e2dc3b73bd0) {
-  %17 = "tensor.empty"() : () -> tensor<2x128xf32>
+Legalizing operation : 'tensor.empty'(0x6204461f8e50) {
+  %15 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<2x128xf32>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b5bfb0) {
-  %18 = "north_star.tensor_to_ns_tensor"(%17) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
-
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
-//===-------------------------------------------===//
-
-//===-------------------------------------------===//
-Legalizing operation : 'north_star.buffer'(0x5e2dc3b6b4f0) {
-  %19 = "north_star.buffer"(%18) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
+Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x6204461df7f0) {
+  %16 = "north_star.tensor_to_ns_tensor"(%15) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.gather'(0x5e2dc3b61a60) {
-  "north_star.gather"(%16, %19) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
+Legalizing operation : 'north_star.buffer'(0x6204461f0720) {
+  %17 = "north_star.buffer"(%16) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
+
+} -> SUCCESS : operation marked legal by the target
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'north_star.gather'(0x6204461e4ec0) {
+  "north_star.gather"(%14, %17) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
 
   * Fold {
   } -> FAILURE : unable to fold
@@ -1728,8 +1732,8 @@ Legalizing operation : 'north_star.gather'(0x5e2dc3b61a60) {
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.get_tensor'(0x5e2dc3b58270) {
-  %20 = "north_star.get_tensor"(%19) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
+Legalizing operation : 'north_star.get_tensor'(0x6204461b1fb0) {
+  %18 = "north_star.get_tensor"(%17) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
 
   * Fold {
   } -> FAILURE : unable to fold
@@ -1737,17 +1741,20 @@ Legalizing operation : 'north_star.get_tensor'(0x5e2dc3b58270) {
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'func.return'(0x5e2dc3b58d90) {
-  "func.return"(%20) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
+Legalizing operation : 'func.return'(0x6204461b2b50) {
+  "func.return"(%18) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
 
   * Fold {
   } -> FAILURE : unable to fold
 } -> FAILURE : no matched legalization pattern
 //===-------------------------------------------===//
-** Insert  : 'builtin.unrealized_conversion_cast'(0x5e2dc3b771b0)
-** Insert  : 'builtin.unrealized_conversion_cast'(0x5e2dc3b770f0)
-** Insert  : 'builtin.unrealized_conversion_cast'(0x5e2dc3b77240)
-** Insert  : 'builtin.unrealized_conversion_cast'(0x5e2dc3b77400)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::north_star::detail::NSTensorToTensorOpGenericAdaptorBase::Properties)
+** Insert  : 'north_star.ns_tensor_to_tensor'(0x6204461fd390)
+** Insert  : 'north_star.ns_tensor_to_tensor'(0x6204461fd2b0)
+** Insert  : 'north_star.ns_tensor_to_tensor'(0x6204461fd8e0)
+** Insert  : 'north_star.ns_tensor_to_tensor'(0x6204461fd970)
+** Insert  : 'north_star.tensor_to_ns_tensor'(0x6204461fda30)
+** Insert  : 'north_star.tensor_to_ns_tensor'(0x6204461fdaf0)
 run out: ConvertNorthStarToLinalgPass
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::DestinationStyleOpInterface::Trait<mlir::TypeID::get() [with Trait = mlir::DestinationStyleOpInterface::Trait]::Empty>)
 ImplicitTypeIDRegistry::lookupOrInsert(mlir::linalg::AggregatedOpInterface::Trait<mlir::TypeID::get() [with Trait = mlir::linalg::AggregatedOpInterface::Trait]::Empty>)
@@ -1756,85 +1763,40 @@ ImplicitTypeIDRegistry::lookupOrInsert(mlir::TilingInterface::Trait<mlir::TypeID
 module @NorthStar {
   func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
     %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-    %1 = tensor.empty() : tensor<1x128xf32>
+    %1 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
     %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-    %3 = tensor.empty() : tensor<1x128xf32>
+    %3 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
     %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
     %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
     "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
     %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
-    %7 = builtin.unrealized_conversion_cast %6 : !north_star.ns_tensor<1x128xf32,0> to tensor<1x128xf32>
+    %7 = "north_star.ns_tensor_to_tensor"(%6) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
     %8 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
-    %9 = builtin.unrealized_conversion_cast %8 : !north_star.ns_tensor<1x128xf32,1> to tensor<1x128xf32>
-    %10 = "north_star.device_kernel"(%7) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+    %9 = "north_star.ns_tensor_to_tensor"(%8) <{device_id = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+    %10 = "north_star.device_kernel"(%7) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
     ^bb0(%arg1: tensor<1x128xf32>):
-      %19 = builtin.unrealized_conversion_cast %arg1 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,0>
-      %20 = tensor.empty() : tensor<1x128xf32>
-      %21 = linalg.softmax dimension(1) ins(%arg1 : tensor<1x128xf32>) outs(%20 : tensor<1x128xf32>) -> tensor<1x128xf32>
-      %22 = tensor.empty() : tensor<1x128xf32>
-      %23 = linalg.softmax dimension(1) ins(%21 : tensor<1x128xf32>) outs(%22 : tensor<1x128xf32>) -> tensor<1x128xf32>
-      %24 = builtin.unrealized_conversion_cast %23 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,0>
-      %25 = builtin.unrealized_conversion_cast %24 : !north_star.ns_tensor<1x128xf32,0> to tensor<1x128xf32>
-      north_star.return %25 : tensor<1x128xf32>
-    }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-    %11 = builtin.unrealized_conversion_cast %10 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,0>
-    %12 = "north_star.device_kernel"(%9) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
-    ^bb0(%arg1: tensor<1x128xf32>):
-      %19 = builtin.unrealized_conversion_cast %arg1 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,1>
-      %20 = tensor.empty() : tensor<1x128xf32>
-      %21 = linalg.softmax dimension(1) ins(%arg1 : tensor<1x128xf32>) outs(%20 : tensor<1x128xf32>) -> tensor<1x128xf32>
-      %22 = tensor.empty() : tensor<1x128xf32>
-      %23 = linalg.softmax dimension(1) ins(%21 : tensor<1x128xf32>) outs(%22 : tensor<1x128xf32>) -> tensor<1x128xf32>
-      %24 = builtin.unrealized_conversion_cast %23 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,1>
-      %25 = builtin.unrealized_conversion_cast %24 : !north_star.ns_tensor<1x128xf32,1> to tensor<1x128xf32>
-      north_star.return %25 : tensor<1x128xf32>
-    }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-    %13 = builtin.unrealized_conversion_cast %12 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,1>
-    %14 = "north_star.buffer"(%11, %13) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-    %15 = tensor.empty() : tensor<2x128xf32>
-    %16 = "north_star.tensor_to_ns_tensor"(%15) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
-    %17 = "north_star.buffer"(%16) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-    "north_star.gather"(%14, %17) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
-    %18 = "north_star.get_tensor"(%17) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
-    return %18 : !north_star.ns_tensor<2x128xf32,0>
-  }
-}
-
-
-// -----// IR Dump After ReconcileUnrealizedCasts (reconcile-unrealized-casts) //----- //
-module @NorthStar {
-  func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
-    %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-    %1 = tensor.empty() : tensor<1x128xf32>
-    %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-    %3 = tensor.empty() : tensor<1x128xf32>
-    %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
-    %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-    "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
-    %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
-    %7 = builtin.unrealized_conversion_cast %6 : !north_star.ns_tensor<1x128xf32,0> to tensor<1x128xf32>
-    %8 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
-    %9 = builtin.unrealized_conversion_cast %8 : !north_star.ns_tensor<1x128xf32,1> to tensor<1x128xf32>
-    %10 = "north_star.device_kernel"(%7) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
-    ^bb0(%arg1: tensor<1x128xf32>):
-      %19 = tensor.empty() : tensor<1x128xf32>
-      %20 = linalg.softmax dimension(1) ins(%arg1 : tensor<1x128xf32>) outs(%19 : tensor<1x128xf32>) -> tensor<1x128xf32>
-      %21 = tensor.empty() : tensor<1x128xf32>
+      %19 = "north_star.tensor_to_ns_tensor"(%arg1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+      %20 = "north_star.ns_tensor_to_tensor"(%19) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+      %21 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
       %22 = linalg.softmax dimension(1) ins(%20 : tensor<1x128xf32>) outs(%21 : tensor<1x128xf32>) -> tensor<1x128xf32>
-      north_star.return %22 : tensor<1x128xf32>
+      %23 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
+      %24 = linalg.softmax dimension(1) ins(%22 : tensor<1x128xf32>) outs(%23 : tensor<1x128xf32>) -> tensor<1x128xf32>
+      north_star.return %24 : tensor<1x128xf32>
     }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-    %11 = builtin.unrealized_conversion_cast %10 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,0>
-    %12 = "north_star.device_kernel"(%9) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+    %11 = "north_star.tensor_to_ns_tensor"(%10) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    %12 = "north_star.device_kernel"(%9) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
     ^bb0(%arg1: tensor<1x128xf32>):
-      %19 = tensor.empty() : tensor<1x128xf32>
-      %20 = linalg.softmax dimension(1) ins(%arg1 : tensor<1x128xf32>) outs(%19 : tensor<1x128xf32>) -> tensor<1x128xf32>
-      %21 = tensor.empty() : tensor<1x128xf32>
+      %19 = "north_star.tensor_to_ns_tensor"(%arg1) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+      %20 = "north_star.ns_tensor_to_tensor"(%19) <{device_id = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+      %21 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
       %22 = linalg.softmax dimension(1) ins(%20 : tensor<1x128xf32>) outs(%21 : tensor<1x128xf32>) -> tensor<1x128xf32>
-      north_star.return %22 : tensor<1x128xf32>
+      %23 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
+      %24 = linalg.softmax dimension(1) ins(%22 : tensor<1x128xf32>) outs(%23 : tensor<1x128xf32>) -> tensor<1x128xf32>
+      north_star.return %24 : tensor<1x128xf32>
     }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-    %13 = builtin.unrealized_conversion_cast %12 : tensor<1x128xf32> to !north_star.ns_tensor<1x128xf32,1>
+    %13 = "north_star.tensor_to_ns_tensor"(%12) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
     %14 = "north_star.buffer"(%11, %13) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-    %15 = tensor.empty() : tensor<2x128xf32>
+    %15 = tensor.empty() {device_id = 0 : i64} : tensor<2x128xf32>
     %16 = "north_star.tensor_to_ns_tensor"(%15) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
     %17 = "north_star.buffer"(%16) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
     "north_star.gather"(%14, %17) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
@@ -1847,71 +1809,61 @@ module @NorthStar {
 run in ConvertNorthStarToFuncPass
 
 //===-------------------------------------------===//
-Legalizing operation : 'builtin.module'(0x5e2dc3b14150) {
+Legalizing operation : 'builtin.module'(0x6204461aef60) {
   * Fold {
   } -> FAILURE : unable to fold
 } -> FAILURE : no matched legalization pattern
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'func.func'(0x5e2dc3b59220) {
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
+Legalizing operation : 'func.func'(0x6204461b2bd0) {
+} -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.buffer'(0x5e2dc3b6c440) {
+Legalizing operation : 'north_star.buffer'(0x6204461f1670) {
   %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
 
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
+} -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'tensor.empty'(0x5e2dc3b61b30) {
-  %1 = "tensor.empty"() : () -> tensor<1x128xf32>
+Legalizing operation : 'tensor.empty'(0x6204461e4f90) {
+  %1 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b73c40) {
+Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x6204461f8ec0) {
   %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
 
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
+} -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'tensor.empty'(0x5e2dc3b71300) {
-  %3 = "tensor.empty"() : () -> tensor<1x128xf32>
+Legalizing operation : 'tensor.empty'(0x6204461f97c0) {
+  %3 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b71370) {
+Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x6204461f9830) {
   %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
 
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
+} -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.buffer'(0x5e2dc3b71400) {
+Legalizing operation : 'north_star.buffer'(0x6204461f98c0) {
   %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
 
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
+} -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.scatter'(0x5e2dc3b714a0) {
+Legalizing operation : 'north_star.scatter'(0x6204461f9960) {
   "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
 
   * Fold {
@@ -1920,243 +1872,409 @@ Legalizing operation : 'north_star.scatter'(0x5e2dc3b714a0) {
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.get_tensor'(0x5e2dc3b71550) {
+Legalizing operation : 'north_star.get_tensor'(0x6204461f9a10) {
   %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
 
   * Fold {
   } -> FAILURE : unable to fold
+} -> FAILURE : no matched legalization pattern
+//===-------------------------------------------===//
 
-  * Pattern : 'north_star.get_tensor -> ()' {
-Trying to match "{anonymous}::GetTensorOpRefineResultPattern"
-    ** Insert  : 'north_star.get_tensor'(0x5e2dc3b73b40)
-    ** Replace : 'north_star.get_tensor'(0x5e2dc3b71550)
-"{anonymous}::GetTensorOpRefineResultPattern" result 1
+//===-------------------------------------------===//
+Legalizing operation : 'north_star.ns_tensor_to_tensor'(0x6204461fd970) {
+  %7 = "north_star.ns_tensor_to_tensor"(%6) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+
+} -> SUCCESS : operation marked legal by the target
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'north_star.get_tensor'(0x6204461f9aa0) {
+  %8 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
+
+  * Fold {
+  } -> FAILURE : unable to fold
+} -> FAILURE : no matched legalization pattern
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'north_star.ns_tensor_to_tensor'(0x6204461fd2b0) {
+  %9 = "north_star.ns_tensor_to_tensor"(%8) <{device_id = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+
+} -> SUCCESS : operation marked legal by the target
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'north_star.device_kernel'(0x6204461f0ce0) {
+  * Fold {
+  } -> FAILURE : unable to fold
+
+  * Pattern : 'north_star.device_kernel -> ()' {
+Trying to match "{anonymous}::DeviceKernelOpToFuncPattern"
+    ** Insert  : 'func.call'(0x6204461fb5d0)
+    ** Insert Block into : 'func.func'(0x6204461fb650)
+    ** Insert  : 'north_star.tensor_to_ns_tensor'(0x6204461fb810)
+    ** Insert  : 'north_star.ns_tensor_to_tensor'(0x6204461f71f0)
+    ** Insert  : 'tensor.empty'(0x6204461f6760)
+    ** Insert  : 'linalg.softmax'(0x6204461fe5b0)
+    ** Insert  : 'tensor.empty'(0x6204461fead0)
+    ** Insert  : 'linalg.softmax'(0x6204461f9b30)
+    ** Insert  : 'north_star.return'(0x6204461fe540)
+    ** Replace : 'north_star.device_kernel'(0x6204461f0ce0)
+"{anonymous}::DeviceKernelOpToFuncPattern" result 1
 
     //===-------------------------------------------===//
-    Legalizing operation : 'north_star.get_tensor'(0x5e2dc3b73b40) {
-      %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> tensor<1x128xf32>
+    Legalizing operation : 'func.func'(0x6204461fb650) {
+    } -> SUCCESS : operation marked legal by the target
+    //===-------------------------------------------===//
+
+    //===-------------------------------------------===//
+    Legalizing operation : 'func.call'(0x6204461fb5d0) {
+      %16 = "func.call"(%13) <{callee = @softmax_1_128_softmax_1_128_fused_kernel}> {device_id = 0 : i64} : (tensor<1x128xf32>) -> tensor<1x128xf32>
 
     } -> SUCCESS : operation marked legal by the target
     //===-------------------------------------------===//
+
+    //===-------------------------------------------===//
+    Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x6204461fb810) {
+      %0 = "north_star.tensor_to_ns_tensor"(%arg0) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+
+    } -> SUCCESS : operation marked legal by the target
+    //===-------------------------------------------===//
+
+    //===-------------------------------------------===//
+    Legalizing operation : 'north_star.ns_tensor_to_tensor'(0x6204461f71f0) {
+      %1 = "north_star.ns_tensor_to_tensor"(%0) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+
+    } -> SUCCESS : operation marked legal by the target
+    //===-------------------------------------------===//
+
+    //===-------------------------------------------===//
+    Legalizing operation : 'tensor.empty'(0x6204461f6760) {
+      %2 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
+
+    } -> SUCCESS : operation marked legal by the target
+    //===-------------------------------------------===//
+
+    //===-------------------------------------------===//
+    Legalizing operation : 'linalg.softmax'(0x6204461fe5b0) {
+      %3 = "linalg.softmax"(%1, %2) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+
+    } -> SUCCESS : operation marked legal by the target
+    //===-------------------------------------------===//
+
+    //===-------------------------------------------===//
+    Legalizing operation : 'tensor.empty'(0x6204461fead0) {
+      %4 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
+
+    } -> SUCCESS : operation marked legal by the target
+    //===-------------------------------------------===//
+
+    //===-------------------------------------------===//
+    Legalizing operation : 'linalg.softmax'(0x6204461f9b30) {
+      %5 = "linalg.softmax"(%3, %4) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+
+    } -> SUCCESS : operation marked legal by the target
+    //===-------------------------------------------===//
+
+    //===-------------------------------------------===//
+    Legalizing operation : 'north_star.return'(0x6204461fe540) {
+      "north_star.return"(%5) : (tensor<1x128xf32>) -> ()
+
+      * Fold {
+      } -> FAILURE : unable to fold
+
+      * Pattern : 'north_star.return -> ()' {
+Trying to match "{anonymous}::ReturnOpToFuncPattern"
+        ** Insert  : 'func.return'(0x6204461fd190)
+        ** Replace : 'north_star.return'(0x6204461fe540)
+"{anonymous}::ReturnOpToFuncPattern" result 1
+
+        //===-------------------------------------------===//
+        Legalizing operation : 'func.return'(0x6204461fd190) {
+          "func.return"(%5) : (tensor<1x128xf32>) -> ()
+
+        } -> SUCCESS : operation marked legal by the target
+        //===-------------------------------------------===//
+      } -> SUCCESS : pattern applied successfully
+// *** IR Dump After Pattern Application ***
+'func.return' op must be the last operation in the parent block
+mlir-asm-printer: 'func.func' failed to verify and will be printed in generic form
+"func.func"() <{function_type = (tensor<1x128xf32>) -> tensor<1x128xf32>, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
+^bb0(%arg0: tensor<1x128xf32>):
+  %0 = "north_star.tensor_to_ns_tensor"(%arg0) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+  %1 = "north_star.ns_tensor_to_tensor"(%0) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+  %2 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
+  %3 = "linalg.softmax"(%1, %2) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+  %4 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
+  %5 = "linalg.softmax"(%3, %4) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+  "func.return"(%5) : (tensor<1x128xf32>) -> ()
+  "north_star.return"(%5) : (tensor<1x128xf32>) -> ()
+}) {device_kernel} : () -> ()
+
+
+    } -> SUCCESS
+    //===-------------------------------------------===//
   } -> SUCCESS : pattern applied successfully
 // *** IR Dump After Pattern Application ***
-mlir-asm-printer: 'func.func' failed to verify and will be printed in generic form
-"func.func"() <{function_type = (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0>, sym_name = "main"}> ({
-^bb0(%arg0: !north_star.ns_tensor<2x128xf32,0>):
+func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
   %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-  %1 = "tensor.empty"() : () -> tensor<1x128xf32>
+  %1 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
   %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-  %3 = "tensor.empty"() : () -> tensor<1x128xf32>
+  %3 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
   %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
   %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
   "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
-  %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> tensor<1x128xf32>
-  %7 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
-  %8 = "builtin.unrealized_conversion_cast"(%7) : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
-  %9 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
-  %10 = "builtin.unrealized_conversion_cast"(%9) : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
-  %11 = "north_star.device_kernel"(%8) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
-  ^bb0(%arg2: tensor<1x128xf32>):
-    %24 = "tensor.empty"() : () -> tensor<1x128xf32>
-    %25 = "linalg.softmax"(%arg2, %24) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-    %26 = "tensor.empty"() : () -> tensor<1x128xf32>
-    %27 = "linalg.softmax"(%25, %26) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-    "north_star.return"(%27) : (tensor<1x128xf32>) -> ()
-  }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-  %12 = "builtin.unrealized_conversion_cast"(%11) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-  %13 = "north_star.device_kernel"(%10) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+  %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
+  %7 = "north_star.ns_tensor_to_tensor"(%6) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+  %8 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
+  %9 = "north_star.ns_tensor_to_tensor"(%8) <{device_id = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+  %10 = call @softmax_1_128_softmax_1_128_fused_kernel(%7) {device_id = 0 : i64} : (tensor<1x128xf32>) -> tensor<1x128xf32>
+  %11 = "north_star.device_kernel"(%7) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
   ^bb0(%arg1: tensor<1x128xf32>):
-    %20 = "tensor.empty"() : () -> tensor<1x128xf32>
-    %21 = "linalg.softmax"(%arg1, %20) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-    %22 = "tensor.empty"() : () -> tensor<1x128xf32>
-    %23 = "linalg.softmax"(%21, %22) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-    "north_star.return"(%23) : (tensor<1x128xf32>) -> ()
+    %20 = "north_star.tensor_to_ns_tensor"(%arg1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    %21 = "north_star.ns_tensor_to_tensor"(%20) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+    %22 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
+    %23 = linalg.softmax dimension(1) ins(%21 : tensor<1x128xf32>) outs(%22 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    %24 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
+    %25 = linalg.softmax dimension(1) ins(%23 : tensor<1x128xf32>) outs(%24 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    north_star.return %25 : tensor<1x128xf32>
   }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-  %14 = "builtin.unrealized_conversion_cast"(%13) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+  %12 = "north_star.tensor_to_ns_tensor"(%11) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+  %13 = "north_star.device_kernel"(%9) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
+  ^bb0(%arg1: tensor<1x128xf32>):
+    %20 = "north_star.tensor_to_ns_tensor"(%arg1) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+    %21 = "north_star.ns_tensor_to_tensor"(%20) <{device_id = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+    %22 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
+    %23 = linalg.softmax dimension(1) ins(%21 : tensor<1x128xf32>) outs(%22 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    %24 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
+    %25 = linalg.softmax dimension(1) ins(%23 : tensor<1x128xf32>) outs(%24 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    north_star.return %25 : tensor<1x128xf32>
+  }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
+  %14 = "north_star.tensor_to_ns_tensor"(%13) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
   %15 = "north_star.buffer"(%12, %14) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-  %16 = "tensor.empty"() : () -> tensor<2x128xf32>
+  %16 = tensor.empty() {device_id = 0 : i64} : tensor<2x128xf32>
   %17 = "north_star.tensor_to_ns_tensor"(%16) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
   %18 = "north_star.buffer"(%17) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
   "north_star.gather"(%15, %18) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
   %19 = "north_star.get_tensor"(%18) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
-  "func.return"(%19) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
-}) {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} : () -> ()
+  return %19 : !north_star.ns_tensor<2x128xf32,0>
+}
 
 
 } -> SUCCESS
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'builtin.unrealized_conversion_cast'(0x5e2dc3b770f0) {
-  %8 = "builtin.unrealized_conversion_cast"(%7) : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x6204461fb780) {
+  %32 = "north_star.tensor_to_ns_tensor"(%arg3) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.get_tensor'(0x5e2dc3b715e0) {
-  %9 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
+Legalizing operation : 'north_star.ns_tensor_to_tensor'(0x6204461fd8e0) {
+  %33 = "north_star.ns_tensor_to_tensor"(%32) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
 
+} -> SUCCESS : operation marked legal by the target
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'tensor.empty'(0x6204461fe7c0) {
+  %34 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
+
+} -> SUCCESS : operation marked legal by the target
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'linalg.softmax'(0x6204461fe830) {
+  %35 = "linalg.softmax"(%33, %34) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+
+} -> SUCCESS : operation marked legal by the target
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'tensor.empty'(0x6204461fe9b0) {
+  %36 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<1x128xf32>
+
+} -> SUCCESS : operation marked legal by the target
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'linalg.softmax'(0x6204461fea20) {
+  %37 = "linalg.softmax"(%35, %36) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+
+} -> SUCCESS : operation marked legal by the target
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'north_star.return'(0x6204461f73a0) {
+  "north_star.return"(%37) : (tensor<1x128xf32>) -> ()
+
+} -> SUCCESS : operation marked 'ignored' during conversion
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x6204461fda30) {
+  %18 = "north_star.tensor_to_ns_tensor"(%17) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+
+} -> SUCCESS : operation marked legal by the target
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'north_star.device_kernel'(0x6204461fcd20) {
   * Fold {
   } -> FAILURE : unable to fold
 
-  * Pattern : 'north_star.get_tensor -> ()' {
-Trying to match "{anonymous}::GetTensorOpRefineResultPattern"
-    ** Insert  : 'north_star.get_tensor'(0x5e2dc3b76730)
-    ** Replace : 'north_star.get_tensor'(0x5e2dc3b715e0)
-"{anonymous}::GetTensorOpRefineResultPattern" result 1
+  * Pattern : 'north_star.device_kernel -> ()' {
+Trying to match "{anonymous}::DeviceKernelOpToFuncPattern"
+    ** Insert  : 'func.call'(0x6204461fe900)
+    ** Replace : 'north_star.device_kernel'(0x6204461fcd20)
+"{anonymous}::DeviceKernelOpToFuncPattern" result 1
 
     //===-------------------------------------------===//
-    Legalizing operation : 'north_star.get_tensor'(0x5e2dc3b76730) {
-      %9 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> tensor<1x128xf32>
+    Legalizing operation : 'func.call'(0x6204461fe900) {
+      %19 = "func.call"(%15) <{callee = @softmax_1_128_softmax_1_128_fused_kernel}> {device_id = 1 : i64} : (tensor<1x128xf32>) -> tensor<1x128xf32>
 
     } -> SUCCESS : operation marked legal by the target
     //===-------------------------------------------===//
   } -> SUCCESS : pattern applied successfully
 // *** IR Dump After Pattern Application ***
-mlir-asm-printer: 'func.func' failed to verify and will be printed in generic form
-"func.func"() <{function_type = (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0>, sym_name = "main"}> ({
-^bb0(%arg0: !north_star.ns_tensor<2x128xf32,0>):
+func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
   %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-  %1 = "tensor.empty"() : () -> tensor<1x128xf32>
+  %1 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
   %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-  %3 = "tensor.empty"() : () -> tensor<1x128xf32>
+  %3 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
   %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
   %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
   "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
-  %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> tensor<1x128xf32>
-  %7 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
-  %8 = "builtin.unrealized_conversion_cast"(%7) : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
-  %9 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> tensor<1x128xf32>
-  %10 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
-  %11 = "builtin.unrealized_conversion_cast"(%10) : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
-  %12 = "north_star.device_kernel"(%8) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
-  ^bb0(%arg2: tensor<1x128xf32>):
-    %25 = "tensor.empty"() : () -> tensor<1x128xf32>
-    %26 = "linalg.softmax"(%arg2, %25) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-    %27 = "tensor.empty"() : () -> tensor<1x128xf32>
-    %28 = "linalg.softmax"(%26, %27) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-    "north_star.return"(%28) : (tensor<1x128xf32>) -> ()
-  }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-  %13 = "builtin.unrealized_conversion_cast"(%12) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-  %14 = "north_star.device_kernel"(%11) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
+  %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
+  %7 = "north_star.ns_tensor_to_tensor"(%6) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+  %8 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
+  %9 = "north_star.ns_tensor_to_tensor"(%8) <{device_id = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+  %10 = call @softmax_1_128_softmax_1_128_fused_kernel(%7) {device_id = 0 : i64} : (tensor<1x128xf32>) -> tensor<1x128xf32>
+  %11 = "north_star.device_kernel"(%7) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
   ^bb0(%arg1: tensor<1x128xf32>):
-    %21 = "tensor.empty"() : () -> tensor<1x128xf32>
-    %22 = "linalg.softmax"(%arg1, %21) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-    %23 = "tensor.empty"() : () -> tensor<1x128xf32>
-    %24 = "linalg.softmax"(%22, %23) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-    "north_star.return"(%24) : (tensor<1x128xf32>) -> ()
+    %21 = "north_star.tensor_to_ns_tensor"(%arg1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    %22 = "north_star.ns_tensor_to_tensor"(%21) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+    %23 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
+    %24 = linalg.softmax dimension(1) ins(%22 : tensor<1x128xf32>) outs(%23 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    %25 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
+    %26 = linalg.softmax dimension(1) ins(%24 : tensor<1x128xf32>) outs(%25 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    north_star.return %26 : tensor<1x128xf32>
   }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-  %15 = "builtin.unrealized_conversion_cast"(%14) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
-  %16 = "north_star.buffer"(%13, %15) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-  %17 = "tensor.empty"() : () -> tensor<2x128xf32>
+  %12 = "north_star.tensor_to_ns_tensor"(%11) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+  %13 = call @softmax_1_128_softmax_1_128_fused_kernel(%9) {device_id = 1 : i64} : (tensor<1x128xf32>) -> tensor<1x128xf32>
+  %14 = "north_star.device_kernel"(%9) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_fused_kernel"}> ({
+  ^bb0(%arg1: tensor<1x128xf32>):
+    %21 = "north_star.tensor_to_ns_tensor"(%arg1) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+    %22 = "north_star.ns_tensor_to_tensor"(%21) <{device_id = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+    %23 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
+    %24 = linalg.softmax dimension(1) ins(%22 : tensor<1x128xf32>) outs(%23 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    %25 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
+    %26 = linalg.softmax dimension(1) ins(%24 : tensor<1x128xf32>) outs(%25 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    north_star.return %26 : tensor<1x128xf32>
+  }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
+  %15 = "north_star.tensor_to_ns_tensor"(%14) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+  %16 = "north_star.buffer"(%12, %15) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
+  %17 = tensor.empty() {device_id = 0 : i64} : tensor<2x128xf32>
   %18 = "north_star.tensor_to_ns_tensor"(%17) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
   %19 = "north_star.buffer"(%18) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
   "north_star.gather"(%16, %19) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
   %20 = "north_star.get_tensor"(%19) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
-  "func.return"(%20) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
-}) {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} : () -> ()
+  return %20 : !north_star.ns_tensor<2x128xf32,0>
+}
 
 
 } -> SUCCESS
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'builtin.unrealized_conversion_cast'(0x5e2dc3b771b0) {
-  %11 = "builtin.unrealized_conversion_cast"(%10) : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x6204461fd110) {
+  %27 = "north_star.tensor_to_ns_tensor"(%arg2) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.device_kernel'(0x5e2dc3b6bab0) {
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
-//===-------------------------------------------===//
-
-//===-------------------------------------------===//
-Legalizing operation : 'tensor.empty'(0x5e2dc3b79610) {
-  %25 = "tensor.empty"() : () -> tensor<1x128xf32>
+Legalizing operation : 'north_star.ns_tensor_to_tensor'(0x6204461fd390) {
+  %28 = "north_star.ns_tensor_to_tensor"(%27) <{device_id = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'linalg.softmax'(0x5e2dc3b79680) {
-  %26 = "linalg.softmax"(%arg2, %25) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+Legalizing operation : 'tensor.empty'(0x6204461c6ea0) {
+  %29 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'tensor.empty'(0x5e2dc3b764c0) {
-  %27 = "tensor.empty"() : () -> tensor<1x128xf32>
+Legalizing operation : 'linalg.softmax'(0x6204461fe320) {
+  %30 = "linalg.softmax"(%28, %29) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'linalg.softmax'(0x5e2dc3b79860) {
-  %28 = "linalg.softmax"(%26, %27) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+Legalizing operation : 'tensor.empty'(0x6204461fe430) {
+  %31 = "tensor.empty"() {device_id = 1 : i64} : () -> tensor<1x128xf32>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.return'(0x5e2dc3b74860) {
-  "north_star.return"(%28) : (tensor<1x128xf32>) -> ()
-
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
-//===-------------------------------------------===//
-
-//===-------------------------------------------===//
-Legalizing operation : 'builtin.unrealized_conversion_cast'(0x5e2dc3b765f0) {
-  %13 = "builtin.unrealized_conversion_cast"(%12) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+Legalizing operation : 'linalg.softmax'(0x6204461fe4a0) {
+  %32 = "linalg.softmax"(%30, %31) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.device_kernel'(0x5e2dc3b79420) {
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
+Legalizing operation : 'north_star.return'(0x6204461fe610) {
+  "north_star.return"(%32) : (tensor<1x128xf32>) -> ()
+
+} -> SUCCESS : operation marked 'ignored' during conversion
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'tensor.empty'(0x5e2dc3b78fc0) {
-  %21 = "tensor.empty"() : () -> tensor<1x128xf32>
-
-} -> SUCCESS : operation marked legal by the target
-//===-------------------------------------------===//
-
-//===-------------------------------------------===//
-Legalizing operation : 'linalg.softmax'(0x5e2dc3b79030) {
-  %22 = "linalg.softmax"(%arg1, %21) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x6204461fdaf0) {
+  %21 = "north_star.tensor_to_ns_tensor"(%20) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'tensor.empty'(0x5e2dc3b79170) {
-  %23 = "tensor.empty"() : () -> tensor<1x128xf32>
+Legalizing operation : 'north_star.buffer'(0x6204461e4d20) {
+  %22 = "north_star.buffer"(%18, %21) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'linalg.softmax'(0x5e2dc3b791e0) {
-  %24 = "linalg.softmax"(%22, %23) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
+Legalizing operation : 'tensor.empty'(0x6204461f8e50) {
+  %23 = "tensor.empty"() {device_id = 0 : i64} : () -> tensor<2x128xf32>
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'north_star.return'(0x5e2dc3b76890) {
-  "north_star.return"(%24) : (tensor<1x128xf32>) -> ()
+Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x6204461df7f0) {
+  %24 = "north_star.tensor_to_ns_tensor"(%23) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
+
+} -> SUCCESS : operation marked legal by the target
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'north_star.buffer'(0x6204461f0720) {
+  %25 = "north_star.buffer"(%24) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
+
+} -> SUCCESS : operation marked legal by the target
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'north_star.gather'(0x6204461e4ec0) {
+  "north_star.gather"(%22, %25) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
 
   * Fold {
   } -> FAILURE : unable to fold
@@ -2164,186 +2282,161 @@ Legalizing operation : 'north_star.return'(0x5e2dc3b76890) {
 //===-------------------------------------------===//
 
 //===-------------------------------------------===//
-Legalizing operation : 'builtin.unrealized_conversion_cast'(0x5e2dc3b3abf0) {
-  %15 = "builtin.unrealized_conversion_cast"(%14) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+Legalizing operation : 'north_star.get_tensor'(0x6204461b1fb0) {
+  %26 = "north_star.get_tensor"(%25) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
+
+  * Fold {
+  } -> FAILURE : unable to fold
+} -> FAILURE : no matched legalization pattern
+//===-------------------------------------------===//
+
+//===-------------------------------------------===//
+Legalizing operation : 'func.return'(0x6204461b2b50) {
+  "func.return"(%26) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
 
 } -> SUCCESS : operation marked legal by the target
 //===-------------------------------------------===//
-
-//===-------------------------------------------===//
-Legalizing operation : 'north_star.buffer'(0x5e2dc3b74990) {
-  %16 = "north_star.buffer"(%13, %15) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
-//===-------------------------------------------===//
-
-//===-------------------------------------------===//
-Legalizing operation : 'tensor.empty'(0x5e2dc3b73bd0) {
-  %17 = "tensor.empty"() : () -> tensor<2x128xf32>
-
-} -> SUCCESS : operation marked legal by the target
-//===-------------------------------------------===//
-
-//===-------------------------------------------===//
-Legalizing operation : 'north_star.tensor_to_ns_tensor'(0x5e2dc3b5bfb0) {
-  %18 = "north_star.tensor_to_ns_tensor"(%17) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
-
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
-//===-------------------------------------------===//
-
-//===-------------------------------------------===//
-Legalizing operation : 'north_star.buffer'(0x5e2dc3b6b4f0) {
-  %19 = "north_star.buffer"(%18) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
-//===-------------------------------------------===//
-
-//===-------------------------------------------===//
-Legalizing operation : 'north_star.gather'(0x5e2dc3b61a60) {
-  "north_star.gather"(%16, %19) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
-
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
-//===-------------------------------------------===//
-
-//===-------------------------------------------===//
-Legalizing operation : 'north_star.get_tensor'(0x5e2dc3b58270) {
-  %20 = "north_star.get_tensor"(%19) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
-
-  * Fold {
-  } -> FAILURE : unable to fold
-
-  * Pattern : 'north_star.get_tensor -> ()' {
-Trying to match "{anonymous}::GetTensorOpRefineResultPattern"
-    ** Insert  : 'north_star.get_tensor'(0x5e2dc3b762e0)
-    ** Replace : 'north_star.get_tensor'(0x5e2dc3b58270)
-"{anonymous}::GetTensorOpRefineResultPattern" result 1
-
-    //===-------------------------------------------===//
-    Legalizing operation : 'north_star.get_tensor'(0x5e2dc3b762e0) {
-      %20 = "north_star.get_tensor"(%19) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> tensor<2x128xf32>
-
-    } -> SUCCESS : operation marked legal by the target
-    //===-------------------------------------------===//
-  } -> SUCCESS : pattern applied successfully
-// *** IR Dump After Pattern Application ***
-mlir-asm-printer: 'func.func' failed to verify and will be printed in generic form
-"func.func"() <{function_type = (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0>, sym_name = "main"}> ({
-^bb0(%arg0: !north_star.ns_tensor<2x128xf32,0>):
-  %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-  %1 = "tensor.empty"() : () -> tensor<1x128xf32>
-  %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-  %3 = "tensor.empty"() : () -> tensor<1x128xf32>
-  %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
-  %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-  "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
-  %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> tensor<1x128xf32>
-  %7 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
-  %8 = "builtin.unrealized_conversion_cast"(%7) : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
-  %9 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> tensor<1x128xf32>
-  %10 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
-  %11 = "builtin.unrealized_conversion_cast"(%10) : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
-  %12 = "north_star.device_kernel"(%8) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
-  ^bb0(%arg2: tensor<1x128xf32>):
-    %26 = "tensor.empty"() : () -> tensor<1x128xf32>
-    %27 = "linalg.softmax"(%arg2, %26) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-    %28 = "tensor.empty"() : () -> tensor<1x128xf32>
-    %29 = "linalg.softmax"(%27, %28) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-    "north_star.return"(%29) : (tensor<1x128xf32>) -> ()
-  }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-  %13 = "builtin.unrealized_conversion_cast"(%12) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-  %14 = "north_star.device_kernel"(%11) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
-  ^bb0(%arg1: tensor<1x128xf32>):
-    %22 = "tensor.empty"() : () -> tensor<1x128xf32>
-    %23 = "linalg.softmax"(%arg1, %22) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-    %24 = "tensor.empty"() : () -> tensor<1x128xf32>
-    %25 = "linalg.softmax"(%23, %24) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-    "north_star.return"(%25) : (tensor<1x128xf32>) -> ()
-  }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-  %15 = "builtin.unrealized_conversion_cast"(%14) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
-  %16 = "north_star.buffer"(%13, %15) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-  %17 = "tensor.empty"() : () -> tensor<2x128xf32>
-  %18 = "north_star.tensor_to_ns_tensor"(%17) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
-  %19 = "north_star.buffer"(%18) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-  "north_star.gather"(%16, %19) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
-  %20 = "north_star.get_tensor"(%19) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> tensor<2x128xf32>
-  %21 = "north_star.get_tensor"(%19) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
-  "func.return"(%21) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
-}) {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} : () -> ()
-
-
-} -> SUCCESS
-//===-------------------------------------------===//
-
-//===-------------------------------------------===//
-Legalizing operation : 'func.return'(0x5e2dc3b58d90) {
-  "func.return"(%21) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
-
-  * Fold {
-  } -> FAILURE : unable to fold
-} -> FAILURE : no matched legalization pattern
-//===-------------------------------------------===//
-** Insert  : 'builtin.unrealized_conversion_cast'(0x5e2dc3b79580)
-** Insert  : 'builtin.unrealized_conversion_cast'(0x5e2dc3b58770)
-** Insert  : 'builtin.unrealized_conversion_cast'(0x5e2dc3b738d0)
 run out: ConvertNorthStarToFuncPass
-// -----// IR Dump After ConvertNorthStarToFuncPass Failed (convert-north-satr-to-func) //----- //
-mlir-asm-printer: 'builtin.module' failed to verify and will be printed in generic form
-"builtin.module"() <{sym_name = "NorthStar"}> ({
-  "func.func"() <{function_type = (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0>, sym_name = "main"}> ({
-  ^bb0(%arg0: !north_star.ns_tensor<2x128xf32,0>):
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::CallOpInterface::Trait<mlir::TypeID::get() [with Trait = mlir::CallOpInterface::Trait]::Empty>)
+ImplicitTypeIDRegistry::lookupOrInsert(mlir::SymbolUserOpInterface::Trait<mlir::TypeID::get() [with Trait = mlir::SymbolUserOpInterface::Trait]::Empty>)
+// -----// IR Dump After ConvertNorthStarToFuncPass (convert-north-satr-to-func) //----- //
+module @NorthStar {
+  func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
     %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-    %1 = "tensor.empty"() : () -> tensor<1x128xf32>
+    %1 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
     %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-    %3 = "tensor.empty"() : () -> tensor<1x128xf32>
+    %3 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
     %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
     %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
     "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
-    %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> tensor<1x128xf32>
-    %7 = "builtin.unrealized_conversion_cast"(%6) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-    %8 = "builtin.unrealized_conversion_cast"(%7) : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
-    %9 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> tensor<1x128xf32>
-    %10 = "builtin.unrealized_conversion_cast"(%9) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
-    %11 = "builtin.unrealized_conversion_cast"(%10) : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
-    %12 = "north_star.device_kernel"(%8) <{device_id = 0 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
-    ^bb0(%arg2: tensor<1x128xf32>):
-      %26 = "tensor.empty"() : () -> tensor<1x128xf32>
-      %27 = "linalg.softmax"(%arg2, %26) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-      %28 = "tensor.empty"() : () -> tensor<1x128xf32>
-      %29 = "linalg.softmax"(%27, %28) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-      "north_star.return"(%29) : (tensor<1x128xf32>) -> ()
-    }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-    %13 = "builtin.unrealized_conversion_cast"(%12) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
-    %14 = "north_star.device_kernel"(%11) <{device_id = 1 : i64, sym_name = "softmax_1_128_softmax_1_128_"}> ({
-    ^bb0(%arg1: tensor<1x128xf32>):
-      %22 = "tensor.empty"() : () -> tensor<1x128xf32>
-      %23 = "linalg.softmax"(%arg1, %22) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-      %24 = "tensor.empty"() : () -> tensor<1x128xf32>
-      %25 = "linalg.softmax"(%23, %24) <{dimension = 1 : i64}> : (tensor<1x128xf32>, tensor<1x128xf32>) -> tensor<1x128xf32>
-      "north_star.return"(%25) : (tensor<1x128xf32>) -> ()
-    }) : (tensor<1x128xf32>) -> tensor<1x128xf32>
-    %15 = "builtin.unrealized_conversion_cast"(%14) : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
-    %16 = "north_star.buffer"(%13, %15) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
-    %17 = "tensor.empty"() : () -> tensor<2x128xf32>
-    %18 = "north_star.tensor_to_ns_tensor"(%17) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
-    %19 = "north_star.buffer"(%18) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
-    "north_star.gather"(%16, %19) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
-    %20 = "north_star.get_tensor"(%19) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> tensor<2x128xf32>
-    %21 = "builtin.unrealized_conversion_cast"(%20) : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
-    "func.return"(%21) : (!north_star.ns_tensor<2x128xf32,0>) -> ()
-  }) {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} : () -> ()
-}) : () -> ()
+    %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
+    %7 = "north_star.ns_tensor_to_tensor"(%6) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+    %8 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
+    %9 = "north_star.ns_tensor_to_tensor"(%8) <{device_id = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+    %10 = call @softmax_1_128_softmax_1_128_fused_kernel(%7) {device_id = 0 : i64} : (tensor<1x128xf32>) -> tensor<1x128xf32>
+    %11 = "north_star.tensor_to_ns_tensor"(%10) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    %12 = call @softmax_1_128_softmax_1_128_fused_kernel(%9) {device_id = 1 : i64} : (tensor<1x128xf32>) -> tensor<1x128xf32>
+    %13 = "north_star.tensor_to_ns_tensor"(%12) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+    %14 = "north_star.buffer"(%11, %13) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
+    %15 = tensor.empty() {device_id = 0 : i64} : tensor<2x128xf32>
+    %16 = "north_star.tensor_to_ns_tensor"(%15) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
+    %17 = "north_star.buffer"(%16) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
+    "north_star.gather"(%14, %17) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
+    %18 = "north_star.get_tensor"(%17) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
+    return %18 : !north_star.ns_tensor<2x128xf32,0>
+  }
+  func.func @softmax_1_128_softmax_1_128_fused_kernel(%arg0: tensor<1x128xf32>) -> tensor<1x128xf32> attributes {device_kernel} {
+    %0 = "north_star.tensor_to_ns_tensor"(%arg0) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    %1 = "north_star.ns_tensor_to_tensor"(%0) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+    %2 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
+    %3 = linalg.softmax dimension(1) ins(%1 : tensor<1x128xf32>) outs(%2 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    %4 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
+    %5 = linalg.softmax dimension(1) ins(%3 : tensor<1x128xf32>) outs(%4 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    return %5 : tensor<1x128xf32>
+  }
+}
+
+
+// -----// IR Dump After ReconcileUnrealizedCasts (reconcile-unrealized-casts) //----- //
+module @NorthStar {
+  func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
+    %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
+    %1 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
+    %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    %3 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
+    %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+    %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
+    "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
+    %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
+    %7 = "north_star.ns_tensor_to_tensor"(%6) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+    %8 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
+    %9 = "north_star.ns_tensor_to_tensor"(%8) <{device_id = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+    %10 = call @softmax_1_128_softmax_1_128_fused_kernel(%7) {device_id = 0 : i64} : (tensor<1x128xf32>) -> tensor<1x128xf32>
+    %11 = "north_star.tensor_to_ns_tensor"(%10) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    %12 = call @softmax_1_128_softmax_1_128_fused_kernel(%9) {device_id = 1 : i64} : (tensor<1x128xf32>) -> tensor<1x128xf32>
+    %13 = "north_star.tensor_to_ns_tensor"(%12) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+    %14 = "north_star.buffer"(%11, %13) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
+    %15 = tensor.empty() {device_id = 0 : i64} : tensor<2x128xf32>
+    %16 = "north_star.tensor_to_ns_tensor"(%15) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
+    %17 = "north_star.buffer"(%16) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
+    "north_star.gather"(%14, %17) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
+    %18 = "north_star.get_tensor"(%17) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
+    return %18 : !north_star.ns_tensor<2x128xf32,0>
+  }
+  func.func @softmax_1_128_softmax_1_128_fused_kernel(%arg0: tensor<1x128xf32>) -> tensor<1x128xf32> attributes {device_kernel} {
+    %0 = "north_star.tensor_to_ns_tensor"(%arg0) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    %1 = "north_star.ns_tensor_to_tensor"(%0) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+    %2 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
+    %3 = linalg.softmax dimension(1) ins(%1 : tensor<1x128xf32>) outs(%2 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    %4 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
+    %5 = linalg.softmax dimension(1) ins(%3 : tensor<1x128xf32>) outs(%4 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    return %5 : tensor<1x128xf32>
+  }
+}
 
 
 initializing north_star
 register north_star  Type
 register north_star  Attr
 register north_star  Op
+module @NorthStar {
+  func.func @main(%arg0: !north_star.ns_tensor<2x128xf32,0>) -> !north_star.ns_tensor<2x128xf32,0> attributes {dp_attr = #north_star.DP<DP = 2 : 0, 1>, host_func} {
+    %0 = "north_star.buffer"(%arg0) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
+    %1 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
+    %2 = "north_star.tensor_to_ns_tensor"(%1) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    %3 = tensor.empty() {device_id = 1 : i64} : tensor<1x128xf32>
+    %4 = "north_star.tensor_to_ns_tensor"(%3) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+    %5 = "north_star.buffer"(%2, %4) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
+    "north_star.scatter"(%0, %5) : (!north_star.buffer<0>, !north_star.buffer<0, 1>) -> ()
+    %6 = "north_star.get_tensor"(%5) <{device_id = 0 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,0>
+    %7 = "north_star.ns_tensor_to_tensor"(%6) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+    %8 = "north_star.get_tensor"(%5) <{device_id = 1 : i64}> : (!north_star.buffer<0, 1>) -> !north_star.ns_tensor<1x128xf32,1>
+    %9 = "north_star.ns_tensor_to_tensor"(%8) <{device_id = 1 : i64}> : (!north_star.ns_tensor<1x128xf32,1>) -> tensor<1x128xf32>
+    %10 = call @softmax_1_128_softmax_1_128_fused_kernel(%7) {device_id = 0 : i64} : (tensor<1x128xf32>) -> tensor<1x128xf32>
+    %11 = "north_star.tensor_to_ns_tensor"(%10) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    %12 = call @softmax_1_128_softmax_1_128_fused_kernel(%9) {device_id = 1 : i64} : (tensor<1x128xf32>) -> tensor<1x128xf32>
+    %13 = "north_star.tensor_to_ns_tensor"(%12) <{device_id = 1 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,1>
+    %14 = "north_star.buffer"(%11, %13) : (!north_star.ns_tensor<1x128xf32,0>, !north_star.ns_tensor<1x128xf32,1>) -> !north_star.buffer<0, 1>
+    %15 = tensor.empty() {device_id = 0 : i64} : tensor<2x128xf32>
+    %16 = "north_star.tensor_to_ns_tensor"(%15) <{device_id = 0 : i64}> : (tensor<2x128xf32>) -> !north_star.ns_tensor<2x128xf32,0>
+    %17 = "north_star.buffer"(%16) : (!north_star.ns_tensor<2x128xf32,0>) -> !north_star.buffer<0>
+    "north_star.gather"(%14, %17) : (!north_star.buffer<0, 1>, !north_star.buffer<0>) -> ()
+    %18 = "north_star.get_tensor"(%17) <{device_id = 0 : i64}> : (!north_star.buffer<0>) -> !north_star.ns_tensor<2x128xf32,0>
+    return %18 : !north_star.ns_tensor<2x128xf32,0>
+  }
+  func.func @softmax_1_128_softmax_1_128_fused_kernel(%arg0: tensor<1x128xf32>) -> tensor<1x128xf32> attributes {device_kernel} {
+    %0 = "north_star.tensor_to_ns_tensor"(%arg0) <{device_id = 0 : i64}> : (tensor<1x128xf32>) -> !north_star.ns_tensor<1x128xf32,0>
+    %1 = "north_star.ns_tensor_to_tensor"(%0) <{device_id = 0 : i64}> : (!north_star.ns_tensor<1x128xf32,0>) -> tensor<1x128xf32>
+    %2 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
+    %3 = linalg.softmax dimension(1) ins(%1 : tensor<1x128xf32>) outs(%2 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    %4 = tensor.empty() {device_id = 0 : i64} : tensor<1x128xf32>
+    %5 = linalg.softmax dimension(1) ins(%3 : tensor<1x128xf32>) outs(%4 : tensor<1x128xf32>) -> tensor<1x128xf32>
+    return %5 : tensor<1x128xf32>
+  }
+}
+
 destroying north_star
+Verifying op: 0x6204461aef60
+Verifying op: 0x6204461b2bd0
+Verifying op: 0x6204461b2bd0
+Verifying op: 0x6204461aef60
+Verifying op: 0x6204461b2bd0
+Verifying op: 0x6204461b2bd0
+Verifying op: 0x6204461b2bd0
+Verifying op: 0x6204461b2bd0
+Verifying op: 0x6204461aef60
+Verifying op: 0x6204461f0ce0
+Verifying op: 0x6204461f0ce0
+Verifying op: 0x6204461f0ce0
+Verifying op: 0x6204461b2bd0
+Verifying op: 0x6204461fcd20
+Verifying op: 0x6204461fcd20
+Verifying op: 0x6204461fcd20
+Verifying op: 0x6204461b2bd0
+Verifying op: 0x6204461aef60
+Verifying op: 0x6204461fb650
+Verifying op: 0x6204461b2bd0
+Verifying op: 0x6204461b2bd0
+Verifying op: 0x6204461aef60
+Verifying op: 0x6204461aef60
+Verifying op: 0x6204461aef60

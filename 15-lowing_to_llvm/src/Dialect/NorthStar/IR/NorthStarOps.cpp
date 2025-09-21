@@ -205,6 +205,7 @@ static inline llvm::SmallString<4> getFusionName(
       }
     }
   }
+  name.append("fused_kernel");
   return name;
 }
 
@@ -310,7 +311,7 @@ llvm::SmallVector<int64_t> BufferCastOp::inputDevices() {
   });
   return devices;
 };
-llvm::SmallVector<int64_t> BufferCastOp::outputDevices(){
+llvm::SmallVector<int64_t> BufferCastOp::outputDevices() {
   auto types = getResultTypes();
   llvm::SmallVector<int64_t> devices;
   std::for_each(types.begin(), types.end(), [&devices](Type type) {

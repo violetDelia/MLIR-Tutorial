@@ -51,7 +51,7 @@ void configNorthStarToLinalgTarget(ConversionTarget& target) {
   target.addLegalDialect<linalg::LinalgDialect>();
   target.addLegalDialect<arith::ArithDialect>();
   target.addLegalOp<UnrealizedConversionCastOp>();
-  target.addLegalOp<BufferCastOp, BufferOp>();
+  target.addLegalOp<BufferCastOp, BufferOp,TensorToNSTensorOp,NSTensorToTensorOp>();
   target.addDynamicallyLegalOp<ReturnOp>([](ReturnOp op) {
     for (auto type : op->getOperandTypes()) {
       if (isa<::mlir::north_star::NSTensorType>(type)) return false;

@@ -83,6 +83,8 @@ struct BufferCastOpToCommunicationPattern final
         llvm::llvm_unreachable_internal("not impl", __FILE__, __LINE__);
       auto tensor = rewriter.create<tensor::EmptyOp>(
           loc, tensorType.getShape(), tensorType.getElementType());
+      tensor->setAttr(KDeviceIdAttr,
+                      rewriter.getI64IntegerAttr(tensorType.getDeviceId()));
       auto NSTensor = rewriter.create<north_star::TensorToNSTensorOp>(
           loc, tensorType, tensor, tensorType.getDeviceId());
       outMemories.push_back(NSTensor);
@@ -113,6 +115,8 @@ struct BufferCastOpToCommunicationPattern final
         llvm::llvm_unreachable_internal("not impl", __FILE__, __LINE__);
       auto tensor = rewriter.create<tensor::EmptyOp>(
           loc, tensorType.getShape(), tensorType.getElementType());
+      tensor->setAttr(KDeviceIdAttr,
+                      rewriter.getI64IntegerAttr(tensorType.getDeviceId()));
       auto NSTensor = rewriter.create<north_star::TensorToNSTensorOp>(
           loc, tensorType, tensor, tensorType.getDeviceId());
       outMemories.push_back(NSTensor);

@@ -12,6 +12,8 @@
 
 #include "Dialect/NorthStar/Transforms/Passes.h"
 #include "Dialect/NorthStar/IR/NorthStarDialect.h"
+#include "mlir/Dialect/Func/IR/FuncOps.h"
+#include "mlir/IR/BuiltinDialect.h"
 #include "mlir/InitAllDialects.h"
 #include "mlir/InitAllExtensions.h"
 #include "mlir/InitAllPasses.h"
@@ -19,11 +21,13 @@
 #include "Conversion/Passes.h"
 #include "Pipelines/Pipelines.h"
 int main(int argc, char **argv) {
-  mlir::registerAllPasses();
+  //mlir::registerAllPasses();
   mlir::DialectRegistry registry;
-  registerAllDialects(registry);
+  //registerAllDialects(registry);
   registry.insert<mlir::north_star::NorthStarDialect>();
-  registerAllExtensions(registry);
+  registry.insert<mlir::func::FuncDialect>();
+  registry.insert<mlir::BuiltinDialect>();
+  //registerAllExtensions(registry);
   mlir::north_star::registerNorthStarOptPasses();
   mlir::north_star::registerNorthStarConversionPasses();
   mlir::pipeline::registerNorthStarBasicPipelines();

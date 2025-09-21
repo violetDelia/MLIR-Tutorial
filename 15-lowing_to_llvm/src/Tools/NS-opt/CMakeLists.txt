@@ -1,9 +1,9 @@
 
 set(LIBS
-  ${dialect_libs}
-  ${conversion_libs}
-  ${extension_libs}
-
+  # ${dialect_libs}
+  # ${conversion_libs}
+  # ${extension_libs}
+  
   MLIRAffineAnalysis
   MLIRAnalysis
   MLIRCastInterfaces

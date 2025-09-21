@@ -50,13 +50,10 @@ void configNorthStarToFuncTarget(ConversionTarget& target) {
   target.addLegalDialect<tensor::TensorDialect>();
   target.addLegalDialect<linalg::LinalgDialect>();
   target.addLegalDialect<arith::ArithDialect>();
+  target.addLegalDialect<func::FuncDialect>();
   target.addLegalOp<UnrealizedConversionCastOp>();
-  target.addDynamicallyLegalOp<GetTensorOp>([](Operation* op) {
-    for (auto type : op->getResults().getTypes()) {
-      if (isa<::mlir::north_star::NSTensorType>(type)) return false;
-    }
-    return true;
-  });
+  target.addLegalOp<BufferOp,TensorToNSTensorOp,NSTensorToTensorOp>();
+  target.addIllegalOp<DeviceKernelOp,ReturnOp>();
 }
 void NorthStarToFuncPassPass::runOnOperation() {
   LLVM_DEBUG(llvm::dbgs() << llvm::formatv("run in {0}\n", getPassName()));

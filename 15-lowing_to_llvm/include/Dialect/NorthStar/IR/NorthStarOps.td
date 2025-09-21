@@ -180,7 +180,7 @@ def NorthStar_PrintOp: NorthStar_Op<"print",[]>{
 }
 
 def NorthStar_TensorToNSTensorOp: NorthStar_Op<"tensor_to_ns_tensor",[Pure]>{
-    let description = "从buffer中取出指定device_id的tensor";
+    let description = "NSTensor与Tensor 相互转化";
     let arguments = (ins
         AnyRankedTensor:$input,
         I64Attr:$device_id
@@ -189,6 +189,18 @@ def NorthStar_TensorToNSTensorOp: NorthStar_Op<"tensor_to_ns_tensor",[Pure]>{
         AnyNSTensor:$result);
     let hasVerifier = 0;
 }
+
+def NorthStar_NSTensorToTensorOp: NorthStar_Op<"ns_tensor_to_tensor",[Pure]>{
+    let description = "NSTensor与Tensor 相互转化";
+    let arguments = (ins
+        AnyNSTensor:$input,
+        I64Attr:$device_id
+    );
+    let results = (outs
+        AnyRankedTensor:$result);
+    let hasVerifier = 0;
+}
+
 
 def NorthStar_DeviceKernelOp: NorthStar_Op<"device_kernel",[
         DeclareOpInterfaceMethods<FusionRegionOpInterface,["FusionOps"]>,AffineScope, AutomaticAllocationScope,IsolatedFromAbove, OpAsmOpInterface]# GraphRegionNoTerminator.traits>{

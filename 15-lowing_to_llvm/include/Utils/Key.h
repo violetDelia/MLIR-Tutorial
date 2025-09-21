@@ -19,6 +19,7 @@ inline static const char* KEntryPointName = "main";
 inline static const char* KDPAttrName = "dp_attr";
 inline static const char* KHostFunc = "host_func";
 inline static const char* KDeviceFunc = "device_kernel";
-inline static const char* KSetDevice = "set_device";
+inline static const char* KDeviceIdAttr = "device_id";
+inline static const char* KDevcieKernelSuffix = "_device_";
 
 #endif  // UTILS_MLIR_UTILS_KEY_H

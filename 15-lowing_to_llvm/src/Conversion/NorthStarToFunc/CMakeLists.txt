@@ -10,5 +10,6 @@ add_mlir_conversion_library(MLIRNorthStarToFunc${ch_num}
   MLIRNorthStarDialect${ch_num}
   MLIRPass
   MLIRTransformUtils
+  MLIRTutorialUtils${ch_num}
   )
 

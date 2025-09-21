@@ -5,4 +5,6 @@ add_mlir_library(MLIRNorthStarPipelines${ch_num}
 
     LINK_LIBS PUBLIC
     MLIRIR
+    MLIRReconcileUnrealizedCasts
+
 )

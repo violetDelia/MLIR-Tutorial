@@ -19,6 +19,7 @@
 
 #include "Dialect/NorthStar/IR/NorthStarOps.h"
 #include "Dialect/NorthStar/IR/NorthStarTypes.h"
+#include "Utils/Key.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/Casting.h"
@@ -41,12 +42,16 @@ struct SoftmaxOpToLinalgPattern final
   using OpConversionPattern::OpConversionPattern;
 
   LogicalResult match(north_star::SoftmaxOp op) const final {
+    if (!llvm::isa<north_star::NSTensorType>(op.getType())) return failure();
     return llvm::success();
   }
   void rewrite(north_star::SoftmaxOp op, OpAdaptor adaptor,
                ConversionPatternRewriter &rewriter) const final {
     auto loc = op->getLoc();
     auto convert = getTypeConverter();
+    auto device_id =
+        llvm::dyn_cast_or_null<north_star::NSTensorType>(op.getType())
+            .getDeviceId();
     llvm::SmallVector<Value> out_dy_sizes;
     auto input = adaptor.getInput();
     auto res_type =
@@ -59,12 +64,12 @@ struct SoftmaxOpToLinalgPattern final
     }
     auto output = rewriter.create<tensor::EmptyOp>(
         loc, res_type.getShape(), res_type.getElementType(), out_dy_sizes);
+    output->setAttr(KDeviceIdAttr, rewriter.getI64IntegerAttr(device_id));
     auto new_softmax = rewriter.create<linalg::SoftmaxOp>(
         loc, res_type, adaptor.getInput(), output, adaptor.getAxis());
     rewriter.replaceOp(op, new_softmax);
   }
 };
-
 struct DeviceKernelOpConvertPattern final
     : public OpConversionPattern<mlir::north_star::DeviceKernelOp> {
   using OpConversionPattern::OpConversionPattern;
@@ -86,87 +91,74 @@ struct DeviceKernelOpConvertPattern final
         adaptor.getArgs());
     rewriter.cloneRegionBefore(op.getRegion(), new_op.getRegion(),
                                new_op.getRegion().end());
-    auto new_block = new_op.getBody();
-    for (auto [index, arg] : llvm::enumerate(new_block->getArguments())) {
+    rewriter.setInsertionPointToStart(new_op.getBody());
+    for (auto arg : new_op.getBody()->getArguments()) {
+      arg.dump();
       if (auto ns_tensor =
               llvm::dyn_cast_or_null<north_star::NSTensorType>(arg.getType())) {
-        rewriter.setInsertionPointAfterValue(arg);
         arg.setType(RankedTensorType::get(ns_tensor.getShape(),
                                           ns_tensor.getElementType()));
-        auto cast = rewriter.create<UnrealizedConversionCastOp>(
-            loc, ns_tensor, new_block->getArgument(index));
-        rewriter.replaceAllUsesExcept(arg, cast.getResult(0), cast);
+
+        auto to_ns_tensor = rewriter.create<north_star::TensorToNSTensorOp>(
+            loc, ns_tensor, arg, ns_tensor.getDeviceId());
+        rewriter.replaceAllUsesExcept(arg, to_ns_tensor, to_ns_tensor);
       }
-    }
-    auto return_op = new_block->getTerminator();
-    for (auto [index, operand] : llvm::enumerate(return_op->getOperands())) {
-      if (auto ns_tensor = llvm::dyn_cast_or_null<north_star::NSTensorType>(
-              operand.getType())) {
-        rewriter.setInsertionPointAfterValue(operand);
-        auto cast = rewriter.create<UnrealizedConversionCastOp>(
-            loc, typeConverter->convertType(operand.getType()), operand);
-        return_op->setOperand(index, cast.getResult(0));
-      }
-    }
-    for (auto [index, res, new_res] :
-         llvm::enumerate(op->getResults(), new_op->getResults())) {
-      rewriter.setInsertionPointAfterValue(new_res);
-      auto cast = rewriter.create<UnrealizedConversionCastOp>(
-          loc, res.getType(), new_res);
-      rewriter.replaceAllUsesWith(res, cast.getResult(0));
     }
     rewriter.replaceOp(op, new_op);
+  };
+};
+
+struct ReturnOpConvertPattern final
+    : public OpConversionPattern<mlir::north_star::ReturnOp> {
+  using OpConversionPattern::OpConversionPattern;
+
+  LogicalResult match(north_star::ReturnOp op) const final {
+    return llvm::success();
+  }
+  void rewrite(north_star::ReturnOp op, OpAdaptor adaptor,
+               ConversionPatternRewriter &rewriter) const final {
+    rewriter.replaceOpWithNewOp<north_star::ReturnOp>(op, op->getResultTypes(),
+                                                      adaptor.getOperands());
   };
 };
 
 }  // namespace
 
 namespace mlir::north_star {
-namespace {
 
-static Value materializeToNSTensor(OpBuilder &builder, NSTensorType type,
-                                   ValueRange inputs, Location loc) {
-  assert(inputs.size() == 1);
-  assert(isa<RankedTensorType>(inputs[0].getType()));
-  return builder.create<UnrealizedConversionCastOp>(loc, type, inputs[0])
-      ->getResult(0);
-}
-
-static Value materializeToTensor(OpBuilder &builder, TensorType type,
-                                 ValueRange inputs, Location loc) {
-  assert(inputs.size() == 1);
-  assert(isa<NSTensorType>(inputs[0].getType()));
-  return builder.create<UnrealizedConversionCastOp>(loc, type, inputs[0])
-      ->getResult(0);
-}
-
-}  // namespace
 void initNorthStarToLinalgTypeConvert(TypeConverter &typeConverter) {
   typeConverter.addConversion([](NSTensorType type) {
     return RankedTensorType::get(type.getShape(), type.getElementType());
   });
-  typeConverter.addSourceMaterialization(
-      [&](OpBuilder &builder, Type resultType, ValueRange inputs,
-          Location loc) -> std::optional<Value> {
-        if (inputs.size() != 1) return std::nullopt;
+  auto materializeCast = [](OpBuilder &builder, Type type, ValueRange inputs,
+                            Location loc) -> std::optional<Value> {
+    if (inputs.size() != 1) return std::nullopt;
 
-        return builder
-            .create<UnrealizedConversionCastOp>(loc, resultType, inputs)
-            .getResult(0);
-      });
-  typeConverter.addTargetMaterialization(
-      [&](OpBuilder &builder, Type resultType, ValueRange inputs,
-          Location loc) -> std::optional<Value> {
-        if (inputs.size() != 1) return std::nullopt;
+    if (auto ns_tensor =
+            llvm::dyn_cast_or_null<NSTensorType>(inputs[0].getType())) {
+      if (auto tensor = llvm::dyn_cast_or_null<RankedTensorType>(type)) {
+        return builder.create<NSTensorToTensorOp>(loc, type, inputs[0],
+                                                  ns_tensor.getDeviceId());
+      }
+    }
+    if (auto tensor =
+            llvm::dyn_cast_or_null<RankedTensorType>(inputs[0].getType())) {
+      if (auto ns_tensor = llvm::dyn_cast_or_null<NSTensorType>(type)) {
+        return builder.create<TensorToNSTensorOp>(loc, type, inputs[0],
+                                                  ns_tensor.getDeviceId());
+      }
+    }
+    return builder.create<UnrealizedConversionCastOp>(loc, type, inputs)
+        .getResult(0);
+  };
 
-        return builder
-            .create<UnrealizedConversionCastOp>(loc, resultType, inputs)
-            .getResult(0);
-      });
+  typeConverter.addSourceMaterialization(materializeCast);
+  typeConverter.addTargetMaterialization(materializeCast);
+  typeConverter.addArgumentMaterialization(materializeCast);
 }
 void populateNorthStarToLinalgPatterns(TypeConverter &typeConverter,
                                        RewritePatternSet &patterns) {
-  patterns.add<SoftmaxOpToLinalgPattern, DeviceKernelOpConvertPattern>(
-      typeConverter, patterns.getContext());
+  patterns.add<SoftmaxOpToLinalgPattern, DeviceKernelOpConvertPattern,
+               ReturnOpConvertPattern>(typeConverter, patterns.getContext());
 };
 }  // namespace mlir::north_star
