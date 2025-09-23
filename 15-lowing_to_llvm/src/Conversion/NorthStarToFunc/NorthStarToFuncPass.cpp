@@ -19,8 +19,10 @@
 #include "Dialect/NorthStar/IR/NorthStarDialect.h"
 #include "Dialect/NorthStar/IR/NorthStarOps.h"
 #include "Dialect/NorthStar/IR/NorthStarTypes.h"
+#include "Utils/Key.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "llvm/Support/LogicalResult.h"
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
@@ -52,12 +54,35 @@ void configNorthStarToFuncTarget(ConversionTarget& target) {
   target.addLegalDialect<arith::ArithDialect>();
   target.addLegalDialect<func::FuncDialect>();
   target.addLegalOp<UnrealizedConversionCastOp>();
-  target.addLegalOp<BufferOp,TensorToNSTensorOp,NSTensorToTensorOp>();
-  target.addIllegalOp<DeviceKernelOp,ReturnOp>();
+  target.addLegalOp<BufferOp, TensorToNSTensorOp, NSTensorToTensorOp,ScatterOp,GatherOp,GetTensorOp>();
+  target.addIllegalOp<DeviceKernelOp, ReturnOp>();
+  target.addDynamicallyLegalOp<func::FuncOp>([](func::FuncOp op) {
+    auto func_type = op.getFunctionType();
+    for (auto type : func_type.getInputs()) {
+      if (isa<::mlir::north_star::NSTensorType>(type)) return false;
+    }
+    for (auto type : func_type.getResults()) {
+      if (isa<::mlir::north_star::NSTensorType>(type)) return false;
+    }
+    return true;
+  });
+  target.addDynamicallyLegalOp<func::ReturnOp>([](func::ReturnOp op) {
+    for (auto type : op->getOperandTypes()) {
+      if (isa<::mlir::north_star::NSTensorType>(type)) return false;
+    }
+    return true;
+  });
 }
+
 void NorthStarToFuncPassPass::runOnOperation() {
   LLVM_DEBUG(llvm::dbgs() << llvm::formatv("run in {0}\n", getPassName()));
   auto model = getOperation();
+  auto main_func = model.lookupSymbol<func::FuncOp>(KEntryPointName);
+  if (!main_func || !main_func.isPublic()) {
+    model.emitError() << "Cannot find host entry function";
+    signalPassFailure();
+    return;
+  }
   TypeConverter type_convert;
   initNorthStarToFuncTypeConvert(type_convert);
   RewritePatternSet patterns(&getContext());

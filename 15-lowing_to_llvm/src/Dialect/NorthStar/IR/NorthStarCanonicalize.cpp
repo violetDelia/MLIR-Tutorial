@@ -14,8 +14,11 @@
 #include "Dialect/NorthStar/IR/NorthStarOps.h"
 #include "Dialect/NorthStar/IR/NorthStarTypes.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Casting.h"
+#include "llvm/Support/LogicalResult.h"
 #include "mlir/IR/BuiltinTypeInterfaces.h"
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/IR/Value.h"
 
 #define __USE_hasCanonicalizeMethod__ false
 
@@ -80,17 +83,70 @@ struct BufferCastOpFold
     rewriter.eraseOp(above_cast);
   }
 };
+
+struct TensorToNSTensorOpEliminate
+    : public OpRewritePattern< ::mlir::north_star::TensorToNSTensorOp> {
+  using OpRewritePattern::OpRewritePattern;
+
+  virtual LogicalResult match(::mlir::north_star::TensorToNSTensorOp op) const {
+    if (isa<BlockArgument>(op.getInput())) return llvm::failure();
+    if (auto ns_tensor_to_tensor = llvm::dyn_cast_or_null<NSTensorToTensorOp>(
+            op.getInput().getDefiningOp())) {
+      if (ns_tensor_to_tensor.getDeviceId() == op.getDeviceId())
+        return llvm::success();
+    }
+    return llvm::failure();
+  }
+
+  virtual void rewrite(::mlir::north_star::TensorToNSTensorOp op,
+                       PatternRewriter &rewriter) const {
+    Operation *above_cast = op->getOperand(0).getDefiningOp();
+    rewriter.replaceOp(op, above_cast->getOperand(0));
+  }
+};
+
+struct NSTensorToTensorOpEliminate
+    : public OpRewritePattern< ::mlir::north_star::NSTensorToTensorOp> {
+  using OpRewritePattern::OpRewritePattern;
+
+  virtual LogicalResult match(::mlir::north_star::NSTensorToTensorOp op) const {
+    if (isa<BlockArgument>(op.getInput())) return llvm::failure();
+    if (auto ns_tensor_to_tensor = llvm::dyn_cast_or_null<TensorToNSTensorOp>(
+            op.getInput().getDefiningOp())) {
+      if (ns_tensor_to_tensor.getDeviceId() == op.getDeviceId())
+        return llvm::success();
+    }
+    return llvm::failure();
+  }
+
+  virtual void rewrite(::mlir::north_star::NSTensorToTensorOp op,
+                       PatternRewriter &rewriter) const {
+    Operation *above_cast = op->getOperand(0).getDefiningOp();
+    rewriter.replaceOp(op, above_cast->getOperand(0));
+  }
+};
+
 }  // namespace
 
 void mlir::north_star::BufferCastOp::getCanonicalizationPatterns(
     ::mlir::RewritePatternSet &results, ::mlir::MLIRContext *context) {
-  results.addWithLabel<BufferCastOpFold>(StringRef("BufferCastOpFold"),
-                                         context,100);
+  results.addWithLabel<BufferCastOpFold>(StringRef("BufferCastOpFold"), context,
+                                         100);
 }
+void mlir::north_star::TensorToNSTensorOp::getCanonicalizationPatterns(
+    ::mlir::RewritePatternSet &results, ::mlir::MLIRContext *context) {
+  results.addWithLabel<TensorToNSTensorOpEliminate>(
+      StringRef("TensorToNSTensorOpEliminate"), context, 100);
+};
+
+void mlir::north_star::NSTensorToTensorOp::getCanonicalizationPatterns(
+    ::mlir::RewritePatternSet &results, ::mlir::MLIRContext *context) {
+  results.addWithLabel<NSTensorToTensorOpEliminate>(
+      StringRef("NSTensorToTensorOpEliminate"), context, 100);
+};
 
 #endif
 #undef __USE_hasCanonicalizeMethod__
-
 
 namespace {
 static bool isSplatZero(Type elemType, DenseElementsAttr val) {

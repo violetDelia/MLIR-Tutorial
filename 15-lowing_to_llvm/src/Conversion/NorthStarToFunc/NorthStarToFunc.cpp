@@ -61,9 +61,11 @@ struct DeviceKernelOpToFuncPattern final
       rewriter.cloneRegionBefore(op.getRegion(), res.function.getRegion(),
                                  res.function.getRegion().end());
     }
-    res.call->setAttr(KDeviceIdAttr,rewriter.getI64IntegerAttr(op.getDeviceId()));
-    if(res.func_created){
-      res.function->setAttr(KDeviceFunc,rewriter.getUnitAttr());
+    res.call->setAttr(KDeviceIdAttr,
+                      rewriter.getI64IntegerAttr(op.getDeviceId()));
+    res.call->setAttr(KDeviceFunc, rewriter.getUnitAttr());
+    if (res.func_created) {
+      res.function->setAttr(KDeviceFunc, rewriter.getUnitAttr());
     }
     rewriter.replaceOp(op, res.call);
   }
@@ -82,6 +84,60 @@ struct ReturnOpToFuncPattern final
   }
 };
 
+struct FuncReturnOpRerewriterPattern final
+    : public OpConversionPattern<mlir::func::ReturnOp> {
+  using OpConversionPattern::OpConversionPattern;
+
+  LogicalResult match(func::ReturnOp op) const final { return llvm::success(); }
+  void rewrite(func::ReturnOp op, OpAdaptor adaptor,
+               ConversionPatternRewriter &rewriter) const final {
+    llvm::SmallVector<Value> updatedOperands =
+        llvm::to_vector<4>(adaptor.getOperands());
+
+    for (auto [index, operand] : llvm::enumerate(updatedOperands)) {
+      if (auto ns_tensor = llvm::dyn_cast_or_null<north_star::NSTensorType>(
+              operand.getType())) {
+        Value new_operand = rewriter.create<north_star::NSTensorToTensorOp>(
+            op.getLoc(), typeConverter->convertType(ns_tensor), operand,
+            ns_tensor.getDeviceId());
+        updatedOperands[index] = new_operand;
+      }
+    }
+    rewriter.replaceOpWithNewOp<func::ReturnOp>(op, updatedOperands);
+  }
+};
+
+struct FuncFuncOpRerewriterPattern final
+    : public OpConversionPattern<mlir::func::FuncOp> {
+  using OpConversionPattern::OpConversionPattern;
+
+  LogicalResult match(func::FuncOp op) const final { return llvm::success(); }
+  void rewrite(func::FuncOp op, OpAdaptor adaptor,
+               ConversionPatternRewriter &rewriter) const final {
+    auto loc = op.getLoc();
+    auto new_func_type = llvm::dyn_cast_or_null<FunctionType>(
+        getTypeConverter()->convertType(op.getFunctionType()));
+    if (!new_func_type) {
+      return;
+    }
+    auto new_op =
+        rewriter.create<func::FuncOp>(loc, op.getSymName(), new_func_type);
+    TypeConverter::SignatureConversion conversion(new_func_type.getNumInputs());
+    rewriter.cloneRegionBefore(op.getBody(), new_op.getBody(),
+                               new_op.getBody().end());
+    auto new_block = rewriter.applySignatureConversion(
+        &new_op.getFunctionBody().front(), conversion);
+    new_block->dump();
+    // if
+    // (llvm::failed(rewriter.applySignatureConversion(&new_op.getFunctionBody().front(),
+    //                                              getTypeConverter()))) {
+    //   return;
+    // };
+    new_op->dump();
+    rewriter.replaceOp(op, new_op);
+  }
+};
+
 }  // namespace
 
 namespace mlir::north_star {
@@ -92,28 +148,58 @@ void initNorthStarToFuncTypeConvert(TypeConverter &typeConverter) {
   });
   typeConverter.addConversion([](BufferType type) { return type; });
   typeConverter.addConversion([](Type type) { return type; });
-  // typeConverter.addSourceMaterialization(
-  //     [&](OpBuilder &builder, Type resultType, ValueRange inputs,
-  //         Location loc) -> std::optional<Value> {
-  //       if (inputs.size() != 1) return std::nullopt;
+  typeConverter.addConversion([](FunctionType type) {
+    SmallVector<Type> inputs;
+    SmallVector<Type> outputs;
+    for (auto type : type.getInputs()) {
+      if (auto ns_tensor = llvm::dyn_cast_or_null<NSTensorType>(type)) {
+        inputs.push_back(RankedTensorType::get(ns_tensor.getShape(),
+                                               ns_tensor.getElementType()));
+      } else {
+        inputs.push_back(type);
+      }
+    }
+    for (auto type : type.getResults()) {
+      if (auto ns_tensor = llvm::dyn_cast_or_null<NSTensorType>(type)) {
+        outputs.push_back(RankedTensorType::get(ns_tensor.getShape(),
+                                                ns_tensor.getElementType()));
+      } else {
+        outputs.push_back(type);
+      }
+    }
+    return FunctionType::get(type.getContext(), inputs, outputs);
+  });
+  auto materializeCast = [](OpBuilder &builder, Type type, ValueRange inputs,
+                            Location loc) -> std::optional<Value> {
+    if (inputs.size() != 1) return std::nullopt;
 
-  //       return builder
-  //           .create<UnrealizedConversionCastOp>(loc, resultType, inputs)
-  //           .getResult(0);
-  //     });
-  // typeConverter.addTargetMaterialization(
-  //     [&](OpBuilder &builder, Type resultType, ValueRange inputs,
-  //         Location loc) -> std::optional<Value> {
-  //       if (inputs.size() != 1) return std::nullopt;
+    if (auto ns_tensor =
+            llvm::dyn_cast_or_null<NSTensorType>(inputs[0].getType())) {
+      if (auto tensor = llvm::dyn_cast_or_null<RankedTensorType>(type)) {
+        return builder.create<NSTensorToTensorOp>(loc, type, inputs[0],
+                                                  ns_tensor.getDeviceId());
+      }
+    }
+    if (auto tensor =
+            llvm::dyn_cast_or_null<RankedTensorType>(inputs[0].getType())) {
+      if (auto ns_tensor = llvm::dyn_cast_or_null<NSTensorType>(type)) {
+        return builder.create<TensorToNSTensorOp>(loc, type, inputs[0],
+                                                  ns_tensor.getDeviceId());
+      }
+    }
+    return builder.create<UnrealizedConversionCastOp>(loc, type, inputs)
+        .getResult(0);
+  };
 
-  //       return builder
-  //           .create<UnrealizedConversionCastOp>(loc, resultType, inputs)
-  //           .getResult(0);
-  //     });
+  typeConverter.addSourceMaterialization(materializeCast);
+  typeConverter.addTargetMaterialization(materializeCast);
+  typeConverter.addArgumentMaterialization(materializeCast);
 }
+
 void populateNorthStarToFuncPatterns(TypeConverter &typeConverter,
                                      RewritePatternSet &patterns) {
-  patterns.add<DeviceKernelOpToFuncPattern, ReturnOpToFuncPattern>(
-      typeConverter, patterns.getContext(), 1);
+  patterns.add<DeviceKernelOpToFuncPattern, ReturnOpToFuncPattern,
+               FuncReturnOpRerewriterPattern, FuncFuncOpRerewriterPattern>(
+      typeConverter, patterns.getContext());
 };
 }  // namespace mlir::north_star

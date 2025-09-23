@@ -188,6 +188,7 @@ def NorthStar_TensorToNSTensorOp: NorthStar_Op<"tensor_to_ns_tensor",[Pure]>{
     let results = (outs
         AnyNSTensor:$result);
     let hasVerifier = 0;
+    let hasCanonicalizer = 1;
 }
 
 def NorthStar_NSTensorToTensorOp: NorthStar_Op<"ns_tensor_to_tensor",[Pure]>{
@@ -199,6 +200,7 @@ def NorthStar_NSTensorToTensorOp: NorthStar_Op<"ns_tensor_to_tensor",[Pure]>{
     let results = (outs
         AnyRankedTensor:$result);
     let hasVerifier = 0;
+    let hasCanonicalizer = 1;
 }
 
 

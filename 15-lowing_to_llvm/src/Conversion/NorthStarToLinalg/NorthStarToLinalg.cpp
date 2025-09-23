@@ -49,9 +49,6 @@ struct SoftmaxOpToLinalgPattern final
                ConversionPatternRewriter &rewriter) const final {
     auto loc = op->getLoc();
     auto convert = getTypeConverter();
-    auto device_id =
-        llvm::dyn_cast_or_null<north_star::NSTensorType>(op.getType())
-            .getDeviceId();
     llvm::SmallVector<Value> out_dy_sizes;
     auto input = adaptor.getInput();
     auto res_type =
@@ -64,7 +61,6 @@ struct SoftmaxOpToLinalgPattern final
     }
     auto output = rewriter.create<tensor::EmptyOp>(
         loc, res_type.getShape(), res_type.getElementType(), out_dy_sizes);
-    output->setAttr(KDeviceIdAttr, rewriter.getI64IntegerAttr(device_id));
     auto new_softmax = rewriter.create<linalg::SoftmaxOp>(
         loc, res_type, adaptor.getInput(), output, adaptor.getAxis());
     rewriter.replaceOp(op, new_softmax);
@@ -93,7 +89,6 @@ struct DeviceKernelOpConvertPattern final
                                new_op.getRegion().end());
     rewriter.setInsertionPointToStart(new_op.getBody());
     for (auto arg : new_op.getBody()->getArguments()) {
-      arg.dump();
       if (auto ns_tensor =
               llvm::dyn_cast_or_null<north_star::NSTensorType>(arg.getType())) {
         arg.setType(RankedTensorType::get(ns_tensor.getShape(),
@@ -156,6 +151,7 @@ void initNorthStarToLinalgTypeConvert(TypeConverter &typeConverter) {
   typeConverter.addTargetMaterialization(materializeCast);
   typeConverter.addArgumentMaterialization(materializeCast);
 }
+
 void populateNorthStarToLinalgPatterns(TypeConverter &typeConverter,
                                        RewritePatternSet &patterns) {
   patterns.add<SoftmaxOpToLinalgPattern, DeviceKernelOpConvertPattern,
