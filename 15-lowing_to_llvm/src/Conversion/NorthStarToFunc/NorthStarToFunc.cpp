@@ -16,6 +16,7 @@
 #include "Conversion/NorthStarToFunc/NorthStarToFunc.h"
 
 #include <cstdint>
+#include <iostream>
 #include <memory>
 #include <string>
 
@@ -91,19 +92,7 @@ struct FuncReturnOpRerewriterPattern final
   LogicalResult match(func::ReturnOp op) const final { return llvm::success(); }
   void rewrite(func::ReturnOp op, OpAdaptor adaptor,
                ConversionPatternRewriter &rewriter) const final {
-    llvm::SmallVector<Value> updatedOperands =
-        llvm::to_vector<4>(adaptor.getOperands());
-
-    for (auto [index, operand] : llvm::enumerate(updatedOperands)) {
-      if (auto ns_tensor = llvm::dyn_cast_or_null<north_star::NSTensorType>(
-              operand.getType())) {
-        Value new_operand = rewriter.create<north_star::NSTensorToTensorOp>(
-            op.getLoc(), typeConverter->convertType(ns_tensor), operand,
-            ns_tensor.getDeviceId());
-        updatedOperands[index] = new_operand;
-      }
-    }
-    rewriter.replaceOpWithNewOp<func::ReturnOp>(op, updatedOperands);
+    rewriter.replaceOpWithNewOp<func::ReturnOp>(op, adaptor.getOperands());
   }
 };
 
@@ -122,18 +111,20 @@ struct FuncFuncOpRerewriterPattern final
     }
     auto new_op =
         rewriter.create<func::FuncOp>(loc, op.getSymName(), new_func_type);
-    TypeConverter::SignatureConversion conversion(new_func_type.getNumInputs());
     rewriter.cloneRegionBefore(op.getBody(), new_op.getBody(),
                                new_op.getBody().end());
-    auto new_block = rewriter.applySignatureConversion(
-        &new_op.getFunctionBody().front(), conversion);
-    new_block->dump();
-    // if
-    // (llvm::failed(rewriter.applySignatureConversion(&new_op.getFunctionBody().front(),
-    //                                              getTypeConverter()))) {
-    //   return;
-    // };
-    new_op->dump();
+    rewriter.setInsertionPointToStart(&new_op.getFunctionBody().front());
+    for (auto arg : new_op.getFunctionBody().front().getArguments()) {
+      if (auto ns_tensor =
+              llvm::dyn_cast_or_null<north_star::NSTensorType>(arg.getType())) {
+        arg.setType(RankedTensorType::get(ns_tensor.getShape(),
+                                          ns_tensor.getElementType()));
+
+        auto to_ns_tensor = rewriter.create<north_star::TensorToNSTensorOp>(
+            loc, ns_tensor, arg, ns_tensor.getDeviceId());
+        rewriter.replaceAllUsesExcept(arg, to_ns_tensor, to_ns_tensor);
+      }
+    }
     rewriter.replaceOp(op, new_op);
   }
 };
@@ -147,7 +138,7 @@ void initNorthStarToFuncTypeConvert(TypeConverter &typeConverter) {
     return RankedTensorType::get(type.getShape(), type.getElementType());
   });
   typeConverter.addConversion([](BufferType type) { return type; });
-  typeConverter.addConversion([](Type type) { return type; });
+  typeConverter.addConversion([](RankedTensorType type) { return type; });
   typeConverter.addConversion([](FunctionType type) {
     SmallVector<Type> inputs;
     SmallVector<Type> outputs;
@@ -169,6 +160,7 @@ void initNorthStarToFuncTypeConvert(TypeConverter &typeConverter) {
     }
     return FunctionType::get(type.getContext(), inputs, outputs);
   });
+
   auto materializeCast = [](OpBuilder &builder, Type type, ValueRange inputs,
                             Location loc) -> std::optional<Value> {
     if (inputs.size() != 1) return std::nullopt;

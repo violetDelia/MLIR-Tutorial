@@ -15,6 +15,7 @@
 #include "Conversion/Passes.h"
 #include "Dialect/NorthStar/Transforms/Passes.h"
 #include "Pipelines/Pipelines.h"
+#include "mlir/Conversion/LinalgToStandard/LinalgToStandard.h"
 #include "mlir/Conversion/ReconcileUnrealizedCasts/ReconcileUnrealizedCasts.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Transforms/Passes.h"
@@ -34,6 +35,8 @@ void buildBuffeNorthStarBasicPipeline(
   pm.addPass(mlir::north_star::createConvertNorthStarToLinalgPass());
   pm.addPass(mlir::north_star::createConvertNorthStarToFuncPass());
   pm.addPass(mlir::createCanonicalizerPass());
+
+  pm.addPass(mlir::createConvertLinalgToStandardPass());
 };
 
 void registerNorthStarBasicPipelines() {
