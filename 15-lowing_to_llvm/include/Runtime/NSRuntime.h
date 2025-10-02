@@ -12,15 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-#ifndef UTILS_MLIR_UTILS_KEY_H
-#define UTILS_MLIR_UTILS_KEY_H
+#ifndef RUNTIME_NSRUNTIME_H
+#define RUNTIME_NSRUNTIME_H
+#include "Runtime/Core.h"
 
-inline static const char* KEntryPointName = "main";
-inline static const char* KDPAttrName = "dp_attr";
-inline static const char* KHostFunc = "host_func";
-inline static const char* KDeviceFunc = "device_kernel";
-inline static const char* KDeviceIdAttr = "device_id";
-inline static const char* KFuncDeviceIdAttr = "func.device_id";
-inline static const char* KDevcieKernelSuffix = "_device_";
+MLIR_TT_C_EXPORT void setDevice(int device_id);
 
-#endif  // UTILS_MLIR_UTILS_KEY_H
+#endif  // RUNTIME_NSRUNTIME_H

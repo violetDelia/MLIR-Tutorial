@@ -19,11 +19,6 @@ set(LIBS
   # TODO: Remove when registerAllGPUToLLVMIRTranslations is no longer
   # registered directly in mlir-opt.cpp.
   MLIRToLLVMIRTranslationRegistration
-  MLIRNorthStarDialect${ch_num}
-  MLIRNorthStarTransforms${ch_num}
-  MLIRTutorialUtils${ch_num}
-  MLIRNorthStarToLinalg${ch_num}
-  MLIRNorthStarToFunc${ch_num}
   MLIRNorthStarPipelines${ch_num}
 )
 add_mlir_tool(NS-opt${ch_num}

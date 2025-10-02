@@ -34,4 +34,4 @@ module @NorthStar {
   }
 }
 
-// '/home/lfr/MLIR_Tutorial/build/third_party/llvm-project/llvm/bin/mlir-opt' '/home/lfr/MLIR_Tutorial/15-lowing_to_llvm/test/Pipeline/test.mlir' -one-shot-bufferize="allow-unknown-ops" -allow-unregistered-dialect -o '/home/lfr/MLIR_Tutorial/15-lowing_to_llvm/test/Pipeline/test_out.mlir'
+// '/home/lfr/MLIR_Tutorial/build/third_party/llvm-project/llvm/bin/mlir-opt' '/home/lfr/MLIR_Tutorial/15-lowing_to_llvm/test/Pipeline/test.mlir' -one-shot-bufferize="bufferize-function-boundaries function-boundary-type-conversion=fully-dynamic-layout-map"  -allow-unregistered-dialect -func-bufferize -buffer-results-to-out-params="hoist-static-allocs" -o '/home/lfr/MLIR_Tutorial/15-lowing_to_llvm/test/Pipeline/test_out.mlir' 

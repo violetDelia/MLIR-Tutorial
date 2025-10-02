@@ -13,8 +13,8 @@
 //    limitations under the License.
 //
 
-#ifndef CONVERSION_NORTHSTARTOFUNC_NORTHSTARTOFUNC_H
-#define CONVERSION_NORTHSTARTOFUNC_NORTHSTARTOFUNC_H
+#ifndef CONVERSION_NORTHSTARLEGALIZE_NORTHSTARLEGALIZE_H
+#define CONVERSION_NORTHSTARLEGALIZE_NORTHSTARLEGALIZE_H
 #include <memory>
 
 #include "mlir/Pass/Pass.h"
@@ -24,13 +24,13 @@ class TypeConverter;
 
 namespace mlir::north_star {
 
-void initNorthStarToFuncTypeConvert(TypeConverter &type_converter);
+void initNorthStarLegalizeTypeConvert(TypeConverter &type_converter);
 
-void populateNorthStarToFuncPatterns(TypeConverter &type_converter,
+void populateNorthStarLegalizePatterns(TypeConverter &type_converter,
                                      RewritePatternSet &patterns);
 
-#define GEN_PASS_DECL_CONVERTNORTHSTARTOFUNCPASS
+#define GEN_PASS_DECL_CONVERTNORTHSTARLEGALIZEPASS
 #include "Conversion/Passes.h.inc"
 
 }  // namespace mlir::north_star
-#endif  // CONVERSION_NORTHSTARTOFUNC_NORTHSTARTOFUNC_H
+#endif  // CONVERSION_NORTHSTARLEGALIZE_NORTHSTARLEGALIZE_H

@@ -84,13 +84,13 @@ static inline int getDeviceid(mlir::ArrayRef<::mlir::Operation*> ops) {
 
 static inline llvm::MapVector<Value, std::pair<Operation*, int>>
 getFusionInputs(mlir::ArrayRef<::mlir::Operation*> ops) {
-  mlir::SetVector<Operation*> op_set(ops.begin(), ops.end());
+  mlir::SetVector<Operation*> opSet(ops.begin(), ops.end());
   llvm::MapVector<Value, std::pair<Operation*, int>> res;
   for (auto op : ops) {
     for (auto [index, operand] : llvm::enumerate(op->getOperands())) {
       if (isa<BlockArgument>(operand))
         res[operand] = std::make_pair(nullptr, 0);
-      if (op_set.contains(operand.getDefiningOp())) continue;
+      if (opSet.contains(operand.getDefiningOp())) continue;
       res[operand] = std::make_pair(op, index);
     }
   }
@@ -99,12 +99,12 @@ getFusionInputs(mlir::ArrayRef<::mlir::Operation*> ops) {
 
 static inline llvm::MapVector<Value, std::pair<Operation*, int>>
 getFusionOutputs(mlir::ArrayRef<::mlir::Operation*> ops) {
-  mlir::SetVector<Operation*> op_set(ops.begin(), ops.end());
+  mlir::SetVector<Operation*> opSet(ops.begin(), ops.end());
   llvm::MapVector<Value, std::pair<Operation*, int>> outs;
   for (auto op : ops) {
     for (auto [index, res] : llvm::enumerate(op->getResults())) {
       for (auto user : res.getUsers()) {
-        if (op_set.contains(user)) continue;
+        if (opSet.contains(user)) continue;
         outs[res] = std::make_pair(op, index);
         break;
       }
@@ -117,56 +117,56 @@ void FusionOps(::mlir::RewriterBase& rewriter,
                mlir::ArrayRef<::mlir::Operation*> ops, ::mlir::Location loc) {
   if (ops.size() == 0) return;
   auto context = rewriter.getContext();
-  auto insert_point = rewriter.saveInsertionPoint();
+  auto insertPoint = rewriter.saveInsertionPoint();
   auto name = getFusionName(ops);
-  auto device_id = getDeviceid(ops);
-  name.append(llvm::to_string(device_id));
-  auto inputs_map = getFusionInputs(ops);
-  auto outputs_map = getFusionOutputs(ops);
-  llvm::SmallVector<Value> inputs_val;
-  llvm::SmallVector<Value> output_val;
-  llvm::SmallVector<Type> outputs_type;
-  llvm::SmallVector<Type> inputs_type;
-  for (auto [key, val] : inputs_map) {
-    inputs_val.push_back(key);
-    inputs_type.push_back(key.getType());
+  auto deviceId = getDeviceid(ops);
+  name.append(llvm::to_string(deviceId));
+  auto inputsMap = getFusionInputs(ops);
+  auto outputsMap = getFusionOutputs(ops);
+  llvm::SmallVector<Value> inputsVal;
+  llvm::SmallVector<Value> outputVal;
+  llvm::SmallVector<Type> outputsType;
+  llvm::SmallVector<Type> inputsType;
+  for (auto [key, val] : inputsMap) {
+    inputsVal.push_back(key);
+    inputsType.push_back(key.getType());
   }
-  for (auto [key, val] : outputs_map) {
-    outputs_type.push_back(key.getType());
+  for (auto [key, val] : outputsMap) {
+    outputsType.push_back(key.getType());
   }
   rewriter.setInsertionPoint((*ops.begin())->getParentOp());
   auto kernel = rewriter.create<func::FuncOp>(
-      loc, name, FunctionType::get(context, inputs_type, outputs_type));
+      loc, name, FunctionType::get(context, inputsType, outputsType));
   kernel->setAttr(KDeviceFunc, UnitAttr::get(context));
   auto block = kernel.addEntryBlock();
-  std::map<Operation*, Operation*> op_map;
+  std::map<Operation*, Operation*> opMap;
   for (auto op : ops) {
-    auto clone_op = op->clone();
-    block->push_back(clone_op);
-    op_map[op] = clone_op;
+    auto cloneOp = op->clone();
+    block->push_back(cloneOp);
+    opMap[op] = cloneOp;
     for (auto [index, operand] : llvm::enumerate(op->getOperands())) {
       if (isa<BlockArgument>(operand)) continue;
-      if (op_map.contains(operand.getDefiningOp())) {
-        op_map[op]->setOperand(
+      if (opMap.contains(operand.getDefiningOp())) {
+        opMap[op]->setOperand(
             index,
-            op_map[operand.getDefiningOp()]->getResult(
+            opMap[operand.getDefiningOp()]->getResult(
                 llvm::cast_or_null<OpResult>(operand).getResultNumber()));
       }
     }
   }
-  for (auto [key, val] : outputs_map) {
-    output_val.push_back(op_map[val.first]->getResult(val.second));
+  for (auto [key, val] : outputsMap) {
+    outputVal.push_back(opMap[val.first]->getResult(val.second));
   }
-  for (auto [index, key] : llvm::enumerate(inputs_map)) {
-    op_map[key.second.first]->setOperand(key.second.second,
+  for (auto [index, key] : llvm::enumerate(inputsMap)) {
+    opMap[key.second.first]->setOperand(key.second.second,
                                          block->getArgument(index));
   }
 
   rewriter.setInsertionPointToEnd(block);
-  rewriter.create<func::ReturnOp>(loc, output_val);
-  rewriter.setInsertionPoint(insert_point.getBlock(), insert_point.getPoint());
-  auto call = rewriter.create<func::CallOp>(loc, kernel, inputs_val);
-  for (auto [index, key] : llvm::enumerate(outputs_map)) {
+  rewriter.create<func::ReturnOp>(loc, outputVal);
+  rewriter.setInsertionPoint(insertPoint.getBlock(), insertPoint.getPoint());
+  auto call = rewriter.create<func::CallOp>(loc, kernel, inputsVal);
+  for (auto [index, key] : llvm::enumerate(outputsMap)) {
     rewriter.replaceAllUsesWith(key.first, call->getResult(index));
   }
   return;

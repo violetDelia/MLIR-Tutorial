@@ -29,6 +29,19 @@ def ConvertNorthStarToLinalgPass : Pass<"convert-north-satr-to-linalg","::mlir::
   ];
 }
 
+def NorthStarLegalizePass : Pass<"north-star-legalize","::mlir::ModuleOp"> {
+  let summary = "legalize northstar for lowing to std";
+  let description = [{
+    "legalize northstar for lowing to std";
+  }];
+  let dependentDialects = [
+    "::mlir::north_star::NorthStarDialect",
+    "::mlir::tensor::TensorDialect",
+    "::mlir::arith::ArithDialect",
+    "::mlir::func::FuncDialect",
+  ];
+}
+
 def ConvertNorthStarToFuncPass : Pass<"convert-north-satr-to-func","::mlir::ModuleOp"> {
   let summary = "lowing northstart to func";
   let description = [{

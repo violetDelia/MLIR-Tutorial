@@ -6,5 +6,11 @@ add_mlir_library(MLIRNorthStarPipelines${ch_num}
     LINK_LIBS PUBLIC
     MLIRIR
     MLIRReconcileUnrealizedCasts
+    MLIRNorthStarDialect${ch_num}
+    MLIRNorthStarTransforms${ch_num}
+    MLIRTutorialUtils${ch_num}
+    MLIRNorthStarToLinalg${ch_num}
+    MLIRNorthStarToFunc${ch_num}
+    MLIRNorthStarLegalize${ch_num}
 
 )

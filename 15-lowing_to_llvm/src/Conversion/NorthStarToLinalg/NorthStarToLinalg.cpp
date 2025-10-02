@@ -121,11 +121,11 @@ struct ReturnOpConvertPattern final
 
 namespace mlir::north_star {
 
-void initNorthStarToLinalgTypeConvert(TypeConverter &typeConverter) {
-  typeConverter.addConversion([](NSTensorType type) {
+void initNorthStarToLinalgTypeConvert(TypeConverter &type_converter) {
+  type_converter.addConversion([](NSTensorType type) {
     return RankedTensorType::get(type.getShape(), type.getElementType());
   });
-  auto materializeCast = [](OpBuilder &builder, Type type, ValueRange inputs,
+  auto materialize_cast = [](OpBuilder &builder, Type type, ValueRange inputs,
                             Location loc) -> std::optional<Value> {
     if (inputs.size() != 1) return std::nullopt;
 
@@ -147,14 +147,14 @@ void initNorthStarToLinalgTypeConvert(TypeConverter &typeConverter) {
         .getResult(0);
   };
 
-  typeConverter.addSourceMaterialization(materializeCast);
-  typeConverter.addTargetMaterialization(materializeCast);
-  typeConverter.addArgumentMaterialization(materializeCast);
+  type_converter.addSourceMaterialization(materialize_cast);
+  type_converter.addTargetMaterialization(materialize_cast);
+  type_converter.addArgumentMaterialization(materialize_cast);
 }
 
-void populateNorthStarToLinalgPatterns(TypeConverter &typeConverter,
+void populateNorthStarToLinalgPatterns(TypeConverter &type_converter,
                                        RewritePatternSet &patterns) {
   patterns.add<SoftmaxOpToLinalgPattern, DeviceKernelOpConvertPattern,
-               ReturnOpConvertPattern>(typeConverter, patterns.getContext());
+               ReturnOpConvertPattern>(type_converter, patterns.getContext());
 };
 }  // namespace mlir::north_star

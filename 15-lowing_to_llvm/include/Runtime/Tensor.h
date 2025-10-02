@@ -1,3 +1,4 @@
+
 //    Copyright 2025 时光丶人爱
 
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,15 +13,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-#ifndef UTILS_MLIR_UTILS_KEY_H
-#define UTILS_MLIR_UTILS_KEY_H
+#ifndef RUNTIME_TENSOR_H
+#define RUNTIME_TENSOR_H
+#include <cstddef>
+#include <cstdint>
 
-inline static const char* KEntryPointName = "main";
-inline static const char* KDPAttrName = "dp_attr";
-inline static const char* KHostFunc = "host_func";
-inline static const char* KDeviceFunc = "device_kernel";
-inline static const char* KDeviceIdAttr = "device_id";
-inline static const char* KFuncDeviceIdAttr = "func.device_id";
-inline static const char* KDevcieKernelSuffix = "_device_";
+#include "Runtime/Core.h"
+#include "mlir/ExecutionEngine/CRunnerUtils.h"
+#include "mlir/Pass/PassManager.h"
+#include "mlir/Pass/PassOptions.h"
 
-#endif  // UTILS_MLIR_UTILS_KEY_H
+template <typename T, int Rank>
+struct NSMemref {
+  size_t device_id;
+  StridedMemRefType<T, Rank> memref;
+};
+
+
+
+
+
+#endif  // RUNTIME_TENSOR_H

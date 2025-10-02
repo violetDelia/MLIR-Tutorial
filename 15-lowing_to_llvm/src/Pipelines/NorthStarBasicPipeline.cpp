@@ -33,10 +33,10 @@ void buildBuffeNorthStarBasicPipeline(
       mlir::north_star::createDeviceRegionFusionPass());
   pm.addPass(mlir::north_star::createEliminateBufferCastPass());
   pm.addPass(mlir::north_star::createConvertNorthStarToLinalgPass());
-  pm.addPass(mlir::north_star::createConvertNorthStarToFuncPass());
-  pm.addPass(mlir::createCanonicalizerPass());
+  pm.addPass(mlir::north_star::createNorthStarLegalizePass());
+  
 
-  pm.addPass(mlir::createConvertLinalgToStandardPass());
+  pm.addPass(mlir::createCanonicalizerPass());
 };
 
 void registerNorthStarBasicPipelines() {

@@ -13,7 +13,7 @@
 //    limitations under the License.
 //
 
-#include "Conversion/NorthStarToFunc/NorthStarToFunc.h"
+#include "Conversion/NorthStarLegalize/NorthStarLegalize.h"
 
 #include <cstdint>
 #include <iostream>
@@ -119,7 +119,8 @@ struct FuncFuncOpRerewriterPattern final
               llvm::dyn_cast_or_null<north_star::NSTensorType>(arg.getType())) {
         arg.setType(RankedTensorType::get(ns_tensor.getShape(),
                                           ns_tensor.getElementType()));
-
+        new_op.setArgAttr(arg.getArgNumber(), KFuncDeviceIdAttr,
+                          rewriter.getI64IntegerAttr(ns_tensor.getDeviceId()));
         auto to_ns_tensor = rewriter.create<north_star::TensorToNSTensorOp>(
             loc, ns_tensor, arg, ns_tensor.getDeviceId());
         rewriter.replaceAllUsesExcept(arg, to_ns_tensor, to_ns_tensor);
@@ -133,7 +134,7 @@ struct FuncFuncOpRerewriterPattern final
 
 namespace mlir::north_star {
 namespace {}  // namespace
-void initNorthStarToFuncTypeConvert(TypeConverter &type_converter) {
+void initNorthStarLegalizeTypeConvert(TypeConverter &type_converter) {
   type_converter.addConversion([](NSTensorType type) {
     return RankedTensorType::get(type.getShape(), type.getElementType());
   });
@@ -188,7 +189,10 @@ void initNorthStarToFuncTypeConvert(TypeConverter &type_converter) {
   type_converter.addArgumentMaterialization(materialize_cast);
 }
 
-void populateNorthStarToFuncPatterns(TypeConverter &type_converter,
-                                     RewritePatternSet &patterns) {
+void populateNorthStarLegalizePatterns(TypeConverter &type_converter,
+                                       RewritePatternSet &patterns) {
+  patterns.add<DeviceKernelOpToFuncPattern, ReturnOpToFuncPattern,
+               FuncReturnOpRerewriterPattern, FuncFuncOpRerewriterPattern>(
+      type_converter, patterns.getContext());
 };
 }  // namespace mlir::north_star

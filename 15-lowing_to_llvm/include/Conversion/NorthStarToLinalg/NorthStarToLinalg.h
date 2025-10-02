@@ -24,9 +24,9 @@ class TypeConverter;
 
 namespace mlir::north_star {
 
-void initNorthStarToLinalgTypeConvert(TypeConverter &typeConverter);
+void initNorthStarToLinalgTypeConvert(TypeConverter &type_converter);
 
-void populateNorthStarToLinalgPatterns(TypeConverter &typeConverter,
+void populateNorthStarToLinalgPatterns(TypeConverter &type_converter,
                                   RewritePatternSet &patterns);
 
 #define GEN_PASS_DECL_CONVERTNORTHSTARTOLINALGPASS
