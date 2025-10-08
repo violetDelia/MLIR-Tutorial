@@ -70,14 +70,14 @@ void configNorthStarToLinalgTarget(ConversionTarget& target) {
 }
 void NorthStarToLinalgPassPass::runOnOperation() {
   LLVM_DEBUG(llvm::dbgs() << llvm::formatv("run in {0}\n", getPassName()));
-  auto model = getOperation();
+  auto module = getOperation();
   TypeConverter type_convert;
   initNorthStarToLinalgTypeConvert(type_convert);
   RewritePatternSet patterns(&getContext());
   populateNorthStarToLinalgPatterns(type_convert, patterns);
   ConversionTarget target(getContext());
   configNorthStarToLinalgTarget(target);
-  if (failed(applyPartialConversion(model, target, std::move(patterns))))
+  if (failed(applyPartialConversion(module, target, std::move(patterns))))
     signalPassFailure();
   LLVM_DEBUG(llvm::dbgs() << llvm::formatv("run out: {0}\n", getPassName()));
 }

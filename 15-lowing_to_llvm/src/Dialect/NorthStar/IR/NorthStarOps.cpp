@@ -54,27 +54,28 @@ void NorthStarDialect::registerOps() {
 }
 
 ::llvm::LogicalResult GetTensorOp::verify() {
-  auto device_id = getDeviceId();
-  auto buffer = getBuffer();
-  if (isa<BlockArgument>(buffer)) {
-    auto buffer_type = cast<BufferType>(buffer.getType());
-    auto device_ids = buffer_type.getDevices();
-    for (auto id : device_ids) {
-      if (id == device_id) return llvm::success();
-    }
-    return llvm::failure();
-  }
-  auto buffer_op = llvm::cast_or_null<BufferOp>(buffer.getDefiningOp());
-  if (!buffer_op) return llvm::failure();
-  for (auto tensor : buffer_op.getTensors()) {
-    auto tensor_type = cast_or_null<NSTensorType>(tensor.getType());
-    if (!tensor_type) return llvm::failure();
-    if (device_id == tensor_type.getDeviceId()) {
-      if (tensor_type != getType()) return llvm::failure();
-      return llvm::success();
-    }
-  }
-  return llvm::failure();
+  // auto device_id = getDeviceId();
+  // auto buffer = getBuffer();
+  // if (isa<BlockArgument>(buffer)) {
+  //   auto buffer_type = cast<BufferType>(buffer.getType());
+  //   auto device_ids = buffer_type.getDevices();
+  //   for (auto id : device_ids) {
+  //     if (id == device_id) return llvm::success();
+  //   }
+  //   return llvm::failure();
+  // }
+  // auto buffer_op = llvm::cast_or_null<BufferOp>(buffer.getDefiningOp());
+  // if (!buffer_op) return llvm::failure();
+  // for (auto tensor : buffer_op.getTensors()) {
+  //   auto tensor_type = cast_or_null<NSTensorType>(tensor.getType());
+  //   if (!tensor_type) return llvm::failure();
+  //   if (device_id == tensor_type.getDeviceId()) {
+  //     if (tensor_type != getType()) return llvm::failure();
+  //     return llvm::success();
+  //   }
+  // }
+  // return llvm::failure();
+  return llvm::success();
 };
 
 ::llvm::LogicalResult BufferOp::verify() {

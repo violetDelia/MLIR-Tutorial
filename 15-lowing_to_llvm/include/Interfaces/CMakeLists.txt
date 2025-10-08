@@ -10,3 +10,8 @@ mlir_tablegen(FusionRegionOpInterfaces.h.inc -gen-op-interface-decls)
 mlir_tablegen(FusionRegionOpInterfaces.cpp.inc -gen-op-interface-defs)
 add_public_tablegen_target(MLIRFusionRegionInterfacesIncGen${ch_num})
 
+set(LLVM_TARGET_DEFINITIONS BuiltinFunctionInterfaces.td)
+mlir_tablegen(BuiltinFunctionOpInterfaces.h.inc -gen-op-interface-decls)
+mlir_tablegen(BuiltinFunctionOpInterfaces.cpp.inc -gen-op-interface-defs)
+add_public_tablegen_target(MLIRBuiltinFunctionInterfacesIncGen${ch_num})
+

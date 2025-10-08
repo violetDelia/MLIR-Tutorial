@@ -10,24 +10,25 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "Dialect/NorthStar/Transforms/Passes.h"
-#include "Dialect/NorthStar/IR/NorthStarDialect.h"
-#include "mlir/Dialect/Func/IR/FuncOps.h"
-#include "mlir/IR/BuiltinDialect.h"
-#include "mlir/InitAllDialects.h"
-#include "mlir/InitAllExtensions.h"
-#include "mlir/InitAllPasses.h"
-#include "mlir/Tools/mlir-opt/MlirOptMain.h"
 #include "Conversion/Passes.h"
+#include "Dialect/NorthStar/IR/NorthStarDialect.h"
+#include "Dialect/NorthStar/Transforms/Passes.h"
 #include "Pipelines/Pipelines.h"
+#include "mlir/Dialect/Func/IR/FuncOps.h"
+#include "mlir/Dialect/Transform/IR/TransformDialect.h"
+#include "mlir/Dialect/Vector/TransformOps/VectorTransformOps.h"
+#include "mlir/IR/BuiltinDialect.h"
+#include "mlir/Tools/mlir-opt/MlirOptMain.h"
 int main(int argc, char **argv) {
-  //mlir::registerAllPasses();
+  // mlir::registerAllPasses();
   mlir::DialectRegistry registry;
-  //registerAllDialects(registry);
+  // registerAllDialects(registry);
   registry.insert<mlir::north_star::NorthStarDialect>();
   registry.insert<mlir::func::FuncDialect>();
   registry.insert<mlir::BuiltinDialect>();
-  //registerAllExtensions(registry);
+  registry.insert<mlir::transform::TransformDialect>();
+  mlir::pipeline::registerNorthStarBasicPipelinesExtennsion(registry);
+  // registerAllExtensions(registry);
   mlir::north_star::registerNorthStarOptPasses();
   mlir::north_star::registerNorthStarConversionPasses();
   mlir::pipeline::registerNorthStarBasicPipelines();

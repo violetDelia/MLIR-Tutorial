@@ -50,7 +50,8 @@ def ConvertNorthStarToFuncPass : Pass<"convert-north-satr-to-func","::mlir::Modu
   let dependentDialects = [
     "::mlir::north_star::NorthStarDialect",
     "::mlir::tensor::TensorDialect",
-    "::mlir::func::FuncDialect"
+    "::mlir::func::FuncDialect",
+    "::mlir::LLVM::LLVMDialect"
   ];
 }
 

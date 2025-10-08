@@ -23,4 +23,7 @@ inline static const char* KDeviceIdAttr = "device_id";
 inline static const char* KFuncDeviceIdAttr = "func.device_id";
 inline static const char* KDevcieKernelSuffix = "_device_";
 
+
+// 
+inline static const char* KSetDeviceFuncName = "__NS__SetDevice";
 #endif  // UTILS_MLIR_UTILS_KEY_H

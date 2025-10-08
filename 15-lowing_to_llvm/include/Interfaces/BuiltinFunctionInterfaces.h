@@ -1,4 +1,3 @@
-
 //    Copyright 2025 时光丶人爱
 
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,20 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-#ifndef RUNTIME_TENSOR_H
-#define RUNTIME_TENSOR_H
-#include <cstddef>
-#include <cstdint>
-
-#include "Runtime/Core.h"
-#include "mlir/ExecutionEngine/CRunnerUtils.h"
-#include "mlir/Pass/PassManager.h"
-#include "mlir/Pass/PassOptions.h"
-
-template <typename T>
-struct NSMemref {
-  int64_t device_id;
-  UnrankedMemRefType<T> memref;
-};
-
-#endif  // RUNTIME_TENSOR_H
+#ifndef INTERFACES_BUILTIN_FUNCTION_INTERFACES_H
+#define INTERFACES_BUILTIN_FUNCTION_INTERFACES_H
+#include "Dialect/NorthStar/IR/NorthStarEunms.h"
+#include "llvm/ADT/SmallString.h"
+#include "mlir/Dialect/Tensor/IR/Tensor.h"
+#include "mlir/IR/MLIRContext.h"
+#define FIX
+#include "Interfaces/BuiltinFunctionOpInterfaces.h.inc"
+#undef FIX
+#endif  // INTERFACES_BUILTIN_FUNCTION_INTERFACES_H

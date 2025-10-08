@@ -16,9 +16,15 @@
 #ifndef RUNTIME_UTILS_H
 #define RUNTIME_UTILS_H
 
+#include <cstdint>
+
 #include "Runtime/Core.h"
 #include "Runtime/Tensor.h"
+#include "mlir/ExecutionEngine/CRunnerUtils.h"
 
-MLIR_TT_C_EXPORT NSMemref<float, 2> MemrefToNSMemref2DF32(
-    int device_id, StridedMemRefType<float, 2> &memref);
+MLIR_TT_C_EXPORT NSMemref<float> __NS__MemrefToNSMemref_f32(
+    int64_t device_id, UnrankedMemRefType<float> *memref);
+
+MLIR_TT_C_EXPORT UnrankedMemRefType<float> __NS__NSMemrefToMemref_f32(
+    NSMemref<float> &memref);
 #endif  // RUNTIME_UTILS_H

@@ -15,6 +15,7 @@
 
 #include "Conversion/NorthStarToFunc/NorthStarToFunc.h"
 
+#include <cstddef>
 #include <cstdint>
 #include <iostream>
 #include <memory>
@@ -32,100 +33,298 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/LogicalResult.h"
 #include "mlir/Conversion/GPUCommon/GPUCommonPass.h"
+#include "mlir/Conversion/LLVMCommon/MemRefBuilder.h"
+#include "mlir/Conversion/LLVMCommon/StructBuilder.h"
+#include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
+#include "mlir/Dialect/LLVMIR/LLVMDialect.h"
+#include "mlir/Dialect/LLVMIR/LLVMTypes.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/TypeRange.h"
+#include "mlir/IR/Types.h"
 #include "mlir/IR/Value.h"
 #include "mlir/IR/ValueRange.h"
 #include "mlir/Transforms/DialectConversion.h"
 using namespace mlir;
 namespace {
-struct DeviceKernelOpToFuncPattern final
-    : public OpConversionPattern<mlir::north_star::DeviceKernelOp> {
+
+struct TensorToNSTensorOpConversionPattern final
+    : public OpConversionPattern<mlir::north_star::TensorToNSTensorOp> {
   using OpConversionPattern::OpConversionPattern;
 
-  LogicalResult match(north_star::DeviceKernelOp op) const final {
+  LogicalResult match(north_star::TensorToNSTensorOp op) const final {
     return llvm::success();
   }
-  void rewrite(north_star::DeviceKernelOp op, OpAdaptor adaptor,
+  void rewrite(north_star::TensorToNSTensorOp op, OpAdaptor adaptor,
                ConversionPatternRewriter &rewriter) const final {
+    auto context = op.getContext();
     auto loc = op->getLoc();
-    auto func_type =
-        rewriter.getFunctionType(op->getOperandTypes(), op->getResultTypes());
-    std::string func_name = op.getSymName().str();
-    auto func_builder = mlir::utils::FunctionCallBuilder(func_name, func_type);
-    auto res = func_builder.create(loc, rewriter, op->getOperands());
-    if (res.func_created) {
-      rewriter.cloneRegionBefore(op.getRegion(), res.function.getRegion(),
-                                 res.function.getRegion().end());
-    }
-    res.call->setAttr(KDeviceIdAttr,
-                      rewriter.getI64IntegerAttr(op.getDeviceId()));
-    res.call->setAttr(KDeviceFunc, rewriter.getUnitAttr());
-    if (res.func_created) {
-      res.function->setAttr(KDeviceFunc, rewriter.getUnitAttr());
-    }
-    rewriter.replaceOp(op, res.call);
-  }
-};
-
-struct ReturnOpToFuncPattern final
-    : public OpConversionPattern<mlir::north_star::ReturnOp> {
-  using OpConversionPattern::OpConversionPattern;
-
-  LogicalResult match(north_star::ReturnOp op) const final {
-    return llvm::success();
-  }
-  void rewrite(north_star::ReturnOp op, OpAdaptor adaptor,
-               ConversionPatternRewriter &rewriter) const final {
-    rewriter.replaceOpWithNewOp<func::ReturnOp>(op, adaptor.getOperands());
-  }
-};
-
-struct FuncReturnOpRerewriterPattern final
-    : public OpConversionPattern<mlir::func::ReturnOp> {
-  using OpConversionPattern::OpConversionPattern;
-
-  LogicalResult match(func::ReturnOp op) const final { return llvm::success(); }
-  void rewrite(func::ReturnOp op, OpAdaptor adaptor,
-               ConversionPatternRewriter &rewriter) const final {
-    rewriter.replaceOpWithNewOp<func::ReturnOp>(op, adaptor.getOperands());
-  }
-};
-
-struct FuncFuncOpRerewriterPattern final
-    : public OpConversionPattern<mlir::func::FuncOp> {
-  using OpConversionPattern::OpConversionPattern;
-
-  LogicalResult match(func::FuncOp op) const final { return llvm::success(); }
-  void rewrite(func::FuncOp op, OpAdaptor adaptor,
-               ConversionPatternRewriter &rewriter) const final {
-    auto loc = op.getLoc();
-    auto new_func_type = llvm::dyn_cast_or_null<FunctionType>(
-        getTypeConverter()->convertType(op.getFunctionType()));
-    if (!new_func_type) {
+    llvm::SmallVector<Type> converted_operand_types;
+    if (getTypeConverter()
+            ->convertTypes(op->getOperands().getTypes(),
+                           converted_operand_types)
+            .failed()) {
+      op.emitError() << "type convert failed";
       return;
     }
-    auto new_op =
-        rewriter.create<func::FuncOp>(loc, op.getSymName(), new_func_type);
-    rewriter.cloneRegionBefore(op.getBody(), new_op.getBody(),
-                               new_op.getBody().end());
-    rewriter.setInsertionPointToStart(&new_op.getFunctionBody().front());
-    for (auto arg : new_op.getFunctionBody().front().getArguments()) {
-      if (auto ns_tensor =
-              llvm::dyn_cast_or_null<north_star::NSTensorType>(arg.getType())) {
-        arg.setType(RankedTensorType::get(ns_tensor.getShape(),
-                                          ns_tensor.getElementType()));
-
-        auto to_ns_tensor = rewriter.create<north_star::TensorToNSTensorOp>(
-            loc, ns_tensor, arg, ns_tensor.getDeviceId());
-        rewriter.replaceAllUsesExcept(arg, to_ns_tensor, to_ns_tensor);
-      }
+    llvm::SmallVector<Type> converted_result_types;
+    if (getTypeConverter()
+            ->convertTypes(op->getResultTypes(), converted_result_types)
+            .failed()) {
+      op.emitError() << "type convert failed";
+      return;
     }
-    rewriter.replaceOp(op, new_op);
+    llvm::SmallVector<Type> new_func_input_types;
+    new_func_input_types.push_back(rewriter.getI64Type());
+
+    new_func_input_types.push_back(
+        getTypeConverter()->convertType(op.getInput().getType()));
+    auto device_id =
+        rewriter.create<arith::ConstantIntOp>(loc, op.getDeviceId(), 64);
+    mlir::utils::AutoCastOption options;
+    options.castTensor = true;
+    utils::FunctionCallBuilder builder(
+        op.getBuildinFunctionName(),
+        FunctionType::get(
+            context, new_func_input_types,
+            getTypeConverter()->convertType(op.getResult().getType())),
+        options);
+    auto builder_res = builder.create(
+        op->getLoc(), rewriter, ValueRange{device_id, adaptor.getInput()});
+
+    rewriter.replaceOp(op, builder_res.replecement_results);
+  }
+};
+
+struct NSTensorToTensorOpConversionPattern final
+    : public OpConversionPattern<mlir::north_star::NSTensorToTensorOp> {
+  using OpConversionPattern::OpConversionPattern;
+
+  LogicalResult match(north_star::NSTensorToTensorOp op) const final {
+    return llvm::success();
+  }
+  void rewrite(north_star::NSTensorToTensorOp op, OpAdaptor adaptor,
+               ConversionPatternRewriter &rewriter) const final {
+    auto context = op.getContext();
+    auto loc = op->getLoc();
+    llvm::SmallVector<Type> converted_operand_types;
+    if (getTypeConverter()
+            ->convertTypes(op->getOperands().getTypes(),
+                           converted_operand_types)
+            .failed()) {
+      op.emitError() << "type convert failed";
+      return;
+    }
+    llvm::SmallVector<Type> converted_result_types;
+    if (getTypeConverter()
+            ->convertTypes(op->getResultTypes(), converted_result_types)
+            .failed()) {
+      op.emitError() << "type convert failed";
+      return;
+    }
+    llvm::SmallVector<Type> new_func_input_types;
+    new_func_input_types.push_back(
+        getTypeConverter()->convertType(op.getInput().getType()));
+    mlir::utils::AutoCastOption options;
+    options.castTensor = true;
+    utils::FunctionCallBuilder builder(
+        op.getBuildinFunctionName(),
+        FunctionType::get(
+            context, new_func_input_types,
+            getTypeConverter()->convertType(op.getResult().getType())),
+        options);
+    auto builder_res =
+        builder.create(op->getLoc(), rewriter, ValueRange{adaptor.getInput()});
+
+    rewriter.replaceOp(op, builder_res.replecement_results);
+  }
+};
+
+struct BufferOpConversionPattern final
+    : public OpConversionPattern<mlir::north_star::BufferOp> {
+  using OpConversionPattern::OpConversionPattern;
+
+  LogicalResult match(north_star::BufferOp op) const final {
+    return llvm::success();
+  }
+  void rewrite(north_star::BufferOp op, OpAdaptor adaptor,
+               ConversionPatternRewriter &rewriter) const final {
+    auto context = op.getContext();
+    auto loc = op->getLoc();
+    llvm::SmallVector<Type> converted_operand_types;
+    if (getTypeConverter()
+            ->convertTypes(op.getOperandTypes(), converted_operand_types)
+            .failed()) {
+      op.emitError() << "type convert failed";
+      return;
+    }
+    llvm::SmallVector<Type> converted_result_types;
+    if (getTypeConverter()
+            ->convertTypes(op->getResultTypes(), converted_result_types)
+            .failed()) {
+      op.emitError() << "type convert failed";
+      return;
+    }
+    auto converted_type = converted_operand_types[0];
+    auto ptr_type = LLVM::LLVMPointerType::get(context);
+    Value device_nums = rewriter.create<LLVM::ConstantOp>(
+        loc, rewriter.getIntegerType(64), op->getNumOperands());
+    auto memrefs = rewriter.create<LLVM::AllocaOp>(loc, ptr_type,
+                                                   converted_type, device_nums,
+                                                   /*alignment=*/0);
+    auto device_indexs = rewriter.create<LLVM::AllocaOp>(
+        loc, ptr_type, rewriter.getI64Type(), device_nums,
+        /*alignment=*/0);
+    auto device_ids =
+        llvm::cast<north_star::BufferType>(op.getResult().getType())
+            .getDevices();
+    for (auto [index, operand, device_id] :
+         llvm::enumerate(adaptor.getOperands(), device_ids)) {
+      auto ptr =
+          rewriter.create<LLVM::GEPOp>(loc, ptr_type, converted_type, memrefs,
+                                       ArrayRef<LLVM::GEPArg>{(int32_t)index});
+      rewriter.create<LLVM::StoreOp>(loc, operand, ptr);
+      auto index_ptr = rewriter.create<LLVM::GEPOp>(
+          loc, ptr_type, rewriter.getI64Type(), device_indexs,
+          ArrayRef<LLVM::GEPArg>{(int32_t)index});
+      auto index_val =
+          rewriter.create<arith::ConstantIntOp>(loc, device_id, 64);
+      rewriter.create<LLVM::StoreOp>(loc, index_val, index_ptr);
+    }
+    mlir::utils::AutoCastOption options;
+    options.castTensor = true;
+    utils::FunctionCallBuilder builder(
+        op.getBuildinFunctionName(),
+        FunctionType::get(context,
+                          TypeRange{ptr_type, ptr_type, rewriter.getI64Type()},
+                          converted_result_types),
+        options);
+    auto builder_res =
+        builder.create(op->getLoc(), rewriter,
+                       ValueRange{memrefs, device_indexs, device_nums});
+    rewriter.replaceOp(op, builder_res.replecement_results);
+  }
+};
+
+struct GetTensorOpConversionPattern final
+    : public OpConversionPattern<mlir::north_star::GetTensorOp> {
+  using OpConversionPattern::OpConversionPattern;
+
+  LogicalResult match(north_star::GetTensorOp op) const final {
+    return llvm::success();
+  }
+  void rewrite(north_star::GetTensorOp op, OpAdaptor adaptor,
+               ConversionPatternRewriter &rewriter) const final {
+    auto context = op.getContext();
+    auto loc = op->getLoc();
+    llvm::SmallVector<Type> converted_operand_types;
+    if (getTypeConverter()
+            ->convertTypes(op->getOperandTypes(), converted_operand_types)
+            .failed()) {
+      op.emitError() << "type convert failed";
+      return;
+    }
+    llvm::SmallVector<Type> converted_result_types;
+    if (getTypeConverter()
+            ->convertTypes(op->getResultTypes(), converted_result_types)
+            .failed()) {
+      op.emitError() << "type convert failed";
+      return;
+    }
+    auto device_index =
+        rewriter.create<arith::ConstantIntOp>(loc, op.getDeviceId(), 64);
+    mlir::utils::AutoCastOption options;
+    options.castTensor = true;
+    utils::FunctionCallBuilder builder(
+        op.getBuildinFunctionName(),
+        FunctionType::get(
+            context,
+            TypeRange{rewriter.getI64Type(), getTypeConverter()->convertType(
+                                                 op.getBuffer().getType())},
+            converted_result_types),
+        options);
+    auto builder_res = builder.create(
+        op->getLoc(), rewriter, ValueRange{device_index, adaptor.getBuffer()});
+    rewriter.replaceOp(op, builder_res.replecement_results);
+  }
+};
+
+struct GatherOpOpConversionPattern final
+    : public OpConversionPattern<mlir::north_star::GatherOp> {
+  using OpConversionPattern::OpConversionPattern;
+
+  LogicalResult match(north_star::GatherOp op) const final {
+    return llvm::success();
+  }
+  void rewrite(north_star::GatherOp op, OpAdaptor adaptor,
+               ConversionPatternRewriter &rewriter) const final {
+    auto context = op.getContext();
+    auto loc = op->getLoc();
+    llvm::SmallVector<Type> converted_operand_types;
+    if (getTypeConverter()
+            ->convertTypes(op.getOperandTypes(), converted_operand_types)
+            .failed()) {
+      op.emitError() << "type convert failed";
+      return;
+    }
+    llvm::SmallVector<Type> converted_result_types;
+    if (getTypeConverter()
+            ->convertTypes(op->getResultTypes(), converted_result_types)
+            .failed()) {
+      op.emitError() << "type convert failed";
+      return;
+    }
+    mlir::utils::AutoCastOption options;
+    options.castTensor = true;
+    utils::FunctionCallBuilder builder(
+        op.getBuildinFunctionName(),
+        FunctionType::get(context, converted_operand_types,
+                          converted_result_types),
+        options);
+    auto builder_res =
+        builder.create(op->getLoc(), rewriter, adaptor.getOperands());
+    rewriter.replaceOp(op, builder_res.replecement_results);
+  }
+};
+
+struct ScatterOpOpConversionPattern final
+    : public OpConversionPattern<mlir::north_star::ScatterOp> {
+  using OpConversionPattern::OpConversionPattern;
+
+  LogicalResult match(north_star::ScatterOp op) const final {
+    return llvm::success();
+  }
+  void rewrite(north_star::ScatterOp op, OpAdaptor adaptor,
+               ConversionPatternRewriter &rewriter) const final {
+    auto context = op.getContext();
+    auto loc = op->getLoc();
+    llvm::SmallVector<Type> converted_operand_types;
+    if (getTypeConverter()
+            ->convertTypes(op.getOperandTypes(), converted_operand_types)
+            .failed()) {
+      op.emitError() << "type convert failed";
+      return;
+    }
+    llvm::SmallVector<Type> converted_result_types;
+    if (getTypeConverter()
+            ->convertTypes(op->getResultTypes(), converted_result_types)
+            .failed()) {
+      op.emitError() << "type convert failed";
+      return;
+    }
+    mlir::utils::AutoCastOption options;
+    options.castTensor = true;
+    utils::FunctionCallBuilder builder(
+        op.getBuildinFunctionName(),
+        FunctionType::get(context, converted_operand_types,
+                          converted_result_types),
+        options);
+    auto builder_res =
+        builder.create(op->getLoc(), rewriter, adaptor.getOperands());
+    rewriter.replaceOp(op, builder_res.replecement_results);
   }
 };
 
@@ -134,51 +333,31 @@ struct FuncFuncOpRerewriterPattern final
 namespace mlir::north_star {
 namespace {}  // namespace
 void initNorthStarToFuncTypeConvert(TypeConverter &type_converter) {
+  type_converter.addConversion([](TensorType type) { return type; });
   type_converter.addConversion([](NSTensorType type) {
-    return RankedTensorType::get(type.getShape(), type.getElementType());
+    auto context = type.getContext();
+    llvm::SmallVector<Type> types;
+    auto I64 = IntegerType::get(context, 64);
+    auto ptr_type = LLVM::LLVMPointerType::get(context);
+    types.push_back(I64);
+    SmallVector<Type, 2> unranded_memref_types = {I64, ptr_type};
+    auto unranded_memref_struct_type =
+        LLVM::LLVMStructType::getLiteral(context, unranded_memref_types);
+    types.push_back(unranded_memref_struct_type);
+    return LLVM::LLVMStructType::getLiteral(context, types);
   });
-  type_converter.addConversion([](BufferType type) { return type; });
-  type_converter.addConversion([](RankedTensorType type) { return type; });
-  type_converter.addConversion([](FunctionType type) {
-    SmallVector<Type> inputs;
-    SmallVector<Type> outputs;
-    for (auto type : type.getInputs()) {
-      if (auto ns_tensor = llvm::dyn_cast_or_null<NSTensorType>(type)) {
-        inputs.push_back(RankedTensorType::get(ns_tensor.getShape(),
-                                               ns_tensor.getElementType()));
-      } else {
-        inputs.push_back(type);
-      }
-    }
-    for (auto type : type.getResults()) {
-      if (auto ns_tensor = llvm::dyn_cast_or_null<NSTensorType>(type)) {
-        outputs.push_back(RankedTensorType::get(ns_tensor.getShape(),
-                                                ns_tensor.getElementType()));
-      } else {
-        outputs.push_back(type);
-      }
-    }
-    return FunctionType::get(type.getContext(), inputs, outputs);
+  type_converter.addConversion([](BufferType type) {
+    auto context = type.getContext();
+
+    auto I64 = IntegerType::get(context, 64);
+    auto ptr_type = LLVM::LLVMPointerType::get(context);
+    llvm::SmallVector<Type> types = {I64, ptr_type, ptr_type, ptr_type};
+    return LLVM::LLVMStructType::getLiteral(context, types);
   });
 
   auto materialize_cast = [](OpBuilder &builder, Type type, ValueRange inputs,
-                            Location loc) -> std::optional<Value> {
+                             Location loc) -> std::optional<Value> {
     if (inputs.size() != 1) return std::nullopt;
-
-    if (auto ns_tensor =
-            llvm::dyn_cast_or_null<NSTensorType>(inputs[0].getType())) {
-      if (auto tensor = llvm::dyn_cast_or_null<RankedTensorType>(type)) {
-        return builder.create<NSTensorToTensorOp>(loc, type, inputs[0],
-                                                  ns_tensor.getDeviceId());
-      }
-    }
-    if (auto tensor =
-            llvm::dyn_cast_or_null<RankedTensorType>(inputs[0].getType())) {
-      if (auto ns_tensor = llvm::dyn_cast_or_null<NSTensorType>(type)) {
-        return builder.create<TensorToNSTensorOp>(loc, type, inputs[0],
-                                                  ns_tensor.getDeviceId());
-      }
-    }
     return builder.create<UnrealizedConversionCastOp>(loc, type, inputs)
         .getResult(0);
   };
@@ -190,5 +369,10 @@ void initNorthStarToFuncTypeConvert(TypeConverter &type_converter) {
 
 void populateNorthStarToFuncPatterns(TypeConverter &type_converter,
                                      RewritePatternSet &patterns) {
+  patterns.add<TensorToNSTensorOpConversionPattern,
+               NSTensorToTensorOpConversionPattern, BufferOpConversionPattern,
+               GetTensorOpConversionPattern, ScatterOpOpConversionPattern,
+               GatherOpOpConversionPattern>(type_converter,
+                                            patterns.getContext());
 };
 }  // namespace mlir::north_star

@@ -16,6 +16,7 @@
 include "mlir/IR/OpAsmInterface.td"
 include "Dialect/NorthStar/IR/NorthStarAttrs.td"
 include "Interfaces/FusionRegionInterfaces.td"
+include "Interfaces/BuiltinFunctionInterfaces.td"
 include "mlir/IR/SymbolInterfaces.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
 include "mlir/Interfaces/FunctionInterfaces.td"
@@ -108,14 +109,14 @@ def NorthStar_AllToAllOp : NorthStar_Op<"all_to_all",[]>{
     );
 }
 
-def NorthStar_ScatterOp : NorthStar_Op<"scatter",[]>{
+def NorthStar_ScatterOp : NorthStar_Op<"scatter",[DeclareOpInterfaceMethods<BuiltinFunctionOpInterface,["getBuildinFunctionName"]>]>{
     let arguments = (ins
         AnyBuffer:$input,
         AnyBuffer:$output
     );
 }
 
-def NorthStar_GatherOp : NorthStar_Op<"gather",[]>{
+def NorthStar_GatherOp : NorthStar_Op<"gather",[DeclareOpInterfaceMethods<BuiltinFunctionOpInterface,["getBuildinFunctionName"]>]>{
     let arguments = (ins
         AnyBuffer:$input,
         AnyBuffer:$output
@@ -139,7 +140,7 @@ def NorthStar_BufferCastOp : NorthStar_Op<"buffer_cast",[Pure]>{
     }];
 }
 
-def NorthStar_BufferOp : NorthStar_Op<"buffer",[Pure]>{
+def NorthStar_BufferOp : NorthStar_Op<"buffer",[Pure, DeclareOpInterfaceMethods<BuiltinFunctionOpInterface,["getBuildinFunctionName"]>]>{
     let description = "将 多个device_id 的tensor 组合成 一个 buffer";
     let arguments = (ins
         Variadic<AnyNSTensor>:$tensors
@@ -162,7 +163,7 @@ def NorthStar_BufferOp : NorthStar_Op<"buffer",[Pure]>{
     ];
 }
 
-def NorthStar_GetTensorOp: NorthStar_Op<"get_tensor",[Pure]>{
+def NorthStar_GetTensorOp: NorthStar_Op<"get_tensor",[Pure, DeclareOpInterfaceMethods<BuiltinFunctionOpInterface,["getBuildinFunctionName"]>]>{
     let description = "从buffer中取出指定device_id的tensor";
     let arguments = (ins
         AnyBuffer:$buffer,
@@ -179,7 +180,7 @@ def NorthStar_PrintOp: NorthStar_Op<"print",[]>{
     );
 }
 
-def NorthStar_TensorToNSTensorOp: NorthStar_Op<"tensor_to_ns_tensor",[Pure]>{
+def NorthStar_TensorToNSTensorOp: NorthStar_Op<"tensor_to_ns_tensor",[Pure, DeclareOpInterfaceMethods<BuiltinFunctionOpInterface,["getBuildinFunctionName"]>]>{
     let description = "NSTensor与Tensor 相互转化";
     let arguments = (ins
         AnyRankedTensor:$input,
@@ -191,7 +192,8 @@ def NorthStar_TensorToNSTensorOp: NorthStar_Op<"tensor_to_ns_tensor",[Pure]>{
     let hasCanonicalizer = 1;
 }
 
-def NorthStar_NSTensorToTensorOp: NorthStar_Op<"ns_tensor_to_tensor",[Pure]>{
+def NorthStar_NSTensorToTensorOp: NorthStar_Op<"ns_tensor_to_tensor",[Pure,
+DeclareOpInterfaceMethods<BuiltinFunctionOpInterface,["getBuildinFunctionName"]>]>{
     let description = "NSTensor与Tensor 相互转化";
     let arguments = (ins
         AnyNSTensor:$input,

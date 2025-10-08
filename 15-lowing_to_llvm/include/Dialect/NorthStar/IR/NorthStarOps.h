@@ -18,6 +18,7 @@
 #define FIX
 #include "Dialect/NorthStar/IR/NorthStarAttrs.h"
 #include "Interfaces/FusionRegionInterfaces.h"
+#include "Interfaces/BuiltinFunctionInterfaces.h"
 #define GET_OP_CLASSES
 #include "Dialect/NorthStar/IR/NorthStarOps.h.inc"
 #undef FIX

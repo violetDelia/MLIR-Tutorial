@@ -24,9 +24,11 @@
 #include "llvm/Support/FormatVariadic.h"
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
+#include "mlir/Dialect/Linalg/Transforms/Transforms.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 
 #define DEBUG_TYPE "convert-north-satr-to-linalg"
 
@@ -71,14 +73,22 @@ void configNorthStarToLinalgTarget(ConversionTarget& target) {
 }
 void NorthStarToLinalgPassPass::runOnOperation() {
   LLVM_DEBUG(llvm::dbgs() << llvm::formatv("run in {0}\n", getPassName()));
-  auto model = getOperation();
+  auto module = getOperation();
   TypeConverter type_convert;
   initNorthStarToLinalgTypeConvert(type_convert);
   RewritePatternSet patterns(&getContext());
   populateNorthStarToLinalgPatterns(type_convert, patterns);
   ConversionTarget target(getContext());
   configNorthStarToLinalgTarget(target);
-  if (failed(applyPartialConversion(model, target, std::move(patterns))))
+  if (failed(applyPartialConversion(module, target, std::move(patterns))))
     signalPassFailure();
+
+  MLIRContext* context = &this->getContext();
+  RewritePatternSet decompositionPatterns(context);
+  linalg::populateDecomposeLinalgOpsPattern(decompositionPatterns, false);
+  if (failed(applyPatternsAndFoldGreedily(getOperation(),
+                                          std::move(decompositionPatterns)))) {
+    return signalPassFailure();
+  }
   LLVM_DEBUG(llvm::dbgs() << llvm::formatv("run out: {0}\n", getPassName()));
 }

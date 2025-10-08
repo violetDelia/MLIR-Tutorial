@@ -16,6 +16,6 @@
 #define RUNTIME_NSRUNTIME_H
 #include "Runtime/Core.h"
 
-MLIR_TT_C_EXPORT void setDevice(int device_id);
+MLIR_TT_C_EXPORT void __NS__SetDevice(int device_id);
 
 #endif  // RUNTIME_NSRUNTIME_H

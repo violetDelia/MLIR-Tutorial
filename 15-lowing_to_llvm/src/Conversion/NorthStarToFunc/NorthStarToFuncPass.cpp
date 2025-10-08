@@ -25,13 +25,13 @@
 #include "llvm/Support/LogicalResult.h"
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
+#include "mlir/Dialect/LLVMIR/LLVMDialect.h"
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Transforms/DialectConversion.h"
 
 #define DEBUG_TYPE "convert-north-satr-to-func"
-
 namespace mlir::north_star {
 
 #define GEN_PASS_DEF_CONVERTNORTHSTARTOFUNCPASS
@@ -49,37 +49,21 @@ struct NorthStarToFuncPassPass
 };
 
 void configNorthStarToFuncTarget(ConversionTarget& target) {
+  target.addIllegalOp<north_star::TensorToNSTensorOp, north_star::BufferOp,
+                      north_star::GetTensorOp>();
   target.addLegalDialect<tensor::TensorDialect>();
-  target.addLegalDialect<linalg::LinalgDialect>();
-  target.addLegalDialect<arith::ArithDialect>();
   target.addLegalDialect<func::FuncDialect>();
+  target.addLegalDialect<arith::ArithDialect>();
+  target.addLegalDialect<LLVM::LLVMDialect>();
   target.addLegalOp<UnrealizedConversionCastOp>();
-  target.addLegalOp<BufferOp, TensorToNSTensorOp, NSTensorToTensorOp,ScatterOp,GatherOp,GetTensorOp>();
-  target.addIllegalOp<DeviceKernelOp, ReturnOp>();
-  target.addDynamicallyLegalOp<func::FuncOp>([](func::FuncOp op) {
-    auto func_type = op.getFunctionType();
-    for (auto type : func_type.getInputs()) {
-      if (isa<::mlir::north_star::NSTensorType>(type)) return false;
-    }
-    for (auto type : func_type.getResults()) {
-      if (isa<::mlir::north_star::NSTensorType>(type)) return false;
-    }
-    return true;
-  });
-  target.addDynamicallyLegalOp<func::ReturnOp>([](func::ReturnOp op) {
-    for (auto type : op->getOperandTypes()) {
-      if (isa<::mlir::north_star::NSTensorType>(type)) return false;
-    }
-    return true;
-  });
 }
 
 void NorthStarToFuncPassPass::runOnOperation() {
   LLVM_DEBUG(llvm::dbgs() << llvm::formatv("run in {0}\n", getPassName()));
-  auto model = getOperation();
-  auto main_func = model.lookupSymbol<func::FuncOp>(KEntryPointName);
+  auto module = getOperation();
+  auto main_func = module.lookupSymbol<func::FuncOp>(KEntryPointName);
   if (!main_func || !main_func.isPublic()) {
-    model.emitError() << "Cannot find host entry function";
+    module.emitError() << "Cannot find host entry function";
     signalPassFailure();
     return;
   }
@@ -89,7 +73,8 @@ void NorthStarToFuncPassPass::runOnOperation() {
   populateNorthStarToFuncPatterns(type_convert, patterns);
   ConversionTarget target(getContext());
   configNorthStarToFuncTarget(target);
-  if (failed(applyPartialConversion(model, target, std::move(patterns))))
+  if (failed(applyPartialConversion(module, target, std::move(patterns))))
     signalPassFailure();
+  module.dump();
   LLVM_DEBUG(llvm::dbgs() << llvm::formatv("run out: {0}\n", getPassName()));
 }

@@ -4,6 +4,7 @@ add_mlir_dialect_library(MLIRNorthStarDialect${ch_num}
     NorthStarAttrs.cpp
     NorthStarOps.cpp
     NorthStarCanonicalize.cpp
+    NorthStarBuiltinFunctionInterfacesImpl.cpp
 
     DEPENDS
     MLIRNorthStarDialectIncGen${ch_num}
@@ -12,6 +13,7 @@ add_mlir_dialect_library(MLIRNorthStarDialect${ch_num}
     MLIRIR
     MLIRTensorDialect
     MLIRDistributeParallelismInterfaces${ch_num}
+    MLIRBuiltinFunctionInterfaces${ch_num}
     MLIRFusionRegionInterfaces${ch_num}
 )
 

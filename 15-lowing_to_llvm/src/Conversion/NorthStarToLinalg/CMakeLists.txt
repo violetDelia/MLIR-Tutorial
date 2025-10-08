@@ -7,6 +7,7 @@ add_mlir_conversion_library(MLIRNorthStarToLinalg${ch_num}
 
   LINK_LIBS PUBLIC
   MLIRLinalgDialect
+  MLIRLinalgTransforms
   MLIRNorthStarDialect${ch_num}
   MLIRPass
   MLIRTransformUtils

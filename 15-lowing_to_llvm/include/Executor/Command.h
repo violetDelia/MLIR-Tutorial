@@ -1,4 +1,3 @@
-
 //    Copyright 2025 时光丶人爱
 
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,20 +12,29 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-#ifndef RUNTIME_TENSOR_H
-#define RUNTIME_TENSOR_H
-#include <cstddef>
-#include <cstdint>
+#ifndef EXECUTOR_COMMAND_H
+#define EXECUTOR_COMMAND_H
+#include <optional>
+#include <string>
+#include <vector>
 
-#include "Runtime/Core.h"
-#include "mlir/ExecutionEngine/CRunnerUtils.h"
-#include "mlir/Pass/PassManager.h"
-#include "mlir/Pass/PassOptions.h"
+namespace north_star::executor {
 
-template <typename T>
-struct NSMemref {
-  int64_t device_id;
-  UnrankedMemRefType<T> memref;
+std::string getToolPath(const std::string &tool);
+
+struct Command {
+  std::string _path;
+  std::vector<std::string> _args;
+
+  explicit Command(std::string exe_path);
+
+  Command &appendStr(const std::string &arg);
+  Command &appendStrOpt(const std::optional<std::string> &arg);
+  Command &appendList(const std::vector<std::string> &args);
+  Command &resetArgs();
+  void exec(std::string wdir = "") const;
 };
 
-#endif  // RUNTIME_TENSOR_H
+}  // namespace north_star::executor
+
+#endif  // EXECUTOR_COMMAND_H

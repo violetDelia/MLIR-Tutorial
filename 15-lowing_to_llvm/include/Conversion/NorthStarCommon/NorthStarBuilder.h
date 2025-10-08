@@ -1,4 +1,3 @@
-
 //    Copyright 2025 时光丶人爱
 
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,21 +11,22 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
+//
 
-#ifndef RUNTIME_TENSOR_H
-#define RUNTIME_TENSOR_H
-#include <cstddef>
-#include <cstdint>
+#ifndef CONVERSION_NORTHSTARCOMMON_NORTHSTARBUILDER_H
+#define CONVERSION_NORTHSTARCOMMON_NORTHSTARBUILDER_H
 
-#include "Runtime/Core.h"
-#include "mlir/ExecutionEngine/CRunnerUtils.h"
-#include "mlir/Pass/PassManager.h"
-#include "mlir/Pass/PassOptions.h"
+#include "mlir/Conversion/LLVMCommon/StructBuilder.h"
+namespace mlir::north_star {
 
-template <typename T>
-struct NSMemref {
-  int64_t device_id;
-  UnrankedMemRefType<T> memref;
+class NSTensorDescriptor : public StructBuilder {
+ public:
+  explicit NSTensorDescriptor(Value descriptor);
+  static NSTensorDescriptor undef(OpBuilder &builder, Location loc,
+                                        Type descriptorType);
+
 };
 
-#endif  // RUNTIME_TENSOR_H
+}  // namespace mlir::north_star
+
+#endif  // CONVERSION_NORTHSTARCOMMON_NORTHSTARBUILDER_H

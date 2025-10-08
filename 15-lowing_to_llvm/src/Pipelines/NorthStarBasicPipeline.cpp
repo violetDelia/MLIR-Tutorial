@@ -12,13 +12,36 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+#include <string>
+
+#include "Conversion/NorthStarToFunc/NorthStarToFunc.h"
 #include "Conversion/Passes.h"
 #include "Dialect/NorthStar/Transforms/Passes.h"
 #include "Pipelines/Pipelines.h"
-#include "mlir/Conversion/LinalgToStandard/LinalgToStandard.h"
-#include "mlir/Conversion/ReconcileUnrealizedCasts/ReconcileUnrealizedCasts.h"
+#include "mlir/Dialect/Arith/Transforms/BufferizableOpInterfaceImpl.h"
+#include "mlir/Dialect/Bufferization/TransformOps/BufferizationTransformOps.h"
+#include "mlir/Dialect/Bufferization/Transforms/FuncBufferizableOpInterfaceImpl.h"
+#include "mlir/Dialect/Bufferization/Transforms/OneShotAnalysis.h"
+#include "mlir/Dialect/Bufferization/Transforms/Passes.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
+#include "mlir/Dialect/Linalg/Passes.h"
+#include "mlir/Dialect/Linalg/TransformOps/DialectExtension.h"
+#include "mlir/Dialect/Linalg/Transforms/BufferizableOpInterfaceImpl.h"
+#include "mlir/Dialect/SCF/TransformOps/SCFTransformOps.h"
+#include "mlir/Dialect/Tensor/TransformOps/TensorTransformOps.h"
+#include "mlir/Dialect/Tensor/Transforms/BufferizableOpInterfaceImpl.h"
+#include "mlir/Dialect/Transform/Transforms/Passes.h"
+#include "mlir/Dialect/Vector/TransformOps/VectorTransformOps.h"
+#include "mlir/IR/DialectRegistry.h"
+#include "mlir/Support/LLVM.h"
 #include "mlir/Transforms/Passes.h"
+namespace {
+void applyInterpreter(::mlir::OpPassManager &pm, const char *entry_point) {
+  mlir::transform::InterpreterPassOptions options;
+  options.entryPoint = entry_point;
+  pm.addPass(mlir::transform::createInterpreterPass(options));
+}
+}  // namespace
 namespace mlir::pipeline {
 void buildBuffeNorthStarBasicPipeline(
     OpPassManager &pm, const NorthStarBasicPipelineOptions &options) {
@@ -34,9 +57,25 @@ void buildBuffeNorthStarBasicPipeline(
   pm.addPass(mlir::north_star::createEliminateBufferCastPass());
   pm.addPass(mlir::north_star::createConvertNorthStarToLinalgPass());
   pm.addPass(mlir::north_star::createNorthStarLegalizePass());
-  
-
   pm.addPass(mlir::createCanonicalizerPass());
+  mlir::SmallVector<std::string> transform_library_paths;
+  transform_library_paths.push_back(
+      "/home/lfr/MLIR_Tutorial/linalg_include.mlir");
+  mlir::transform::PreloadLibraryPassOptions preload_options{
+      .transformLibraryPaths = transform_library_paths};
+
+  pm.addPass(mlir::transform::createPreloadLibraryPass(preload_options));
+  //applyInterpreter(pm, "linalg_analysis");
+  applyInterpreter(pm, "linalg_decompose");
+  pm.addPass(mlir::north_star::createConvertNorthStarToFuncPass());
+  mlir::bufferization::OneShotBufferizationOptions bufferization_options;
+  bufferization_options.allowReturnAllocsFromLoops = true;
+  bufferization_options.allowUnknownOps = true;
+  bufferization_options.testAnalysisOnly = false;
+  bufferization_options.bufferizeFunctionBoundaries = false;
+  pm.addPass(
+      mlir::bufferization::createOneShotBufferizePass(bufferization_options));
+  
 };
 
 void registerNorthStarBasicPipelines() {
@@ -44,5 +83,18 @@ void registerNorthStarBasicPipelines() {
       "north-star-basic-pipeline", "basic pipeline ",
       buildBuffeNorthStarBasicPipeline);
 };
+void registerNorthStarBasicPipelinesExtennsion(
+    mlir::DialectRegistry &registry) {
+  mlir::tensor::registerBufferizableOpInterfaceExternalModels(registry);
+  mlir::bufferization::func_ext::registerBufferizableOpInterfaceExternalModels(
+      registry);
+  mlir::arith::registerBufferizableOpInterfaceExternalModels(registry);
+  mlir::linalg::registerBufferizableOpInterfaceExternalModels(registry);
+  mlir::linalg::registerTransformDialectExtension(registry);
+  mlir::vector::registerTransformDialectExtension(registry);
+  mlir::scf::registerTransformDialectExtension(registry);
+  mlir::bufferization::registerTransformDialectExtension(registry);
+  mlir::tensor::registerTransformDialectExtension(registry);
+}
 
 }  // namespace mlir::pipeline

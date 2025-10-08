@@ -15,7 +15,10 @@
 
 #ifndef UTILS_MLIR_UTILS_FUNCBUILDER_H
 #define UTILS_MLIR_UTILS_FUNCBUILDER_H
+#include <string>
+#include "llvm/ADT/SmallVector.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
+#include "mlir/IR/Value.h"
 #include "mlir/IR/ValueRange.h"
 #include "mlir/Support/LLVM.h"
 
@@ -23,16 +26,26 @@ namespace mlir::utils {
 struct FunctionCallBuilderResult {
   func::CallOp call;
   func::FuncOp function;
-  bool func_created =  false;
+  llvm::SmallVector<Value> replecement_results;
+  bool func_created = false;
+};
+
+struct AutoCastOption {
+  bool castTensor = false;
+  bool castMemRef = false;
 };
 
 struct FunctionCallBuilder {
-  FunctionCallBuilder(StringRef functionName, FunctionType func_type);
-  FunctionCallBuilderResult create(Location loc, OpBuilder &builder,
-                      ValueRange arguments) const;
+  FunctionCallBuilder(std::string functionName, FunctionType func_type);
+  FunctionCallBuilder(std::string functionName, FunctionType func_type,
+                      AutoCastOption auto_cast_option);
 
-  StringRef function_name;
+  FunctionCallBuilderResult create(Location loc, OpBuilder &builder,
+                                   ValueRange arguments) const;
+
+  std::string function_name;
   FunctionType function_type;
+  AutoCastOption auto_cast_option;
 };
 }  // namespace mlir::utils
 #endif  // UTILS_MLIR_UTILS_FUNCBUILDER_H

@@ -13,8 +13,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-#ifndef RUNTIME_TENSOR_H
-#define RUNTIME_TENSOR_H
+#ifndef RUNTIME_BUFFER_H
+#define RUNTIME_BUFFER_H
 #include <cstddef>
 #include <cstdint>
 
@@ -23,10 +23,21 @@
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Pass/PassOptions.h"
 
-template <typename T>
-struct NSMemref {
-  int64_t device_id;
-  UnrankedMemRefType<T> memref;
+enum DeviceType : int64_t {
+  INT64 = 0,
+  INT32 = 1,
+  INT16 = 2,
+  INT8 = 3,
+  FLOAT64 = 4,
+  FLOAT32 = 5,
+  FLOAT16 = 6,
+  BFLOAT16 = 7
 };
 
-#endif  // RUNTIME_TENSOR_H
+struct Buffer {
+  int64_t device_nums;
+  int64_t* device_index;
+  DeviceType* device_types;
+  void** memref_ptrs;
+};
+#endif  // RUNTIME_BUFFER_H

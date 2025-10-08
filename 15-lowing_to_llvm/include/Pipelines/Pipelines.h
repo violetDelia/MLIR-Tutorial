@@ -27,11 +27,12 @@ struct NorthStarBasicPipelineOptions
       *this, "DP_Nums", llvm::cl::desc("数据并行参数."), llvm::cl::init(1)};
 };
 
-void buildNorthStarBasicPipeline(
-    OpPassManager &pm, const NorthStarBasicPipelineOptions &options);
+void buildNorthStarBasicPipeline(OpPassManager &pm,
+                                 const NorthStarBasicPipelineOptions &options);
 
 void registerNorthStarBasicPipelines();
 
+void registerNorthStarBasicPipelinesExtennsion(mlir::DialectRegistry &registry);
 }  // namespace mlir::pipeline
 
 #endif  // PIPELINES_PIPELINS_H
