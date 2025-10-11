@@ -32,6 +32,7 @@
 #include "llvm/Support/LogicalResult.h"
 #include "llvm/Support/ScopedPrinter.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Dialect/LLVMIR/LLVMTypes.h"
 #include "mlir/IR/Block.h"
 #include "mlir/IR/BuiltinTypeInterfaces.h"
 #include "mlir/IR/Location.h"
@@ -320,5 +321,10 @@ llvm::SmallVector<int64_t> BufferCastOp::outputDevices() {
     devices.push_back(NSTensor.getDeviceId());
   });
   return devices;
+};
+
+void GetHostStreamOp::build(::mlir::OpBuilder& odsBuilder, ::mlir::OperationState& odsState) {
+  return GetHostStreamOp::build(odsBuilder, odsState,
+               LLVM::LLVMPointerType::get(odsState.getContext()));
 };
 }  // namespace mlir::north_star

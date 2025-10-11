@@ -21,8 +21,9 @@ namespace mlir::north_star {
 void populateDeviceRegionFusionPatterns(RewritePatternSet& patterns);
 
 void populateEliminateBufferCastPatterns(RewritePatternSet& patterns);
+void populateNorthStarRuntimeCallPatterns(RewritePatternSet& patterns);
 
-std::unique_ptr<::mlir::Pass> createApplyDistributeTransformPass();
+    std::unique_ptr<::mlir::Pass> createApplyDistributeTransformPass();
 
 #define GEN_PASS_DECL
 #define GEN_PASS_REGISTRATION

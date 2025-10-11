@@ -24,4 +24,6 @@ def AnyBuffer  : Type<And<[CPred<"::mlir::isa<::mlir::north_star::BufferType>($_
                             
 def NSTensorOrBuffer :AnyTypeOf<[AnyNSTensor,AnyBuffer]>;
 def NSTensorOrTensor :AnyTypeOf<[AnyNSTensor,AnyRankedTensor]>;
+def LLVM_AnyPointer : Type<CPred<"::llvm::isa<::mlir::LLVM::LLVMPointerType>($_self)">,
+                          "LLVM pointer type", "::mlir::LLVM::LLVMPointerType">;
 #endif // DIALECT_NORTH_STAR_IR_NORTH_STAR_CONSTRAINTS_TD 

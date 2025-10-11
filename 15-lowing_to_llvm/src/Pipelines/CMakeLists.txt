@@ -14,8 +14,23 @@ add_mlir_library(MLIRNorthStarPipelines${ch_num}
     MLIRLinalgTransformOps
     MLIRVectorTransformOps
     MLIRSCFTransformOps
+    MLIRControlFlowDialect
     MLIRBufferizationTransformOps
     MLIRTensorTransformOps
+    MLIRBufferizationPipelines
+    MLIRTensorToLinalg
+    MLIRMemRefTransforms
+    MLIRAffineToStandard
+    MLIRMemRefTransformOps
+    MLIRIndexToLLVM
+    MLIRArithToLLVM
+    MLIRFuncTransformOps
+    MLIRControlFlowToLLVM
+    MLIRMathToLLVM
+    MLIRMemRefToLLVM
+    MLIRVectorToLLVM
+    MLIRVectorToLLVMPass
+    MLIRVectorToSCF
     MLIRNorthStarDialect${ch_num}
     MLIRNorthStarTransforms${ch_num}
     MLIRTutorialUtils${ch_num}

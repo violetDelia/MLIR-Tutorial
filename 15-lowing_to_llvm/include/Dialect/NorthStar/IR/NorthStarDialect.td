@@ -28,7 +28,8 @@ def NorthStar_Dialect : Dialect{
   let description = "description of NorthStar Dialect";
 
   // 方言的依赖
-  let dependentDialects = ["::mlir::tensor::TensorDialect"];
+  let dependentDialects = [ "::mlir::tensor::TensorDialect",
+                            "::mlir::LLVM::LLVMDialect"];
 
   // 用于生成比较标准的属性管理的代码 [4-7]
   let discardableAttrs = (ins);

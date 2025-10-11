@@ -75,6 +75,5 @@ void NorthStarToFuncPassPass::runOnOperation() {
   configNorthStarToFuncTarget(target);
   if (failed(applyPartialConversion(module, target, std::move(patterns))))
     signalPassFailure();
-  module.dump();
   LLVM_DEBUG(llvm::dbgs() << llvm::formatv("run out: {0}\n", getPassName()));
 }

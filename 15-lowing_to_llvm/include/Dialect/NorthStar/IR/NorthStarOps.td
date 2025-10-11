@@ -60,6 +60,16 @@ class NorthStar_ElewiseBinaryOp<string mnemonic,Type OperandType, Type resultTyp
     NorthStar_BinaryOp<mnemonic, OperandType, resultType, [DeclareOpInterfaceMethods<SupportedDataParallelismOp>] # traits,attributes>;
 
 
+def NorthStar_GetHostStreamOp : NorthStar_Op<"get_host_stream",[Pure]>{
+    let arguments = (ins);
+    let results = (outs
+        LLVM_AnyPointer:$result);
+    let hasFolder = 0;
+    let builders = [
+        OpBuilder<(ins)>
+    ];
+}
+
 def NorthStar_ConstOp : NorthStar_Op<"const",[Pure, ConstantLike]>{
     let arguments = (ins
         ElementsAttr:$value);

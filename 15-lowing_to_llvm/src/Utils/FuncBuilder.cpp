@@ -34,10 +34,6 @@ namespace {
 
 mlir::LogicalResult argmentCheck(mlir::FunctionType func_type,
                                  mlir::ValueRange arguments) {
-  func_type.dump();
-  for (auto i : arguments) {
-    i.dump();
-  }
   if (func_type.getNumInputs() != arguments.size()) {
     return mlir::failure();
   }

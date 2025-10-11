@@ -17,11 +17,11 @@
 #define CONVERSION_NORTHSTARLEGALIZE_NORTHSTARLEGALIZE_H
 #include <memory>
 
+#include "mlir/Dialect/ControlFlow/IR/ControlFlowOps.h"
 #include "mlir/Pass/Pass.h"
 namespace mlir {
 class TypeConverter;
 }
-
 namespace mlir::north_star {
 
 void initNorthStarLegalizeTypeConvert(TypeConverter &type_converter);

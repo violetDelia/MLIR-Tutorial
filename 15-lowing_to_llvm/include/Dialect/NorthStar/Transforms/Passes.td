@@ -81,4 +81,15 @@ def EliminateBufferCastPass : Pass<"eliminate-buffercast"> {
   ];
 }
 
+def NorthStarRuntimeCallPass : Pass<"north-star-runtime-call">{
+  let summary = "将一些与runtime相关的操作改写为runtime 函数的调用";
+  let description = [{
+  }];
+  let dependentDialects = [
+    "::mlir::north_star::NorthStarDialect",
+    "::mlir::LLVM::LLVMDialect"
+  ];
+
+}
+
 #endif  // DIALECT_NORTH_STAR_TRANSFORMS_PASSES_TD

@@ -5,6 +5,7 @@ add_mlir_dialect_library(MLIRNorthStarTransforms${ch_num}
   DeviceRegionFusion.cpp
   DeviceRegionOutlining.cpp
   EliminateBufferCast.cpp
+  NorthStarRuntimeCall.cpp
 
   DEPENDS
   MLIRNorthStarPassesIncGen${ch_num}
@@ -14,4 +15,5 @@ add_mlir_dialect_library(MLIRNorthStarTransforms${ch_num}
   MLIRPass
   MLIRTransforms
   MLIRTransformUtils
+  MLIRGPUToGPURuntimeTransforms
 )

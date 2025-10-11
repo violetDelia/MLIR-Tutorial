@@ -15,10 +15,13 @@
 
 #ifndef DIALECT_NORTH_STAR_IR_NORTH_STAR_OPS_H
 #define DIALECT_NORTH_STAR_IR_NORTH_STAR_OPS_H
+#include "mlir/Dialect/LLVMIR/LLVMDialect.h"
+#include "mlir/Dialect/LLVMIR/LLVMTypes.h"
 #define FIX
 #include "Dialect/NorthStar/IR/NorthStarAttrs.h"
 #include "Interfaces/FusionRegionInterfaces.h"
 #include "Interfaces/BuiltinFunctionInterfaces.h"
+
 #define GET_OP_CLASSES
 #include "Dialect/NorthStar/IR/NorthStarOps.h.inc"
 #undef FIX

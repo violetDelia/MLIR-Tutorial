@@ -82,9 +82,89 @@ module @NorthStar {
   }
   func.func private @__NS__SetDevice(i64)
   func.func private @softmax_1_128_softmax_1_128_fused_kernel(%arg0: memref<1x128xf32>, %arg1: memref<1x128xf32>) attributes {device_kernel} {
+    %cst = arith.constant -3.40282347E+38 : f32
+    %cst_0 = arith.constant 0.000000e+00 : f32
     %alloc = memref.alloc() {alignment = 64 : i64} : memref<1x128xf32>
-    linalg.softmax dimension(1) ins(%arg0 : memref<1x128xf32>) outs(%alloc : memref<1x128xf32>)
-    linalg.softmax dimension(1) ins(%alloc : memref<1x128xf32>) outs(%arg1 : memref<1x128xf32>)
+    %alloc_1 = memref.alloc() {alignment = 64 : i64} : memref<1xf32>
+    affine.for %arg2 = 0 to 1 {
+      affine.store %cst, %alloc_1[%arg2] : memref<1xf32>
+    }
+    affine.for %arg2 = 0 to 1 {
+      affine.for %arg3 = 0 to 128 {
+        %0 = affine.load %arg0[%arg2, %arg3] : memref<1x128xf32>
+        %1 = affine.load %alloc_1[%arg2] : memref<1xf32>
+        %2 = arith.maxnumf %0, %1 : f32
+        affine.store %2, %alloc_1[%arg2] : memref<1xf32>
+      }
+    }
+    affine.for %arg2 = 0 to 1 {
+      affine.for %arg3 = 0 to 128 {
+        %0 = affine.load %arg0[%arg2, %arg3] : memref<1x128xf32>
+        %1 = affine.load %alloc_1[%arg2] : memref<1xf32>
+        %2 = arith.subf %0, %1 : f32
+        %3 = math.exp %2 : f32
+        affine.store %3, %alloc[%arg2, %arg3] : memref<1x128xf32>
+      }
+    }
+    affine.for %arg2 = 0 to 1 {
+      affine.store %cst_0, %alloc_1[%arg2] : memref<1xf32>
+    }
+    affine.for %arg2 = 0 to 1 {
+      affine.for %arg3 = 0 to 128 {
+        %0 = affine.load %alloc[%arg2, %arg3] : memref<1x128xf32>
+        %1 = affine.load %alloc_1[%arg2] : memref<1xf32>
+        %2 = arith.addf %0, %1 : f32
+        affine.store %2, %alloc_1[%arg2] : memref<1xf32>
+      }
+    }
+    affine.for %arg2 = 0 to 1 {
+      affine.for %arg3 = 0 to 128 {
+        %0 = affine.load %alloc[%arg2, %arg3] : memref<1x128xf32>
+        %1 = affine.load %alloc_1[%arg2] : memref<1xf32>
+        %2 = arith.divf %0, %1 : f32
+        affine.store %2, %alloc[%arg2, %arg3] : memref<1x128xf32>
+      }
+    }
+    %alloc_2 = memref.alloc() {alignment = 64 : i64} : memref<1xf32>
+    affine.for %arg2 = 0 to 1 {
+      affine.store %cst, %alloc_2[%arg2] : memref<1xf32>
+    }
+    affine.for %arg2 = 0 to 1 {
+      affine.for %arg3 = 0 to 128 {
+        %0 = affine.load %alloc[%arg2, %arg3] : memref<1x128xf32>
+        %1 = affine.load %alloc_2[%arg2] : memref<1xf32>
+        %2 = arith.maxnumf %0, %1 : f32
+        affine.store %2, %alloc_2[%arg2] : memref<1xf32>
+      }
+    }
+    affine.for %arg2 = 0 to 1 {
+      affine.for %arg3 = 0 to 128 {
+        %0 = affine.load %alloc[%arg2, %arg3] : memref<1x128xf32>
+        %1 = affine.load %alloc_2[%arg2] : memref<1xf32>
+        %2 = arith.subf %0, %1 : f32
+        %3 = math.exp %2 : f32
+        affine.store %3, %arg1[%arg2, %arg3] : memref<1x128xf32>
+      }
+    }
+    affine.for %arg2 = 0 to 1 {
+      affine.store %cst_0, %alloc_2[%arg2] : memref<1xf32>
+    }
+    affine.for %arg2 = 0 to 1 {
+      affine.for %arg3 = 0 to 128 {
+        %0 = affine.load %arg1[%arg2, %arg3] : memref<1x128xf32>
+        %1 = affine.load %alloc_2[%arg2] : memref<1xf32>
+        %2 = arith.addf %0, %1 : f32
+        affine.store %2, %alloc_2[%arg2] : memref<1xf32>
+      }
+    }
+    affine.for %arg2 = 0 to 1 {
+      affine.for %arg3 = 0 to 128 {
+        %0 = affine.load %arg1[%arg2, %arg3] : memref<1x128xf32>
+        %1 = affine.load %alloc_2[%arg2] : memref<1xf32>
+        %2 = arith.divf %0, %1 : f32
+        affine.store %2, %arg1[%arg2, %arg3] : memref<1x128xf32>
+      }
+    }
     return
   }
   func.func private @__NS__MemrefToNSMemref_f32(i64, memref<*xf32>) -> !llvm.struct<(i64, struct<(i64, ptr)>)>

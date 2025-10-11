@@ -25,7 +25,8 @@ def ConvertNorthStarToLinalgPass : Pass<"convert-north-satr-to-linalg","::mlir::
   let dependentDialects = [
     "::mlir::north_star::NorthStarDialect",
     "::mlir::tensor::TensorDialect",
-    "::mlir::linalg::LinalgDialect"
+    "::mlir::linalg::LinalgDialect",
+    "::mlir::cf::ControlFlowDialect"
   ];
 }
 

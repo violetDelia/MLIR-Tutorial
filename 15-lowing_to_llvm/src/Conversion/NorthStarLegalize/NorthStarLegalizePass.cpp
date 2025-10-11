@@ -58,7 +58,7 @@ void insertSetDevice(Operation* op, OpBuilder& builder, Location loc,
   b.setInsertionPoint(op);
   auto device_val = b.create<arith::ConstantIntOp>(loc, device_id, 64);
   utils::FunctionCallBuilder(
-      KSetDeviceFuncName,
+      KSetDeviceBuiltinName,
       FunctionType::get(op->getContext(), TypeRange{b.getI64Type()},
                         TypeRange{}))
       .create(loc, b, ValueRange{device_val});

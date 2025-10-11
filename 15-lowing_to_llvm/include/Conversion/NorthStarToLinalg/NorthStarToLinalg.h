@@ -18,6 +18,7 @@
 #include <memory>
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Dialect/ControlFlow/IR/ControlFlowOps.h"
 namespace mlir {
 class TypeConverter;
 }

@@ -14,8 +14,21 @@
 
 #ifndef RUNTIME_NSRUNTIME_H
 #define RUNTIME_NSRUNTIME_H
+#include <cstdint>
+
 #include "Runtime/Core.h"
+#include "mlir/ExecutionEngine/CRunnerUtils.h"
 
 MLIR_TT_C_EXPORT void __NS__SetDevice(int device_id);
+
+MLIR_TT_C_EXPORT void __NS__MemrefCopy(int64_t elemSize,
+                                       ::UnrankedMemRefType<char> *src,
+                                       ::UnrankedMemRefType<char> *dst,
+                                       void *stream);
+MLIR_TT_C_EXPORT void __NS__Memcpy(void *src, void *dst, int64_t size,
+                                   bool is_volatile, void *stream);
+MLIR_TT_C_EXPORT void __NS__Free(void *data, void *stream);
+
+MLIR_TT_C_EXPORT void *__NS__Malloc(int64_t size, void *stream);
 
 #endif  // RUNTIME_NSRUNTIME_H
