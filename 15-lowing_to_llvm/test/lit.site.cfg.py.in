@@ -29,6 +29,8 @@ config.mlir_lib_dir = "@MLIR_LIB_DIR@" or "@LLVM_LIBRARY_DIR@"
 config.mlir_binary_dir = "@MLIR_BINARY_DIR@" or "@LLVM_BINARY_DIR@"
 config.mlir_tutorial_tool_dir = "@TUTORIA_TOOL_DIR@"
 config.mlir_tutorial_ns_opt = "@TUTORIA_NS_OPT@"
+config.north_star_transform_include_dir = "@NS_MLIR_TRANSFORM_INCLUDE_DIR@"
+config.north_star_transform_include = "@NS_MLIR_TRANSFORM_INCLUDE@"
 
 import lit.llvm
 lit.llvm.initialize(lit_config, config)

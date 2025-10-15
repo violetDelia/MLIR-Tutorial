@@ -555,4 +555,9 @@ void CH14() {
   const_op->dump();
 }
 
+// 1. 整体pipeline的情况以及如何一步一步lowing到LLVM IR
+//     1. 有哪些Pass，这些pass的功能是什么。
+//     2. 有哪些不足和不科学的地方需要注意。
+//     3. 有哪些可以扩展的地方。
+// 2. 如何使用 transform dialect
 int main() { CH14(); }

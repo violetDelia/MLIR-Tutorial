@@ -34,6 +34,7 @@ transform.named_sequence @linalg_analysis(%module: !transform.any_op {transform.
     transform.yield %analysied_module: !transform.any_op 
   }
 
+
 transform.named_sequence @linalg_decompose(%module: !transform.any_op {transform.readonly}) {
     %linalg_ops = transform.structured.match interface{LinalgOp} in %module : (!transform.any_op) -> !transform.any_op
     %decomposed_ops = transform.structured.decompose %linalg_ops : (!transform.any_op) -> !transform.any_op

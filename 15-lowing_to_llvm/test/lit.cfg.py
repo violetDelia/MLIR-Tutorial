@@ -45,10 +45,12 @@ config.excludes = [
 
 tool_dirs = [
     config.mlir_binary_dir,
-    config.mlir_tutorial_tool_dir
+    config.mlir_tutorial_tool_dir,
+    config.north_star_transform_include_dir
 ]
 tools = [
     ToolSubst("ns-opt", config.mlir_tutorial_ns_opt, unresolved="ignore"),
+    ToolSubst("%ns-transform-include", config.north_star_transform_include, unresolved="ignore"),
     add_runtime("mlir_runner_utils"),
     add_runtime("mlir_c_runner_utils"),
 ]

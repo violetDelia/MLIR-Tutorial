@@ -31,6 +31,7 @@ add_mlir_library(MLIRNorthStarPipelines${ch_num}
     MLIRVectorToLLVM
     MLIRVectorToLLVMPass
     MLIRVectorToSCF
+    MLIRFuncInlinerExtension
     MLIRNorthStarDialect${ch_num}
     MLIRNorthStarTransforms${ch_num}
     MLIRTutorialUtils${ch_num}

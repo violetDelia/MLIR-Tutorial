@@ -14,9 +14,11 @@
 #include "Dialect/NorthStar/IR/NorthStarDialect.h"
 #include "Dialect/NorthStar/Transforms/Passes.h"
 #include "Pipelines/Pipelines.h"
+#include "mlir/Conversion/Passes.h"
 #include "mlir/Dialect/Affine/IR/AffineOps.h"
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/ControlFlow/IR/ControlFlow.h"
+#include "mlir/Dialect/Func/Extensions/InlinerExtension.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/Index/IR/IndexDialect.h"
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
@@ -26,6 +28,7 @@
 #include "mlir/Dialect/Vector/TransformOps/VectorTransformOps.h"
 #include "mlir/IR/BuiltinDialect.h"
 #include "mlir/Tools/mlir-opt/MlirOptMain.h"
+#include "mlir/Transforms/Passes.h"
 int main(int argc, char **argv) {
   // mlir::registerAllPasses();
   mlir::DialectRegistry registry;
@@ -48,6 +51,9 @@ int main(int argc, char **argv) {
   mlir::north_star::registerNorthStarOptPasses();
   mlir::north_star::registerNorthStarConversionPasses();
   mlir::pipeline::registerNorthStarBasicPipelines();
+  mlir::registerReconcileUnrealizedCasts();
+  mlir::registerCanonicalizerPass();
+  mlir::registerInlinerPass();
   return mlir::asMainReturnCode(
       mlir::MlirOptMain(argc, argv, "NS modular optimizer driver\n", registry));
 }

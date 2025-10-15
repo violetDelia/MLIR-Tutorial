@@ -43,6 +43,7 @@
 #include "mlir/Dialect/Bufferization/Transforms/OneShotAnalysis.h"
 #include "mlir/Dialect/Bufferization/Transforms/Passes.h"
 #include "mlir/Dialect/EmitC/Transforms/Passes.h"
+#include "mlir/Dialect/Func/Extensions/InlinerExtension.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/Func/TransformOps/FuncTransformOps.h"
 #include "mlir/Dialect/Func/Transforms/Passes.h"
@@ -139,6 +140,7 @@ void buildBuffeNorthStarBasicPipeline(
   pm.addPass(mlir::transform::createPreloadLibraryPass(preload_options));
   // applyInterpreter(pm, "linalg_analysis");
   applyInterpreter(pm, "linalg_decompose");
+  
   pm.addPass(mlir::north_star::createConvertNorthStarToFuncPass());
   pm.addPass(mlir::bufferization::createEmptyTensorToAllocTensorPass());
   pm.addPass(mlir::createConvertTensorToLinalgPass());
@@ -200,6 +202,7 @@ void registerNorthStarBasicPipelinesExtennsion(
   mlir::func::registerTransformDialectExtension(registry);
   mlir::registerConvertMathToLLVMInterface(registry);
   mlir::registerConvertMemRefToLLVMInterface(registry);
+  mlir::func::registerInlinerExtension(registry);
 }
 
 }  // namespace mlir::pipeline
